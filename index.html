@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+
     <!-- Cabeçalho -->
     <header>
         <h1 class="titulo-loja">💄 YB MAKE's Cosméticos 💋</h1>
@@ -29,35 +30,35 @@
         <div class="content">
             <img src="imagens/baton.png.jpg" alt="Batom Matte">
             <h2>Batom Matte</h2>
-            <p>R$ 14,99</p>
+            <p>R$ 14.99</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
         <div class="content">
             <img src="imagens/mascara.png.jpg" alt="Máscara de Cílios">
             <h2>Máscara de Cílios</h2>
-            <p>R$ 14,99</p>
+            <p>R$ 14.99</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
         <div class="content">
             <img src="imagens/deliniador.png.jpg" alt="Delineador Líquido">
             <h2>Delineador Líquido</h2>
-            <p>R$ 11,99</p>
+            <p>R$ 11.99</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
         <div class="content">
             <img src="imagens/blush.png.jpg" alt="Blush Compacto">
             <h2>Blush Compacto</h2>
-            <p>R$ 07,00</p>
+            <p>R$ 7.00</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
         <div class="content">
             <img src="imagens/base_liquida.png.jpg" alt="Base Líquida">
             <h2>Base Líquida</h2>
-            <p>R$ 10,00</p>
+            <p>R$ 10.00</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
@@ -69,26 +70,87 @@
         <a href="https://wa.me/5511971822511" target="_blank" class="btn whatsapp">💬 WhatsApp</a>
     </section>
 
+    <!-- Carrinho de Compras -->
+    <div class="carrinho">
+        <h2>🛒 Carrinho de Compras</h2>
+        <div class="produtos-carrinho"></div>
+        <p class="total">Total: R$ 0.00</p>
+        <button class="btn-finalizar" onclick="mostrarPix()">Finalizar Compra</button>
+    </div>
+
+    <!-- Modal PIX -->
+    <div id="modal-pix" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:20px; border-radius:10px; width:300px; text-align:center;">
+            <h3>Finalize a Compra</h3>
+            <p>Total: R$ <span id="total-pix"></span></p>
+            <p>Chave PIX: <strong id="pix-chave">11941068633</strong></p>
+            <p>Copie a chave e faça o pagamento via seu banco</p>
+            <button onclick="fecharPix()">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // Busca de produtos
+        function buscarProduto() {
+            const input = document.getElementById('pesquisa').value.toLowerCase();
+            const produtos = document.querySelectorAll('.product-list .content');
+            produtos.forEach(produto => {
+                const nome = produto.querySelector('h2').textContent.toLowerCase();
+                produto.style.display = nome.includes(input) ? 'block' : 'none';
+            });
+        }
+
+        // Carrinho
+        const botoesCarrinho = document.querySelectorAll('.btn-carrinho');
+        const carrinhoContainer = document.querySelector('.produtos-carrinho');
+        const totalCarrinho = document.querySelector('.total');
+
+        let carrinho = [];
+        let total = 0;
+
+        botoesCarrinho.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const produto = botao.parentElement;
+                const nome = produto.querySelector('h2').innerText;
+                const precoTexto = produto.querySelector('p').innerText.replace('R$ ','').replace(',','.');
+                const preco = parseFloat(precoTexto);
+
+                carrinho.push({nome, preco});
+                total += preco;
+
+                atualizarCarrinho();
+            });
+        });
+
+        function atualizarCarrinho() {
+            carrinhoContainer.innerHTML = '';
+            carrinho.forEach(item => {
+                const p = document.createElement('p');
+                p.innerText = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+                carrinhoContainer.appendChild(p);
+            });
+            totalCarrinho.innerText = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        // Mostrar PIX
+        function mostrarPix() {
+            if(carrinho.length === 0){
+                alert('O carrinho está vazio!');
+                return;
+            }
+            document.getElementById('total-pix').innerText = total.toFixed(2);
+            document.getElementById('modal-pix').style.display = 'flex';
+        }
+
+        function fecharPix() {
+            document.getElementById('modal-pix').style.display = 'none';
+        }
+    </script>
+
     <!-- Rodapé -->
     <footer>
         <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Script da busca -->
-    <script>
-        function buscarProduto() {
-            const input = document.getElementById('pesquisa').value.toLowerCase();
-            const produtos = document.querySelectorAll('.product-list .content');
-
-            produtos.forEach(produto => {
-                const nome = produto.querySelector('h2').textContent.toLowerCase();
-                if(nome.includes(input)) {
-                    produto.style.display = 'block';
-                } else {
-                    produto.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </body>
 </html>

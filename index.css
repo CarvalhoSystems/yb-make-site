@@ -1,5 +1,5 @@
 body {
-    background-color: #c311d3; /* Cor atrás do logo */
+    background-color: #f58aff; /* Cor atrás do logo */
     margin: 0;
     font-family: Arial, sans-serif;
     color: rgb(26, 26, 26);
@@ -14,16 +14,19 @@ h1 {
     letter-spacing: 2px;
 }
 /* Botão do carrinho */
-,.btn-carrinho{
-    background-color: #ff5722; /* Cor do botão do carrinho */
-    color: white;
-    padding: 12px 20px;
+.btn-carrinho{
+    background-color: #ee10db; /* Cor do botão do carrinho */
+    color: rgb(22, 22, 22);
+    padding: 6px 12px;
     border-radius: 30px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
     margin-top: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
 }
 .search-box input[type="text"] {
     padding: 12px;
@@ -45,14 +48,14 @@ h1 {
 }
 
 .search-box button:hover {
-    background-color: #d10563;
+    background-color: #f7ecf1;
 }
 .social-buttons .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
-    padding: 12px 20px;
+    padding: 12px 25px;
     border-radius: 50px;
     font-size: 1rem;
     font-weight: bold;
@@ -61,13 +64,89 @@ h1 {
     transition: 0.3s;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-footer {
+
+.social-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Instagram */
+.btn.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.btn.instagram:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+/* WhatsApp */
+.btn.whatsapp {
+    background-color: #25D366; /* verde WhatsApp */
+}
+
+.btn.whatsapp:hover {
+    background-color: #1ebe57;
+    transform: scale(1.05);
+}
+
+
+/* Estilo dos blocos de conteúdo */
+.content {
+    display: inline-block;
+    margin: 15px; /* adiciona espaço entre os blocos */
+    padding: 15px;
+    border-radius: 15px;
+    background: #e2168d;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.product-list {
+    display: flex;          /* Flexbox ativado */
+    flex-wrap: wrap;        /* Permite quebrar linha */
+    justify-content: center;/* Centraliza os produtos */
+    gap: 20px;              /* Espaço entre os produtos */
+    padding: 20px;
+}
+
+/* Card de produto */
+.content {
+    background: #fff;
+    border-radius: 15px;
+    padding: 15px;
     text-align: center;
-    padding: 15px 0;
-    background-color: #00000088;
-    color: #auto;
-    font-size: 0.9rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Imagem do produto */
+.content img {
+    width: 150px;      /* diminuiu o tamanho */
+    height: auto;      /* mantém proporção */
+    margin-bottom: 10px;
+}
+
+/*botao finalizar compras */
+.btn-finalizar {
+    background-color: #f03a80;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-finalizar:hover {
+    background-color: #f7ecf1;
 }
