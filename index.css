@@ -1,0 +1,73 @@
+body {
+    background-color: #c311d3; /* Cor atrás do logo */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: rgb(26, 26, 26);
+    text-align: center;
+}
+h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 20px 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    letter-spacing: 2px;
+}
+/* Botão do carrinho */
+,.btn-carrinho{
+    background-color: #ff5722; /* Cor do botão do carrinho */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+.search-box input[type="text"] {
+    padding: 12px;
+    border: 2px solid #f03a80;
+    border-radius: 25px 0 0 25px;
+    width: 300px;
+    outline: none;
+}
+
+.search-box button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    background-color: #f30775;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #d10563;
+}
+.social-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #00000088;
+    color: #auto;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

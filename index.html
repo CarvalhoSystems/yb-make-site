@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YB_MAKE.com.br</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1 class="titulo-loja">💄 YB MAKE's Cosméticos 💋</h1>
+    </header>
+
+    <!-- Barra de pesquisa -->
+    <div class="search-box">
+        <input type="text" placeholder="Pesquisar..." id="pesquisa">
+        <button onclick="buscarProduto()">🔍</button>
+    </div>
+
+    <!-- Mensagem de boas-vindas -->
+    <section class="welcome">
+        <h2>✨ Bem-vindo à Minha Loja Virtual ✨</h2>
+    </section>
+
+    <!-- Lista de produtos -->
+    <section class="product-list">
+
+        <div class="content">
+            <img src="imagens/baton.png.jpg" alt="Batom Matte">
+            <h2>Batom Matte</h2>
+            <p>R$ 14,99</p>
+            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="content">
+            <img src="imagens/mascara.png.jpg" alt="Máscara de Cílios">
+            <h2>Máscara de Cílios</h2>
+            <p>R$ 14,99</p>
+            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="content">
+            <img src="imagens/deliniador.png.jpg" alt="Delineador Líquido">
+            <h2>Delineador Líquido</h2>
+            <p>R$ 11,99</p>
+            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="content">
+            <img src="imagens/blush.png.jpg" alt="Blush Compacto">
+            <h2>Blush Compacto</h2>
+            <p>R$ 07,00</p>
+            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="content">
+            <img src="imagens/base_liquida.png.jpg" alt="Base Líquida">
+            <h2>Base Líquida</h2>
+            <p>R$ 10,00</p>
+            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+        </div>
+
+    </section>
+
+    <!-- Botões de Redes Sociais -->
+    <section class="social-buttons">
+        <a href="https://www.instagram.com/ybprincesinha_makecosmeticos" target="_blank" class="btn instagram">📷 Instagram</a>
+        <a href="https://wa.me/5511971822511" target="_blank" class="btn whatsapp">💬 WhatsApp</a>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script da busca -->
+    <script>
+        function buscarProduto() {
+            const input = document.getElementById('pesquisa').value.toLowerCase();
+            const produtos = document.querySelectorAll('.product-list .content');
+
+            produtos.forEach(produto => {
+                const nome = produto.querySelector('h2').textContent.toLowerCase();
+                if(nome.includes(input)) {
+                    produto.style.display = 'block';
+                } else {
+                    produto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
