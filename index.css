@@ -13,6 +13,8 @@ h1 {
     text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
     letter-spacing: 2px;
 }
+
+
 /* Botão do carrinho */
 .btn-carrinho{
     background-color: #ee10db; /* Cor do botão do carrinho */
@@ -100,6 +102,13 @@ h1 {
     transform: scale(1.05);
 }
 
+@media screen and (max-width: 768px) {
+    .product-list {
+        flex-direction: column; /* Altera para coluna em telas menores */
+        align-items: center;    /* Centraliza os itens */
+    }
+
+}
 
 /* Estilo dos blocos de conteúdo */
 .content {
