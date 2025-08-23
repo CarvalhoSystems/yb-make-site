@@ -23,51 +23,20 @@
     <section class="welcome">
         <h2>✨ Bem-vindo à Minha Loja Virtual ✨</h2>
     </section>
-    <div class="container">
-        <div class="quadrado"></div>
-        <div class="quadrado"></div>
-        <div class="quadrado">
-            
-        </div>
 
     <!-- Lista de produtos -->
     <section class="product-list">
 
+        <!-- Produto exemplo -->
         <div class="content">
             <img src="imagens/baton.png.jpg" alt="Batom Matte">
             <h2>Batom Matte</h2>
             <p>R$ 14.99</p>
+            <p>Descrição: Batom Matte com alta pigmentação, longa duração e acabamento aveludado.</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
-        <div class="content">
-            <img src="imagens/mascara.png.jpg" alt="Máscara de Cílios">
-            <h2>Máscara de Cílios</h2>
-            <p>R$ 14.99</p>
-            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
-        </div>
-
-        <div class="content">
-            <img src="imagens/deliniador.png.jpg" alt="Delineador Líquido">
-            <h2>Delineador Líquido</h2>
-            <p>R$ 11.99</p>
-            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
-        </div>
-
-        <div class="content">
-            <img src="imagens/blush.png.jpg" alt="Blush Compacto">
-            <h2>Blush Compacto</h2>
-            <p>R$ 7.00</p>
-            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
-        </div>
-
-        <div class="content">
-            <img src="imagens/base_liquida.png.jpg" alt="Base Líquida">
-            <h2>Base Líquida</h2>
-            <p>R$ 10.00</p>
-            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
-        </div>
-             <!-- Produto: Máscara de Cílios -->
+            <!-- Produto: Máscara de Cílios -->
         <div class="content">
             <img src="imagens/mascara.png.jpg" alt="Máscara de Cílios">
             <h2>Máscara de Cílios</h2>
@@ -184,6 +153,8 @@
             <p>Descrição: Serum facial com ingredientes especiais para 10x mais hidratação.</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
+        
+        <!-
 
         <!--produto serum peeling-->
 
@@ -194,6 +165,14 @@
             <p>R$ 11.99</p>
             <p>Descrição: Serum facial com efeito peeling, ideal para renovação celular.</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+
+            <!---espuma facial-->
+            <div class="content">
+                <img src="imagens/espuma_facial.png.jpg" alt="Espuma de Limpeza Facial">
+                <h2>Espuma de Limpeza Facial</h2>
+                <p>R$ 10.99</p>
+                <p>Descrição: Espuma suave para limpeza diária, remove impurezas e maquiagem.</p>
+                <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
 
 
         </div>
@@ -217,44 +196,54 @@
         <div class="content">
             <img src="imagens/batom love.png.jpg" alt="Batom Love">
             <h2>Batom Love</h2>
-            <p>R$ 11.99</p>
+            <p>R$ 11.00</p>
             <p>Descrição: Batom com fórmula hidratante e longa duração.</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
-        <!--produto espulma facial-->
+        <!---gloss-->
 
         <div class="content">
-            <img src="imagens/frasco pump.png.jpg" alt="frasco Facial">
-            <h2>frasco pump Facial</h2>
-            <p>R$ 11.99</p>
-            <p>Descrição: Espuma facial suave, ideal para limpeza profunda.</p>
+            <img src="imagens/gloss9.png.jpg" alt="Gloss Labial">
+            <h2>Gloss Labial</h2>
+            <p>R$ 12.00</p>
+            <p>Descrição: Gloss labial com efeito hidratante e brilho intenso.</p>
+            <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+        </div>
+
+
+        <!---produto paleta blush-->
+        <div class="content">
+            <img src="imagens/paleta blush.png.jpg" alt="Paleta de Blush">
+            <h2>Paleta de Blush</h2>
+            <p>R$ 15.00</p>
+            <p>Descrição: Paleta com 3 tons de blush, para um acabamento perfeito.</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
         </div>
 
     </section>
 
-    <!-- Botões de Redes Sociais -->
+    <!-- Redes sociais -->
     <section class="social-buttons">
         <a href="https://www.instagram.com/ybprincesinha_makecosmeticos" target="_blank" class="btn instagram">📷 Instagram</a>
         <a href="https://wa.me/5511971822511" target="_blank" class="btn whatsapp">💬 WhatsApp</a>
     </section>
 
-    <!-- Carrinho de Compras -->
+    <!-- Carrinho -->
     <div class="carrinho">
         <h2>🛒 Carrinho de Compras</h2>
         <div class="produtos-carrinho"></div>
-        <p class="total">Total: R$ 0.00</p>
+        <p class="total">Total: R$ 0,00</p>
         <button class="btn-finalizar" onclick="mostrarPix()">Finalizar Compra</button>
     </div>
 
     <!-- Modal PIX -->
-    <div id="modal-pix" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
-        <div style="background:#fff; padding:20px; border-radius:10px; width:300px; text-align:center;">
+    <div id="modal-pix" class="modal">
+        <div class="modal-content">
             <h3>Finalize a Compra</h3>
             <p>Total: R$ <span id="total-pix"></span></p>
-            <p>Chave PIX: <strong id="pix-chave">11941068633</strong></p>
-            <p>Copie a chave e faça o pagamento via seu banco</p>
+            <p>Chave PIX: <strong id="pix-chave">yasmin_princesinha@icloud.com</strong></p>
+            <p>Copie a chave e faça o pagamento via seu banco.</p>
             <button onclick="fecharPix()">Fechar</button>
         </div>
     </div>
@@ -282,7 +271,7 @@
             botao.addEventListener('click', () => {
                 const produto = botao.parentElement;
                 const nome = produto.querySelector('h2').innerText;
-                const precoTexto = produto.querySelector('p').innerText.replace('R$ ','').replace(',','.');
+                const precoTexto = produto.querySelector('p').innerText.replace('R$','').replace(',','.');
                 const preco = parseFloat(precoTexto);
 
                 carrinho.push({nome, preco});
@@ -296,19 +285,19 @@
             carrinhoContainer.innerHTML = '';
             carrinho.forEach(item => {
                 const p = document.createElement('p');
-                p.innerText = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+                p.innerText = `${item.nome} - R$ ${item.preco.toFixed(2).replace('.', ',')}`;
                 carrinhoContainer.appendChild(p);
             });
-            totalCarrinho.innerText = `Total: R$ ${total.toFixed(2)}`;
+            totalCarrinho.innerText = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
         }
 
-        // Mostrar PIX
+        // Modal PIX
         function mostrarPix() {
-            if(carrinho.length === 0){
+            if (carrinho.length === 0) {
                 alert('O carrinho está vazio!');
                 return;
             }
-            document.getElementById('total-pix').innerText = total.toFixed(2);
+            document.getElementById('total-pix').innerText = total.toFixed(2).replace('.', ',');
             document.getElementById('modal-pix').style.display = 'flex';
         }
 
@@ -317,10 +306,8 @@
         }
     </script>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>
-    </footer>
-
 </body>
 </html>
+
+
+
