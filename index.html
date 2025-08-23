@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YB_MAKE.com.br</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
 
@@ -26,9 +28,8 @@
     <div class="container">
         <div class="quadrado"></div>
         <div class="quadrado"></div>
-        <div class="quadrado">
-            
-        </div>
+        <div class="quadrado">   
+    </div>
 
     <!-- Lista de produtos -->
     <section class="product-list">
@@ -192,18 +193,13 @@
         </div>
 
         <!--produto serum peeling-->
-
-
         <div class="content">
             <img src="imagens/serumpeeling.png.jpg" alt="Serum Facial Peeling">
             <h2>Serum Facial Peeling</h2>
             <p>R$ 11.99</p>
             <p> Serum facial com efeito peeling, ideal para renovação celular.</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
-
-
         </div>
-
 
         <!--produto serum 3 em 1-->
 
@@ -213,8 +209,6 @@
             <p>R$ 11.99</p>
             <p> Serum facial com ação hidratante, anti-idade e iluminadora.</p>
             <button class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
-                       
-
         </div>
 
 
@@ -243,7 +237,10 @@
     <!-- Botões de Redes Sociais -->
     <section class="social-buttons">
         <a href="https://www.instagram.com/ybprincesinha_makecosmeticos" target="_blank" class="btn instagram">📷 Instagram</a>
-        <a href="https://wa.me/5511971822511" target="_blank" class="btn whatsapp">💬 WhatsApp</a>
+        <a href="https://wa.me/5511971822511" target="_blank" class="whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+
     </section>
 
     <!-- Carrinho de Compras -->
@@ -264,8 +261,12 @@
             <button onclick="fecharPix()">Fechar</button>
         </div>
     </div>
-<div class="footer-buttons">
-    <button class="btn voltar" onclick="window.history.back()">🔙 Voltar</button>
+
+
+    <!--botão voltar-->
+    <div class="footer-buttons">
+         <button id="backToTop" class="btn voltar">🔝 Voltar ao Topo</button>
+         <button id="shareButton" class="btn compartilhar">🔗 Compartilhar</button>
 
     <script>
         // Busca de produtos
