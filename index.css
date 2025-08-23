@@ -1,18 +1,20 @@
+/* Reset básico */
 body {
-  font-family: Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f9f9f9;
+  background: #ffe6f0; /* Fundo rosa claro */
   color: #333;
 }
 
+/* Cabeçalho fixo */
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #007bff;
+  background: #ff66a3; /* Rosa forte */
   color: white;
-  padding: 15px;
+  padding: 15px 20px;
   text-align: center;
   z-index: 1000;
   display: flex;
@@ -27,7 +29,7 @@ header h1 {
 
 header button {
   background: white;
-  color: #007bff;
+  color: #ff66a3;
   border: none;
   padding: 8px 15px;
   border-radius: 8px;
@@ -35,71 +37,80 @@ header button {
   font-weight: bold;
 }
 header button:hover {
-  background: #e6e6e6;
+  background: #ffe6f0;
 }
 
+/* Main com grid responsivo */
 main {
-  margin-top: 80px;
+  margin-top: 90px;
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* produtos menores */
   gap: 20px;
 }
 
+/* Produto */
 .produto {
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   transition: transform 0.2s ease;
 }
 
 .produto:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .produto img {
   max-width: 100%;
   border-radius: 8px;
-  height: 200px;
+  height: 120px; /* menor */
   object-fit: cover;
 }
 
-.preco {
-  color: #007bff;
-  font-weight: bold;
-  margin-top: 10px;
-  font-size: 18px;
+/* Grid de Produtos */
+main.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
 }
 
+.preco {
+  color: #ff66a3;
+  font-weight: bold;
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+/* Botões */
 .btn-add, .btn-detalhes {
   display: block;
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 8px;
+  margin-top: 8px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  text-decoration: none;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .btn-add {
-  background: #28a745;
+  background: #ff3385; /* rosa mais escuro */
   color: white;
 }
 .btn-add:hover {
-  background: #218838;
+  background: #e60070;
 }
 
 .btn-detalhes {
-  background: #007bff;
+  background: #ff66a3;
   color: white;
-  text-align: center;
 }
 .btn-detalhes:hover {
-  background: #0056b3;
+  background: #ff3385;
 }
 
 /* Modal do carrinho */
@@ -113,38 +124,45 @@ main {
   height: 100%;
   background-color: rgba(0,0,0,0.5);
 }
+
 .modal-conteudo {
   background: white;
   margin: 10% auto;
   padding: 20px;
   border-radius: 12px;
-  width: 80%;
-  max-width: 500px;
+  width: 90%;
+  max-width: 400px;
 }
+
 .modal-conteudo h2 {
   margin-top: 0;
+  color: #ff3385;
 }
+
 .modal-conteudo ul {
   list-style: none;
   padding: 0;
 }
+
 .modal-conteudo li {
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
 }
+
 .modal-conteudo button {
-  background: red;
+  background: #ff3385;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   padding: 5px 10px;
 }
+
 #finalizarCompra {
   width: 100%;
   margin-top: 10px;
-  background: #28a745;
+  background: #ff3385;
   color: white;
   padding: 10px;
   border-radius: 8px;
@@ -152,7 +170,7 @@ main {
   cursor: pointer;
 }
 #finalizarCompra:hover {
-  background: #218838;
+  background: #e60070;
 }
 
 /* Botão flutuante topo */
@@ -160,7 +178,7 @@ main {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
+  background-color: #ff66a3;
   color: white;
   padding: 12px;
   border-radius: 50%;
@@ -170,5 +188,5 @@ main {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 #backToTop:hover {
-  background-color: #0056b3;
+  background-color: #ff3385;
 }
