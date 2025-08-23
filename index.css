@@ -1,161 +1,174 @@
 body {
-    background-color: #f58aff; /* Cor atrás do logo */
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: rgb(26, 26, 26);
-    text-align: center;
-}
-h1 {
-    color: #fff;
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 20px 0;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-    letter-spacing: 2px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
 }
 
-
-/* Botão do carrinho */
-.btn-carrinho{
-    background-color: #ee10db; /* Cor do botão do carrinho */
-    color: rgb(22, 22, 22);
-    padding: 6px 12px;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    overflow: hidden;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
-}
-.search-box input[type="text"] {
-    padding: 12px;
-    border: 2px solid #f03a80;
-    border-radius: 25px 0 0 25px;
-    width: 300px;
-    outline: none;
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #007bff;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.search-box button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 0 25px 25px 0;
-    background-color: #f30775;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+header h1 {
+  margin: 0;
+  font-size: 20px;
 }
 
-.search-box button:hover {
-    background-color: #f7ecf1;
+header button {
+  background: white;
+  color: #007bff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
 }
-.social-buttons .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+header button:hover {
+  background: #e6e6e6;
 }
 
-.social-buttons .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+main {
+  margin-top: 80px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-/* Instagram */
-.btn.instagram {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+.produto {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease;
 }
 
-.btn.instagram:hover {
-    opacity: 0.85;
-    transform: scale(1.05);
+.produto:hover {
+  transform: scale(1.05);
 }
 
-/* WhatsApp */
-.btn.whatsapp {
-    background-color: #25D366; /* verde WhatsApp */
+.produto img {
+  max-width: 100%;
+  border-radius: 8px;
+  height: 200px;
+  object-fit: cover;
 }
 
-.btn.whatsapp:hover {
-    background-color: #1ebe57;
-    transform: scale(1.05);
+.preco {
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
-@media screen and (max-width: 768px) {
-    .product-list {
-        flex-direction: column; /* Altera para coluna em telas menores */
-        align-items: center;    /* Centraliza os itens */
-    }
-
+.btn-add, .btn-detalhes {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* Estilo dos blocos de conteúdo */
-.content {
-    display: inline-block;
-    margin: 15px; /* adiciona espaço entre os blocos */
-    padding: 15px;
-    border-radius: 15px;
-    background: #e2168d;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.btn-add {
+  background: #28a745;
+  color: white;
 }
-.product-list {
-    display: flex;          /* Flexbox ativado */
-    flex-wrap: wrap;        /* Permite quebrar linha */
-    justify-content: center;/* Centraliza os produtos */
-    gap: 20px;              /* Espaço entre os produtos */
-    padding: 20px;
+.btn-add:hover {
+  background: #218838;
 }
 
-/* Card de produto */
-.content {
-    background: #fff;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.btn-detalhes {
+  background: #007bff;
+  color: white;
+  text-align: center;
+}
+.btn-detalhes:hover {
+  background: #0056b3;
 }
 
-/* Imagem do produto */
-.content img {
-    width: 150px;      /* diminuiu o tamanho */
-    height: auto;      /* mantém proporção */
-    margin-bottom: 10px;
+/* Modal do carrinho */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+.modal-conteudo {
+  background: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 500px;
+}
+.modal-conteudo h2 {
+  margin-top: 0;
+}
+.modal-conteudo ul {
+  list-style: none;
+  padding: 0;
+}
+.modal-conteudo li {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.modal-conteudo button {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+#finalizarCompra {
+  width: 100%;
+  margin-top: 10px;
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+#finalizarCompra:hover {
+  background: #218838;
 }
 
-/*botao finalizar compras */
-.btn-finalizar {
-    background-color: #f03a80;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+/* Botão flutuante topo */
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
-
-.btn-finalizar:hover {
-    background-color: #f7ecf1;
+#backToTop:hover {
+  background-color: #0056b3;
 }
