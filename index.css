@@ -1,3 +1,35 @@
+header {
+   position: fixed;
+   top: 0;
+   width: 100%;
+   background: #ff66b2;
+   color: white;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px 0;     
+   z-index: 1000;
+}
+.entrega-logo {
+    position: absolute;
+    top: 10px;   /* ajusta a posição vertical */
+    right: 20px; /* ajusta a distância da direita */
+}
+
+.entrega-logo img {
+    height: 100px;  /* tamanho pequeno */
+    width: 80px;
+    border-radius: 12px;
+    position: relative;
+    height: 200px;
+}
+
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
 /* Reset de estilos */
 * {
     margin: 0;
