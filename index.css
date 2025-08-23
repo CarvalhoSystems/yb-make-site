@@ -102,8 +102,19 @@ header h1 {
     .product-list {
         grid-template-columns: 1fr;
     }
+
+    @media screen and (max-width: 400px) {
+        .product-list {
+            grid-template-columns: 1fr;
+        }
+    }
 }
 
+@media (max-width: 400px) {
+    .entrega-logo {
+        grid-template-columns: 1fr;
+    }
+}
 /* Card de produtos */
 .content {
     background: white;
