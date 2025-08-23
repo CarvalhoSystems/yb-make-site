@@ -205,3 +205,38 @@ header h1 {
     cursor: pointer;
     font-weight: bold;
 }
+
+/* Botão WhatsApp */
+.social-buttons a.whatsapp {
+    background-color: #25D366; /* verde WhatsApp */
+}
+
+.social-buttons a.whatsapp:hover {
+    background-color: #128C7E;
+}
+
+/* Botão Instagram */
+.social-buttons a.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    font-weight: bold;
+}
+
+.social-buttons a.instagram:hover {
+    opacity: 0.8;
+}
+
+/* Botão Voltar */
+.btn-voltar {
+    background-color: #ff66b2;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-voltar:hover {
+    background-color: #ff3385;
+}
