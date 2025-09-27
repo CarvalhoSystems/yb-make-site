@@ -42,6 +42,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffe6f0; /* fundo rosa */
     color: #333;
+    padding-top: 70px; /* Adiciona espaço no topo para não sobrepor o cabeçalho fixo */
 }
 
 /* Cabeçalho */
@@ -313,6 +314,59 @@ header h1 {
 .btn-voltar:hover {
     background-color: #ff3385;
 }
+/* Estilos para a Seção de Autenticação (agora dentro do modal) */
+.auth-modal-content h2 { /* Adaptado para o conteúdo do modal */
+    margin-bottom: 15px;
+    color: #ff66b2;
+    font-size: 20px;
+}
+
+.auth-section input {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ff66b2;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.auth-modal-content button { /* Adaptado para o conteúdo do modal */
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    background: #ff66b2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.auth-modal-content button:hover { /* Adaptado para o conteúdo do modal */
+    background: #ff3385;
+}
+
+.error-message { /* Mantido, pois é um ID e pode ser usado em qualquer lugar */
+    color: red; 
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+#user-info-container {
+    margin-top: 20px;
+}
+
+#user-info-container h2 { /* Mantido, pois é um ID */
+    color: #333;
+    font-size: 18px;
+}
+
+#user-email { /* Mantido, pois é um ID */
+    font-weight: normal;
+    color: #ff66b2;
+}
 
 /* Estilos para o Modal de Produto */
 .modal-produto {
@@ -361,4 +415,107 @@ header h1 {
     max-height: 250px;
     object-fit: contain;
     margin-bottom: 15px;
+}
+
+/* Novos estilos para o botão de autenticação no cabeçalho */
+.header-auth-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    background: #fff; /* Fundo branco */
+    color: #ff66b2; /* Texto rosa */
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background 0.2s, color 0.2s;
+}
+
+.header-auth-btn:hover {
+    background: #f0f0f0;
+    color: #ff3385;
+}
+
+/* Novos estilos para o Modal de Autenticação */
+.auth-modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 2001; /* Z-index alto para ficar acima de outros modais */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+.close-auth-modal {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Estilos para a página de Cadastro */
+.cadastro-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.cadastro-container h2 {
+    color: #ff66b2;
+    margin-bottom: 10px;
+}
+
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.cadastro-form label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.cadastro-form input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.link-voltar {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ff66b2;
+    text-decoration: none;
 }

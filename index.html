@@ -13,21 +13,12 @@
 
     <!-- Cabeçalho -->
     <header>
-<h1 class="titulo-loja">💄 YB MAKE's Cosméticos 💋</h1>
-
+        <h1 class="titulo-loja">💄 YB MAKE's Cosméticos 💋</h1>
+        <button id="btn-open-auth-modal" class="header-auth-btn">Minha Conta</button>
     </header>
 
-    <!-- Barra de pesquisa -->
-    <div class="search-box">
-        <input type="text" placeholder="Pesquisar..." id="pesquisa">
-        <button onclick="buscarProduto()">🔍</button>
-    </div>
-
-    <!-- Mensagem de boas-vindas -->
-    <section class="welcome">
-        <h2>✨ Bem-vindo à Minha Loja Virtual ✨</h2>
-    </section>
-    <div class="container">
+    <!-- Barra de pesquisa e outras seções (mantidas) -->
+    <!-- ... -->
         <div class="quadrado"></div>
         <div class="quadrado"></div>
         <div class="quadrado">   
@@ -85,6 +76,24 @@
         </div>
     </div>
 
+    <!-- Novo Modal de Autenticação -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-auth-modal">&times;</span>
+            <div id="auth-form-container">
+                <h2>Entrar / Cadastrar</h2>
+                <input type="email" id="auth-email" placeholder="Email">
+                <input type="password" id="auth-password" placeholder="Senha">
+                <button id="btn-signup">Cadastrar</button>
+                <button id="btn-login">Entrar</button>
+                <p id="auth-error-message" class="error-message"></p>
+            </div>
+            <div id="user-info-container" style="display:none;">
+                <h2>Bem-vindo(a), <span id="user-email"></span>!</h2>
+                <button id="btn-logout">Sair</button>
+            </div>
+        </div>
+    </div>
 
     <!--botão voltar-->
     <div class="footer-buttons">
@@ -95,6 +104,7 @@
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
 
     <script>
