@@ -10,20 +10,19 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
-
-  <script src="decap-cms-backend-firebase.js"></script>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script src="https://decap-cms-backend-firebase.js"></script>
   
+  <!-- 1. Carrega o script principal do Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- 2. Carrega o backend do Firebase a partir do CDN correto -->
+  <script src="https://unpkg.com/decap-cms-backend-firebase@^3.0.0/dist/decap-cms-backend-firebase.js"></script>
   
   <script>
     // A função window.onload garante que o DOM (HTML) está pronto para o CMS renderizar.
     window.onload = function() {
-        // 3A. INICIALIZAÇÃO DO FIREBASE (necessária para as bibliotecas)
         const firebaseConfig = {
           apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
           authDomain: "yb-make.firebaseapp.com",
-          projectId: "YB-MAKE", // Usamos a versão MAIÚSCULA
+          projectId: "yb-make", // Corrigido para minúsculas, por consistência
           storageBucket: "yb-make.firebasestorage.app",
           messagingSenderId: "685414342925",
           appId: "1:685414342925:web:9b17e3194f393c87569044",
@@ -31,7 +30,7 @@
         };
         firebase.initializeApp(firebaseConfig);
 
-        // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL
+        // 3. REGISTRO DO BACKEND E INICIALIZAÇÃO DO CMS
         if (window.CMS && window.FirebaseBackend) {
             CMS.registerBackend('firebase', window.FirebaseBackend); 
             CMS.init();
