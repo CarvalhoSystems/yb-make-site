@@ -1,6 +1,11 @@
 backend:
   name: firebase
-  
+  # Adicione as informações do seu projeto Firebase aqui
+  api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
+  auth_domain: "yb-make.firebaseapp.com"
+  project_id: "yb-make"
+  # Define que os dados serão salvos em documentos dentro da coleção 'products'
+  use_json: true
 
   locale: "pt" # Define o idioma para português do Brasil
 
@@ -12,7 +17,7 @@ public_folder: "imagens/uploads"
 collections:
   - name: "products"
     label: "Produtos"
-    folder: "_data/products"
+    folder: "products" # O nome da coleção no Firestore
     create: true
     slug: "{{fields.title}}"
     fields:
