@@ -4,23 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciador de Conteúdo</title>
-</head>
-<body>
 
-  <script src="https://unpkg.com/@decapcms/backend-firebase@1.0.0/dist/decap-cms-backend-firebase.js"></script>
   <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
-  
-  
+  <script src="https://unpkg.com/@decapcms/backend-firebase@1.0.0/dist/decap-cms-backend-firebase.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
 
- 
-  
   <script>
-    // A remoção da linha 'firebase.initializeApp(firebaseConfig);'
-    // é a chave para a correção. O CMS fará isso agora, lendo o config.yml.
-  </script>
+    // 3A. INICIALIZAÇÃO DO FIREBASE (Removida anteriormente, mas vamos colocar de volta para garantir)
+    // Se o problema for só o carregamento do plugin, a inicialização do Firebase é inofensiva.
+    const firebaseConfig = {
+      apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+      authDomain: "yb-make.firebaseapp.com",
+      projectId: "YB-MAKE", // Usamos a versão MAIÚSCULA
+      storageBucket: "yb-make.firebasestorage.app",
+      messagingSenderId: "685414342925",
+      appId: "1:685414342925:web:9b17e3194f393c87569044",
+      measurementId: "G-C05626SV51"
+    };
+    firebase.initializeApp(firebaseConfig);
 
+    // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL (Obriga o CMS a usar o backend)
+    // O Decap CMS se inicializará **após** o registro.
+    if (window.CMS && window.FirebaseBackend) {
+        CMS.registerBackend('firebase', window.FirebaseBackend); 
+        CMS.init();
+    }
+  </script>
+</head>
+<body>
 </body>
 </html>
