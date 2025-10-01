@@ -7,12 +7,12 @@ backend:
   config:
     api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
     auth_domain: "yb-make.firebaseapp.com"
-    project_id: "yb-make"
+    project_id: "YB-MAKE" # CORRIGIDO PARA MAIÚSCULAS
 
 # 2. CONFIGURAÇÕES GLOBAIS (NÃO ANINHADAS)
-locale: "pt" # Deve estar fora do 'backend:'
+locale: "pt" 
 
-publish_mode: editorial_workflow # Deve estar fora do 'backend:'
+publish_mode: editorial_workflow 
 
 # 3. CONFIGURAÇÕES DE MÍDIA (NÃO ANINHADAS)
 media_folder: "imagens/uploads"
@@ -22,7 +22,7 @@ public_folder: "imagens/uploads"
 collections:
   - name: "products"
     label: "Produtos"
-    folder: "products" # O nome da coleção no Firestore
+    folder: "products" 
     create: true
     slug: "{{fields.title}}"
     fields:
