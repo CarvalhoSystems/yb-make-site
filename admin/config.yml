@@ -1,18 +1,23 @@
 backend:
   name: firebase
-  branch: main
+  # A chave "branch" não é usada pelo backend do Firebase e pode ser removida.
+  # O backend do Firebase salva as imagens no Firebase Storage.
+  # As configurações abaixo são as corretas para o Firebase.
+  api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
+  auth_domain: "yb-make.firebaseapp.com"
+  project_id: "yb-make"
+  use_json: true
 
-  locale: "pt" # Define o idioma para português do Brasil
+locale: "pt" # Define o idioma para português do Brasil
 
 publish_mode: editorial_workflow
 
-media_folder: "imagens/uploads"
-public_folder: "imagens/uploads"
+# A pasta de mídia não é necessária, pois o Firebase Storage será usado.
 
 collections:
   - name: "products"
     label: "Produtos"
-    folder: "_data/products"
+    folder: "products" # Nome da coleção no Firestore onde os produtos são salvos.
     create: true
     slug: "{{fields.title}}"
     fields:
