@@ -8,6 +8,12 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
+  <!-- Inclui o script principal do Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Inclui o script do backend do Firebase para o Decap CMS -->
+  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
   
   
 </head>
@@ -26,10 +32,13 @@
     firebase.initializeApp(firebaseConfig);
   </script>
 
-  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
+ 
 
-  
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Registra o backend do Firebase e carrega a configuração
+    CMS.registerBackend('firebase', FirebaseBackend);
+    CMS.init({ config: { backend: { name: 'firebase' } } });
+  </script>
 
 </body>
 </html>
