@@ -1,13 +1,15 @@
 backend:
-  name: firebase
-  # Adicione as informações do seu projeto Firebase aqui
-  api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
-  auth_domain: "yb-make.firebaseapp.com"
-  project_id: "yb-make"
-  # Define que os dados serão salvos em documentos dentro da coleção 'products'
-  use_json: true
+  name: firebase 
+  use_json: true # Define que os dados serão salvos em documentos JSON (correto)
+  
+  # 💥 A CORREÇÃO ESTÁ AQUI 💥
+  config:
+    api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
+    auth_domain: "yb-make.firebaseapp.com"
+    project_id: "yb-make"
+  # Fim da correção
 
-  locale: "pt" # Define o idioma para português do Brasil
+locale: "pt" 
 
 publish_mode: editorial_workflow
 
