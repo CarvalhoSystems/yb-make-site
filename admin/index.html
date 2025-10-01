@@ -4,14 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciador de Conteúdo</title>
-</head>
-<body>
-  
+
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
   
+</head>
+<body>
+  
   <script>
+    // 3A. INICIALIZAÇÃO DO FIREBASE
     const firebaseConfig = {
       apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
       authDomain: "yb-make.firebaseapp.com",
@@ -22,19 +27,15 @@
       measurementId: "G-C05626SV51"
     };
     firebase.initializeApp(firebaseConfig);
-  </script>
 
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
-
-  <script>
-    // Usa o objeto CMS (que agora existe) para registrar o backend.
-    // window.FirebaseBackend é definido pelo script do passo 4.
-    CMS.registerBackend('firebase', window.FirebaseBackend); 
-    
-    // Inicializa o CMS (Ele lê o config.yml e usa o backend que acabamos de registrar).
-    CMS.init(); 
+    // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL
+    // Registra o backend do Firebase explicitamente.
+    if (window.CMS && window.FirebaseBackend) {
+        CMS.registerBackend('firebase', window.FirebaseBackend); 
+        
+        // Inicializa o CMS após o registro.
+        CMS.init(); 
+    }
   </script>
 
 </body>
