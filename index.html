@@ -100,7 +100,25 @@
         <button id="backToTop" class="btn voltar">🔝 Voltar </button>
     </div>
 
-    <!-- Scripts -->
+    <!-- Firebase SDKs (NECESSÁRIO PARA CARREGAR OS PRODUTOS) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Configuração do Firebase (a mesma das outras páginas)
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+            authDomain: "yb-make.firebaseapp.com",
+            projectId: "yb-make",
+            storageBucket: "yb-make.firebasestorage.app",
+            messagingSenderId: "685414342925",
+            appId: "1:685414342925:web:9b17e3194f393c87569044",
+            measurementId: "G-C05626SV51"
+        };
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <script src="src/main.js"></script>
 
     <!-- Rodapé -->
