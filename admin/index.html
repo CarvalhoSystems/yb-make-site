@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciador de Conteúdo</title>
-
-  </head>
+</head>
 <body>
   
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
@@ -15,9 +14,8 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
   
-  
   <script>
-    // 3A. INICIALIZAÇÃO DO FIREBASE (Agora as libs já foram carregadas)
+    // 3A. INICIALIZAÇÃO DO FIREBASE
     const firebaseConfig = {
       apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
       authDomain: "yb-make.firebaseapp.com",
@@ -29,10 +27,12 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL (Agora CMS e FirebaseBackend existem)
-    // O if (window.CMS && window.FirebaseBackend) é uma boa prática, mas aqui é redundante se a ordem for garantida.
+    // 3B. REGISTRO MANUAL
+    // Apenas registra o backend. Não chame CMS.init() manualmente!
     CMS.registerBackend('firebase', window.FirebaseBackend); 
-    CMS.init(); 
+    
+    // O Decap CMS se inicializará sozinho.
+    // REMOVIDO: CMS.init(); 
   </script>
 
 </body>
