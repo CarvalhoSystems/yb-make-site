@@ -107,6 +107,27 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
 
+    <!-- Inclui o widget de identidade do Netlify-->
+    <head>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    </head>
+
+    <body>
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        // Redireciona o ADMIN para o CMS após o login
+                        document.location.href = "/admin/"; 
+                    });
+                }
+            });
+        }
+    </script>
+
+
+
     <script>
         // Cole aqui o objeto firebaseConfig que você copiou do console do Firebase
         // Exemplo:
@@ -122,19 +143,8 @@
         // Inicializa o Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
-
-    <script>
-
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
+    
+    </body>
     <script src="src/main.js"></script>
 
     <!-- Rodapé -->
