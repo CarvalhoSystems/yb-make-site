@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciador de Conteúdo</title>
 
+  </head>
+<body>
+  
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
 
@@ -12,11 +15,9 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
   
-</head>
-<body>
   
   <script>
-    // 3A. INICIALIZAÇÃO DO FIREBASE
+    // 3A. INICIALIZAÇÃO DO FIREBASE (Agora as libs já foram carregadas)
     const firebaseConfig = {
       apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
       authDomain: "yb-make.firebaseapp.com",
@@ -28,14 +29,10 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL
-    // Registra o backend do Firebase explicitamente.
-    if (window.CMS && window.FirebaseBackend) {
-        CMS.registerBackend('firebase', window.FirebaseBackend); 
-        
-        // Inicializa o CMS após o registro.
-        CMS.init(); 
-    }
+    // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL (Agora CMS e FirebaseBackend existem)
+    // O if (window.CMS && window.FirebaseBackend) é uma boa prática, mas aqui é redundante se a ordem for garantida.
+    CMS.registerBackend('firebase', window.FirebaseBackend); 
+    CMS.init(); 
   </script>
 
 </body>
