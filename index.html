@@ -21,8 +21,8 @@
     <!-- ... -->
         <div class="quadrado"></div>
         <div class="quadrado"></div>
-        <div class="quadrado">   
-    </div>
+        <div class="quadrado"></div>
+    
 
     <!-- Lista de produtos -->
     <section class="product-list">
@@ -44,9 +44,9 @@
     <div class="carrinho">
         <h2>🛒 Carrinho de Compras</h2>
         <div class="produtos-carrinho"></div>
-        <p class="total">Total: R$ 0.00</p>
-        <button class="btn-finalizar" onclick="mostrarPix()">Finalizar Compra</button>
-        <button id="limparCarrinho" class="btn limpar" onclick="limparCarrinho()">🗑️ Limpar Carrinho</button>
+        <p class="total">Total: R$ 0,00</p>
+        <button class="btn-finalizar">Finalizar Compra</button>
+        <button id="limparCarrinho" class="btn limpar">🗑️ Limpar Carrinho</button>
     </div>
 
     <!-- Modal PIX -->
@@ -60,7 +60,7 @@
             <br>
             <p>Copie a chave e faça o pagamento via seu banco</p>
             <br>
-            <button onclick="fecharPix()">Fechar</button>
+            <button id="btn-fechar-pix">Fechar</button>
         </div>
     </div>
 
@@ -97,10 +97,10 @@
 
     <!--botão voltar-->
     <div class="footer-buttons">
-        <button id="backToTop" class="btn voltar" onclick="scrollToTop()">🔝 Voltar </button>
+        <button id="backToTop" class="btn voltar">🔝 Voltar </button>
     </div>
 
-    
+
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
@@ -110,18 +110,30 @@
     <script>
         // Cole aqui o objeto firebaseConfig que você copiou do console do Firebase
         // Exemplo:
-    const firebaseConfig = {
-    apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-    authDomain: "yb-make.firebaseapp.com",
-    projectId: "yb-make",
-    storageBucket: "yb-make.firebasestorage.app",
-    messagingSenderId: "685414342925",
-    appId: "1:685414342925:web:9b17e3194f393c87569044",
-    measurementId: "G-C05626SV51"
-
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+            authDomain: "yb-make.firebaseapp.com",
+            projectId: "yb-make",
+            storageBucket: "yb-make.firebasestorage.app",
+            messagingSenderId: "685414342925",
+            appId: "1:685414342925:web:9b17e3194f393c87569044",
+            measurementId: "G-C05626SV51"
         };
         // Inicializa o Firebase
         firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script>
+
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
     </script>
     <script src="src/main.js"></script>
 

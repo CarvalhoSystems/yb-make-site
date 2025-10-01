@@ -191,6 +191,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Evento para fechar o modal PIX
+const btnFecharPix = document.getElementById('btn-fechar-pix');
+if (btnFecharPix) {
+    btnFecharPix.addEventListener('click', fecharPix);
+}
+
 // --- All functions defined outside DOMContentLoaded ---
 
 function inicializarEventosProdutos() {
