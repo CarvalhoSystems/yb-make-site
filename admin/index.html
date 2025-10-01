@@ -28,10 +28,9 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // 3B. REGISTRO MANUAL (Necessário quando se usa o Decap CMS + Plugin)
-    CMS.registerBackend('firebase', window.FirebaseBackend); 
-    
-    // Deixe o CMS se inicializar sozinho.
+    // 3B. NENHUM REGISTRO MANUAL. O CMS SE INICIALIZA SOZINHO.
+    // O CMS lerá o config.yml e, como o script do backend foi carregado,
+    // ele automaticamente o registrará e iniciará a tela de login.
   </script>
 
 </body>
