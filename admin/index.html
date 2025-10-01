@@ -7,12 +7,13 @@
 </head>
 <body>
   
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
+  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/@decapcms/backend-firebase@1.0.0/dist/decap-cms-backend-firebase.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+  
   
   <script>
     // 3A. INICIALIZAÇÃO DO FIREBASE
@@ -27,12 +28,10 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // 3B. REGISTRO MANUAL
-    // Apenas registra o backend. Não chame CMS.init() manualmente!
+    // 3B. REGISTRO MANUAL (Necessário quando se usa o Decap CMS + Plugin)
     CMS.registerBackend('firebase', window.FirebaseBackend); 
     
-    // O Decap CMS se inicializará sozinho.
-    // REMOVIDO: CMS.init(); 
+    // Deixe o CMS se inicializar sozinho.
   </script>
 
 </body>
