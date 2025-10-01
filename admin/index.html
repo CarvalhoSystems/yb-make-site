@@ -7,16 +7,16 @@
 </head>
 <body>
   
-  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
-  <script src="https://unpkg.com/@decapcms/backend-firebase@1.0.0/dist/decap-cms-backend-firebase.js"></script>
-
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
+  <script src="https://unpkg.com/@decapcms/backend-firebase@1.0.0/dist/decap-cms-backend-firebase.js"></script>
+  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
   
   
   <script>
-    // 3A. INICIALIZAÇÃO DO FIREBASE
+    // Inicialização do Firebase (Sempre necessária)
     const firebaseConfig = {
       apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
       authDomain: "yb-make.firebaseapp.com",
@@ -28,9 +28,8 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // 3B. NENHUM REGISTRO MANUAL. O CMS SE INICIALIZA SOZINHO.
-    // O CMS lerá o config.yml e, como o script do backend foi carregado,
-    // ele automaticamente o registrará e iniciará a tela de login.
+    // Sem CMS.registerBackend e sem CMS.init()
+    // O Decap CMS fará a inicialização automática, lendo o config.yml.
   </script>
 
 </body>
