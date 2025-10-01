@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciador de Conteúdo</title>
 
-  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
-  <script src="https://unpkg.com/@decapcms/backend-firebase@1.0.0/dist/decap-cms-backend-firebase.js"></script>
-
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
 
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
+  
+  
   <script>
-    // 3A. INICIALIZAÇÃO DO FIREBASE (Removida anteriormente, mas vamos colocar de volta para garantir)
-    // Se o problema for só o carregamento do plugin, a inicialização do Firebase é inofensiva.
+    // 3A. INICIALIZAÇÃO DO FIREBASE
     const firebaseConfig = {
       apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
       authDomain: "yb-make.firebaseapp.com",
@@ -26,7 +26,7 @@
     };
     firebase.initializeApp(firebaseConfig);
 
-    // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL (Obriga o CMS a usar o backend)
+    // 3B. REGISTRO MANUAL E INICIALIZAÇÃO FINAL
     // O Decap CMS se inicializará **após** o registro.
     if (window.CMS && window.FirebaseBackend) {
         CMS.registerBackend('firebase', window.FirebaseBackend); 
