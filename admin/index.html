@@ -8,18 +8,9 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
-
-  <!-- Inclui o script principal do Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <!-- Inclui o script do backend do Firebase para o Decap CMS -->
-  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
-  
-  
-</head>
-<body>
   
   <script>
+    // A ordem é importante: inicializar o Firebase antes do CMS
     const firebaseConfig = {
       apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
       authDomain: "yb-make.firebaseapp.com",
@@ -32,13 +23,17 @@
     firebase.initializeApp(firebaseConfig);
   </script>
 
- 
-
+  <!-- 1. Carrega o script principal do Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- 2. Carrega o script do backend do Firebase -->
+  <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
+  <!-- 3. Registra o backend e inicializa o CMS -->
   <script>
-    // Registra o backend do Firebase e carrega a configuração
-    CMS.registerBackend('firebase', FirebaseBackend);
-    CMS.init({ config: { backend: { name: 'firebase' } } });
+    CMS.registerBackend('firebase', window.FirebaseBackend);
+    CMS.init();
   </script>
 
+</head>
+<body>
 </body>
 </html>
