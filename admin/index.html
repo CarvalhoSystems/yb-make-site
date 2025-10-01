@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciador de Conteúdo</title>
-
-  </head>
+</head>
 <body>
   
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
@@ -25,10 +24,18 @@
     firebase.initializeApp(firebaseConfig);
   </script>
 
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
   <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
 
+  <script>
+    // A variável 'CMS' agora existe.
+    // Registramos a função que carregamos no passo 4.
+    CMS.registerBackend('firebase', window.FirebaseBackend); 
+    
+    // Inicializamos o CMS (ele lerá o config.yml e usará o backend que acabamos de registrar).
+    CMS.init(); 
+  </script>
 
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  </body>
+</body>
 </html>

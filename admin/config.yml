@@ -1,8 +1,8 @@
 backend:
   name: firebase
-  branch: main
+  
 
-  locale: "pt-BR" # Define o idioma para português do Brasil
+  locale: "pt" # Define o idioma para português do Brasil
 
 publish_mode: editorial_workflow
 
