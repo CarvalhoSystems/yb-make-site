@@ -29,11 +29,11 @@
   <script src="https://unpkg.com/@decapcms/backend-firebase@latest/dist/decap-cms-backend-firebase.js"></script>
 
   <script>
-    // A variável 'CMS' agora existe.
-    // Registramos a função que carregamos no passo 4.
+    // Usa o objeto CMS (que agora existe) para registrar o backend.
+    // window.FirebaseBackend é definido pelo script do passo 4.
     CMS.registerBackend('firebase', window.FirebaseBackend); 
     
-    // Inicializamos o CMS (ele lerá o config.yml e usará o backend que acabamos de registrar).
+    // Inicializa o CMS (Ele lê o config.yml e usa o backend que acabamos de registrar).
     CMS.init(); 
   </script>
 
