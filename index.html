@@ -112,22 +112,6 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     </head>
 
-    <body>
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        // Redireciona o ADMIN para o CMS após o login
-                        document.location.href = "/admin/"; 
-                    });
-                }
-            });
-        }
-    </script>
-
-
-
     <script>
         // Cole aqui o objeto firebaseConfig que você copiou do console do Firebase
         // Exemplo:
