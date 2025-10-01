@@ -7,7 +7,7 @@ backend:
   config:
     api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
     auth_domain: "yb-make.firebaseapp.com"
-    project_id: "yb-make"
+    project_id: "YB-MAKE"
 
 # 2. CONFIGURAÇÕES GLOBAIS (NÃO ANINHADAS)
 locale: "pt" # Deve estar fora do 'backend:'
