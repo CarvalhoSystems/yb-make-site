@@ -1,15 +1,3 @@
-header {
-   position: fixed;
-   top: 0;
-   width: 100%;
-   background: #ff66b2;
-   color: white;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   padding: 10px 0;     
-   z-index: 1000;
-}
 .entrega-logo {
     position: absolute;
     top: 10px;   /* ajusta a posição vertical */
@@ -49,17 +37,19 @@ body {
 header {
     background: #ff66b2;
     color: white;
-    padding: 15px;
-    text-align: center;
+    padding: 10px 20px; /* Ajustado padding */
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribui o espaço */
 }
 
 header h1 {
     margin: 0;
-    font-size: 22px;
+    font-size: 20px; /* Levemente reduzido */
 }
 
 /* Barra de pesquisa */
@@ -419,10 +409,6 @@ header h1 {
 
 /* Novos estilos para o botão de autenticação no cabeçalho */
 .header-auth-btn {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
     padding: 8px 15px;
     border: none;
     border-radius: 6px;
@@ -438,6 +424,13 @@ header h1 {
 .header-auth-btn:hover {
     background: #f0f0f0;
     color: #ff3385;
+}
+
+/* Media query para ajustar o cabeçalho em telas pequenas */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 16px; /* Reduz a fonte do título */
+    }
 }
 
 /* Novos estilos para o Modal de Autenticação */
