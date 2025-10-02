@@ -1,0 +1,4 @@
+# Força o Jekyll a incluir a pasta 'admin' no build do site.
+# Sem isso, o GitHub Pages não publicará o painel do Decap CMS.
+include:
+  - admin
