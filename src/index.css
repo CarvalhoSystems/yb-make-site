@@ -27,7 +27,7 @@ body {
     font-family: 'Poppins', Arial, sans-serif;
     background-color: var(--white);
     color: var(--text-color); 
-    padding-top: 75px; /* Espaço para o cabeçalho fixo */
+    padding-top: 75px; /* Espaço inicial para o cabeçalho fixo no desktop */
 }
 
 /*
@@ -680,9 +680,42 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO QUEBRADO */
     body {
-        /* Ajusta o padding para o header que pode crescer em altura */
-        padding-top: 150px;
+        padding-top: 135px; /* Valor ajustado para compensar a altura do header que quebra */
+    }
+
+    .main-header {
+        padding: 0;
+        height: auto; /* Permite que o header cresça */
+    }
+
+    .header-top {
+        flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+        justify-content: space-between; /* Alinha a logo à esquerda e o botão de conta à direita */
+        padding: 10px 4%;
+    }
+    
+    .titulo-loja {
+        flex-basis: auto; 
+    }
+
+    .header-actions {
+        flex-basis: auto;
+        order: 1; /* Mantém na posição original */
+    }
+
+    /* Barra de Busca no Tablet/Mobile: Ocupa a largura total abaixo */
+    .search-bar {
+        width: 100%; /* Ocupa a largura total do container */
+        order: 3; /* Força a barra de busca a ir para a próxima linha */
+        margin-top: 10px;
+        padding-left: 4%; 
+        padding-right: 4%;
+    }
+
+    .search-bar input {
+        width: 100%; /* O input ocupa o restante da barra */
     }
 
     .product-list {
@@ -690,24 +723,15 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
-    .main-header {
-        padding: 0; /* Remove padding para o container interno controlar */
-        height: auto; /* Permite que o header cresça */
-    }
-
-    .header-top {
-        flex-wrap: wrap; /* Permite que os itens quebrem a linha */
-    }
-
     .main-nav ul {
         justify-content: flex-start; /* Alinha os itens à esquerda para o scroll */
         flex-wrap: nowrap; /* Impede a quebra de linha */
         overflow-x: auto;  /* Adiciona scroll horizontal */
-        padding: 5px 0 15px 0;
+        padding: 5px 0 15px 4%; /* Ajuste o padding para o scroll */
         -webkit-overflow-scrolling: touch; /* Melhora a experiência de scroll no iOS */
         /* Esconde a barra de rolagem para um visual mais limpo */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
     }
 
     .main-nav ul::-webkit-scrollbar {
@@ -716,13 +740,6 @@ footer {
 
     .titulo-loja {
         font-size: 20px;
-    }
-
-    .search-bar input {
-        width: 150px;
-    }
-    .search-bar input:focus {
-        width: 180px;
     }
 
     .modal-produto-content {
@@ -751,11 +768,15 @@ footer {
         width: 100%; /* Ocupa a largura total em mobile */
         max-width: 100%;
     }
-
-    /* Em telas muito pequenas, a busca ocupa a largura total */
-    .search-bar {
-        width: 100%;
-        margin-top: 10px;
-        order: 3; /* Coloca a barra de busca abaixo do título e do botão de conta */
+    
+    /* Garante que o título e o botão Minha Conta fiquem alinhados */
+    .header-top {
+        justify-content: space-around;
+    }
+    
+    .header-actions {
+        flex-basis: auto; 
+        justify-content: center;
+        margin-top: 0;
     }
 }
