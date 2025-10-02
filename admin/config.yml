@@ -4,7 +4,7 @@ backend:
 backend:
   name: github
   repo: "carvalhosystems/yb-make-site" # SEU USUÁRIO/SEU REPOSITÓRIO
-  branch: main # OU master, dependendo do seu branch principal
+  branch: principal # OU master, dependendo do seu branch principal
   
 # Remova o bloco 'config:' do Firebase, se ele ainda existir.
 # ...
