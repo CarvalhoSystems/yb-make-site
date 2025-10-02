@@ -23,21 +23,24 @@
 
   <!-- 3. Inicializa tudo em ordem -->
   <script>
-    // 3.1. Inicializa o Firebase v8.
-    const firebaseConfig = {
-      apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-      authDomain: "yb-make.firebaseapp.com",
-      projectId: "yb-make",
-      storageBucket: "yb-make.firebasestorage.app",
-      appId: "1:685414342925:web:9b17e3194f393c87569044",
-    };
-    firebase.initializeApp(firebaseConfig);
+    // Garante que o DOM esteja pronto
+    window.addEventListener('DOMContentLoaded', () => {
+      // Inicializa o Firebase v8.
+      const firebaseConfig = {
+        apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+        authDomain: "yb-make.firebaseapp.com",
+        projectId: "yb-make",
+        storageBucket: "yb-make.firebasestorage.app",
+        appId: "1:685414342925:web:9b17e3194f393c87569044",
+      };
+      firebase.initializeApp(firebaseConfig);
 
-    // 3.2. Registra o backend do Firebase manualmente no CMS.
-    CMS.registerBackend('firebase', window.FirebaseBackend);
+      // Registra o backend do Firebase manualmente no CMS.
+      CMS.registerBackend('firebase', window.FirebaseBackend);
 
-    // 3.3. Inicializa o Decap CMS.
-    CMS.init();
+      // Inicializa o Decap CMS passando o config.yml explicitamente.
+      CMS.init({ config: { load_config_file: true } });
+    });
   </script>
 </body>
 </html>
