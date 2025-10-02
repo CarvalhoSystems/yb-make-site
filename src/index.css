@@ -74,7 +74,7 @@ body {
 .main-nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* No desktop, centraliza */
 }
 
 .main-nav a {
@@ -680,36 +680,30 @@ footer {
 }
 
 @media (max-width: 768px) {
-    /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO QUEBRADO */
+    /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO QUEBRADO 
+       Aumentamos para compensar todas as 4 linhas do header no mobile.
+    */
     body {
-        padding-top: 180px; /* Valor ajustado para compensar a altura do header que quebra */
+        padding-top: 180px; 
     }
 
     .main-header {
         padding: 0;
         height: auto; /* Permite que o header cresça */
     }
-
+    
+    /* ORGANIZAÇÃO DO TOPO NO MOBILE */
     .header-top {
         flex-wrap: wrap; /* Permite que os itens quebrem a linha */
-        justify-content: space-between; /* Alinha a logo à esquerda e o botão de conta à direita */
+        justify-content: space-around; 
         padding: 10px 4%;
     }
     
     .titulo-loja {
-        flex-basis: auto; 
-        order: 1; /* Mantém na posição original */
+        flex-grow: 1; /* Permite que o título ocupe um pouco mais de espaço */
+        text-align: left;
     }
 
-    /* Barra de busca no tablet/mobile: Ocupa a largura total abaixo */
-    .search-bar {
-        width: 92%; /* Ocupa a largura total do container */
-        order: 3; /* Força a barra de busca a ir para a próxima linha */
-        margin: 10px ;
-    }
-    
-
-     /* Espaçamento ao redor */
     .header-actions {
         flex-basis: auto;
         order: 1; /* Mantém na posição original */
@@ -717,41 +711,55 @@ footer {
 
     /* Barra de Busca no Tablet/Mobile: Ocupa a largura total abaixo */
     .search-bar {
-        width: 100%; /* Ocupa a largura total do container */
+        width: 92%; /* Usa a largura total (100% - 2*4% do padding do header-top) */
         order: 3; /* Força a barra de busca a ir para a próxima linha */
         margin-top: 10px;
-        padding-left: 4%; 
-        padding-right: 4%;
     }
 
     .search-bar input {
         width: 100%; /* O input ocupa o restante da barra */
     }
-
-    .product-list {
-        /* Permite que o grid se ajuste a 1 coluna se necessário */
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    
+    /* Navegação - CORREÇÃO DE ALINHAMENTO */
+    .main-nav {
+        width: 100%; 
+        order: 4; 
     }
 
     .main-nav ul {
         justify-content: flex-start; 
         flex-wrap: nowrap; 
         overflow-x: auto;  
-        padding: 5px 0 15px 4%; 
+        /* A CORREÇÃO: Remove o padding esquerdo aqui e usa margin/padding nos <a>
+           para que o "Lançamentos" comece exatamente no 4% do contêiner. */
+        padding: 5px 0 15px 0; 
+        
         -webkit-overflow-scrolling: touch; 
-        /* Esconde a barra de rolagem para um visual mais limpo */
         -ms-overflow-style: none; 
         scrollbar-width: none; 
     }
+    
+    /* APLICAÇÃO DO ALINHAMENTO NO PRIMEIRO ITEM DA LISTA */
+    .main-nav ul li:first-child a {
+        /* Adiciona a margem à esquerda para alinhar com o 4% do .header-top */
+        margin-left: 4%; 
+        padding-left: 15px; /* Mantém o padding do <a> original */
+    }
+    
+    /* Remove a margem extra do primeiro item quebra o alinhamento de todos os outros */
+    .main-nav a {
+        padding: 10px 15px; /* Volta ao padding padrão do desktop */
+        margin-left: 0; /* Garante que os outros não herdem a margem do primeiro */
+    }
+
 
     .main-nav ul::-webkit-scrollbar {
         display: none; /* Chrome, Safari and Opera */
     }
 
-    /* ... (restante dos estilos para mobile) ... */
-
     .product-list {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta o tamanho mínimo para 200px */
+        /* Permite que o grid se ajuste a 1 coluna se necessário */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .titulo-loja {
@@ -766,11 +774,6 @@ footer {
 
     .hero-banner {
         padding: 40px 20px;
-    }
-
-    .main-header .container {
-        padding-left: 4%;
-        padding-right: 4%;
     }
 }
 
