@@ -6,38 +6,40 @@
   <title>Gerenciador de Conteúdo</title>
 </head>
 <body>
-  
-  <!-- O Decap CMS precisa de um elemento 'root' para renderizar a interface -->
-  <div id="root"></div>
-
-  <!-- Carrega os SDKs do Firebase v8 (compatível com o backend do Decap CMS) -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
-  <!-- 1. Carrega o Decap CMS principal -->
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.10/dist/decap-cms.js"></script>
-  <!-- 2. Carrega o backend do Firebase (usando jsDelivr) -->
   <script src="https://cdn.jsdelivr.net/npm/decap-cms-backend-firebase@3.0.1/dist/decap-cms-backend-firebase.js"></script>
 
-  <!-- 3. Inicializa tudo em ordem -->
   <script>
-    // Inicializa o Firebase v8.
-    const firebaseConfig = {
-      apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-      authDomain: "yb-make.firebaseapp.com",
-      projectId: "yb-make",
-      storageBucket: "yb-make.firebasestorage.app",
-      appId: "1:685414342925:web:9b17e3194f393c87569044",
-    };
-    firebase.initializeApp(firebaseConfig);
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Inicializa o Firebase v8 com o ID correto (minúsculas)
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+            authDomain: "yb-make.firebaseapp.com",
+            projectId: "yb-make", // ID do projeto (minúsculas)
+            storageBucket: "yb-make.firebasestorage.app",
+            appId: "1:685414342925:web:9b17e3194f393c87569044",
+        };
+        // Apenas inicializa se o SDK do Firebase foi carregado
+        if (typeof firebase !== 'undefined') {
+            firebase.initializeApp(firebaseConfig);
+        } else {
+            console.error("Firebase SDK não foi carregado.");
+            return;
+        }
 
-    // Registra o backend do Firebase manualmente no CMS.
-    CMS.registerBackend('firebase', window.FirebaseBackend);
-
-    // Inicializa o Decap CMS. Ele carregará o config.yml automaticamente.
-    CMS.init();
+        // 2. Registra e Inicializa o CMS APENAS se os objetos existirem
+        if (window.CMS && window.FirebaseBackend) {
+            CMS.registerBackend('firebase', window.FirebaseBackend);
+            CMS.init();
+        } else {
+            console.error("Erro: CMS ou Plugin Firebase não foram carregados/registrados corretamente.");
+        }
+    });
   </script>
 </body>
 </html>
