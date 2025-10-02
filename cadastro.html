@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - YB_MAKE.com.br</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="src/index.css">
 </head>
 <body>
 
-    <!-- Cabeçalho -->
-    <header>
-        <h1 class="titulo-loja">💄 YB MAKE's Cosméticos 💋</h1>
+    <header class="main-header">
+        <div class="container header-top">
+            <a href="index.html" style="text-decoration: none;"><h1 class="titulo-loja">YB MAKE's Cosméticos</h1></a>
+        </div>
     </header>
 
-    <main class="cadastro-container">
+    <main class="auth-page-container">
         <h2>Crie sua Conta</h2>
         <p>Preencha os campos abaixo para se cadastrar.</p>
 
-        <form id="signup-form" class="cadastro-form">
+        <form id="signup-form" class="form">
             <label for="signup-name">Nome Completo</label>
             <input type="text" id="signup-name" placeholder="Seu nome completo" required>
 

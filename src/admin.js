@@ -1,18 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Configuração do Firebase (pode ser a mesma do seu firebase-config.js)
-    const firebaseConfig = {
-        apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-        authDomain: "yb-make.firebaseapp.com",
-        projectId: "yb-make",
-        storageBucket: "yb-make.firebasestorage.app",
-        appId: "1:685414342925:web:9b17e3194f393c87569044",
-    };
-
-    // Inicializa o Firebase
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-
+    // O Firebase já é inicializado pelo firebase-config.js
     const auth = firebase.auth();
     const db = firebase.firestore();
 
@@ -62,6 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             adminErrorMessage.innerText = 'Email ou senha inválidos.';
             console.error("Erro de login:", error);
+
+            if (email === '' || password === '') {
+                adminErrorMessage.innerText = 'Por favor, preencha todos os campos.';
+            } else if (error.code === 'auth/user-not-found') {
+                adminErrorMessage.innerText = 'Usuário não encontrado.';
+            } else if (error.code === 'auth/wrong-password') {
+                adminErrorMessage.innerText = 'Senha incorreta.';
+            } else {
+                adminErrorMessage.innerText = 'Ocorreu um erro ao fazer login. Tente novamente.';
+            }
         }
     });
 
@@ -80,9 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const product = doc.data();
             const productEl = document.createElement('div');
             productEl.className = 'product-item';
+            const priceFormatted = (product.price || 0).toFixed(2).replace('.', ',');
             productEl.innerHTML = `
-                <span>${product.title}</span>
-                <div>
+                <img src="${product.image || 'https://via.placeholder.com/50'}" alt="Miniatura" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 10px;">
+                <span style="flex-grow: 1;">${product.title}</span>
+                <span style="margin-right: 15px; font-weight: bold; color: #555;">R$ ${priceFormatted}</span>
+                <div style="display: flex; gap: 5px;">
                     <button class="btn-edit" data-id="${doc.id}">Editar</button>
                     <button class="btn-delete" data-id="${doc.id}">Excluir</button>
                 </div>
@@ -111,8 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (id) { // Se tem ID, atualiza
             await db.collection('products').doc(id).update(data);
+            alert('Produto atualizado com sucesso!');
         } else { // Se não tem ID, cria um novo
             await db.collection('products').add(data);
+            alert('Produto adicionado com sucesso!');
         }
 
         // Limpa o formulário e recarrega a lista
@@ -140,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function deleteProduct(id) {
         if (confirm('Tem certeza que deseja excluir este produto?')) {
             await db.collection('products').doc(id).delete();
+            alert('Produto excluído com sucesso!');
             loadProducts();
         }
     }

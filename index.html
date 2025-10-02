@@ -3,80 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YB_MAKE.com.br</title>
-    <link rel="stylesheet" href="src/index.css">
+    <title>💄 YB MAKE's Cosméticos - Maquiagem e Skincare 💋</title>
+    <link rel="stylesheet" href="src/index.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
 </head>
 <body>
 
+    <header class="main-header">
+        <div class="container header-top">
+            <h1 class="titulo-loja">YB MAKE's Cosméticos</h1>
+            
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="search" placeholder="Busque por batom, base, ou máscara..." id="search-input">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <button id="btn-open-auth-modal" class="header-auth-btn">
+                    <i class="fas fa-user"></i> Minha Conta
+                </button>
+            </div>
+        </div>
 
-    <!-- Cabeçalho -->
-    <header>
-        <h1 class="titulo-loja">💄 YB MAKE's Cosméticos 💋</h1>
-        <button id="btn-open-auth-modal" class="header-auth-btn">Minha Conta</button>
+        <nav id="main-nav" class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="#lancamentos">✨ Lançamentos</a></li>
+                    <li><a href="#maquiagem">Maquiagem</a></li>
+                    <li><a href="#skincare">Skincare</a></li>
+                    <li><a href="#promocoes">Promoções</a></li>
+                    <li><a href="#marcas">Marcas</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
-    <!-- Barra de pesquisa e outras seções (mantidas) -->
-    <!-- ... -->
-        <div class="quadrado"></div>
-        <div class="quadrado"></div>
-        <div class="quadrado"></div>
+    <section id="lancamentos" class="hero-banner">
+        <div class="container">
+            <h2>✨ O toque de magia que faltava. ✨</h2>
+            <p>produtos favoritos com até 30% OFF .</p>
+            <p>Frete grátis para compras acima de R$25,00!</p>
+        </div>
+    </section>
+
+    <section class="product-area container" id="maquiagem">
+        <h2>Produtos em Destaque</h2>
+        <p class="section-subtitle">Os mais vendidos da semana na YB Make's.</p>
+
+        <div class="filter-controls">
+            <label for="sort-by">Ordenar por:</label>
+            <select id="sort-by">
+                <option value="popularidade">Popularidade</option>
+                <option value="menor-preco">Menor Preço</option>
+                <option value="maior-preco">Maior Preço</option>
+            </select>
+        </div>
+        
+        <div class="product-list" id="productListContainer">
+            <p>Carregando produtos...</p>
+        </div>
+    </section>
     
-
-    <!-- Lista de produtos -->
-    <section class="product-list">
-        <!-- Os produtos do Firebase serão carregados aqui -->
-        <p>Carregando produtos...</p>
-
+    <section class="social-links container">
+        <h3>Siga Nossas Redes e Fique por Dentro!</h3>
+        <div class="social-buttons">
+            <a href="https://www.instagram.com/ybprincesinha_makecosmeticos" target="_blank" class="btn instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://wa.me/5511971822511" target="_blank" class="whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
     </section>
 
-    <!-- Botões de Redes Sociais -->
-    <section class="social-buttons">
-        <a href="https://www.instagram.com/ybprincesinha_makecosmeticos" target="_blank" class="btn instagram">📷 Instagram</a>
-        <a href="https://wa.me/5511971822511" target="_blank" class="whatsapp">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
+    <button id="btn-open-cart" class="floating-cart-btn">
+        <i class="fas fa-shopping-cart"></i> 
+        <span id="cart-counter" class="cart-count-badge">0</span>
+    </button>
+    
+    <button id="backToTop" class="btn voltar floating-back-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    </section>
+    <!-- Overlay para o carrinho -->
+    <div id="carrinho-overlay" class="carrinho-overlay"></div>
 
-    <!-- Carrinho de Compras -->
-    <div class="carrinho">
-        <h2>🛒 Carrinho de Compras</h2>
+    <div id="carrinho-sidebar" class="carrinho-sidebar">
+        <div class="carrinho-header">
+            <h2>Seu Carrinho</h2>
+            <button id="close-sidebar-btn" class="close-sidebar-btn">&times;</button>
+        </div>
         <div class="produtos-carrinho"></div>
-        <p class="total">Total: R$ 0,00</p>
-        <button class="btn-finalizar">Finalizar Compra</button>
-        <button id="limparCarrinho" class="btn limpar">🗑️ Limpar Carrinho</button>
-    </div>
-
-    <!-- Modal PIX -->
-    <div id="modal-pix" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
-        <div style="background: #ff66b2; padding: 30px; border-radius:10px; width: 600px; text-align:center;">
-            <h3>Finalize a Compra</h3>
-            <br>
-            <p>Total: R$ <span id="total-pix"></span></p>
-            <br>
-            <p>Chave PIX: <strong id="pix-chave">yasmin_princesinha@icloud.com </strong></p>
-            <br>
-            <p>Copie a chave e faça o pagamento via seu banco</p>
-            <br>
-            <button id="btn-fechar-pix">Fechar</button>
+        <div class="carrinho-footer">
+            <p class="total">Total: R$ 0,00</p>
+            <button class="btn-finalizar">Finalizar Compra</button>
+            <button id="limparCarrinho" class="limpar">
+                <i class="fas fa-trash-alt"></i> Limpar Carrinho
+            </button>
         </div>
     </div>
 
-    <!-- Modal de Detalhes do Produto -->
+    <div id="modal-pix" class="modal-pix-overlay">
+        <div class="modal-pix-content">
+            <h3>Finalize a Compra</h3>
+            <p>Total: R$ <span id="total-pix">0.00</span></p>
+            <p class="pix-info">Chave PIX:</p>
+            <strong id="pix-chave">yasmin_princesinha@icloud.com </strong>
+            <button id="btn-copy-pix" class="btn-copy"><i class="fas fa-copy"></i> Copiar Chave</button>
+            <p class="pix-instruction">Copie a chave e faça o pagamento via seu banco.</p>
+            <button id="btn-fechar-pix" class="btn-secondary">Fechar</button>
+        </div>
+    </div>
+
     <div id="modal-produto" class="modal-produto">
         <div class="modal-produto-content">
-            <span class="fechar-modal-produto">&times;</span>
-            <img id="modal-produto-img" src="" alt="Imagem do Produto">
-            <h2 id="modal-produto-nome"></h2>
-            <p id="modal-produto-preco"></p>
-            <p id="modal-produto-descricao"></p>
-            <button id="modal-btn-carrinho" class="btn-carrinho">🛒 Adicionar ao Carrinho</button>
+            <span id="fechar-modal-produto" class="fechar-modal-produto">&times;</span>
+            <img id="modal-produto-img" src="" alt="Imagem do Produto" class="product-image">
+            <div class="modal-produto-info">
+                <h2 id="modal-produto-nome"></h2>
+                <p id="modal-produto-preco" class="price"></p>
+                <p id="modal-produto-descricao" class="description"></p>
+                <button id="modal-btn-carrinho" class="btn-add-cart">Adicionar ao Carrinho</button>
+            </div>
         </div>
     </div>
 
-    <!-- Novo Modal de Autenticação -->
     <div id="auth-modal" class="auth-modal">
         <div class="auth-modal-content">
             <span class="close-auth-modal">&times;</span>
@@ -84,32 +135,25 @@
                 <h2>Entrar / Cadastrar</h2>
                 <input type="email" id="auth-email" placeholder="Email">
                 <input type="password" id="auth-password" placeholder="Senha">
-                <button id="btn-signup">Cadastrar</button>
-                <button id="btn-login">Entrar</button>
+                <button id="btn-signup" class="btn-secondary">Cadastrar</button>
+                <button id="btn-login" class="btn-primary">Entrar</button>
                 <p id="auth-error-message" class="error-message"></p>
             </div>
             <div id="user-info-container" style="display:none;">
                 <h2>Bem-vindo(a), <span id="user-email"></span>!</h2>
-                <button id="btn-logout">Sair</button>
+                <button id="btn-logout" class="btn-secondary">Sair</button>
             </div>
         </div>
     </div>
 
-    <!--botão voltar-->
-    <div class="footer-buttons">
-        <button id="backToTop" class="btn voltar">🔝 Voltar </button>
-    </div>
 
-    <!-- Firebase SDKs (NECESSÁRIO PARA CARREGAR OS PRODUTOS) -->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
  
-    <!-- Carrega e inicializa o Firebase a partir de um arquivo central -->
     <script src="src/firebase-config.js"></script>
     <script src="src/main.js"></script>
 
-    <!-- Rodapé -->
     <footer>
         <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>
     </footer>

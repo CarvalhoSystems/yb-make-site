@@ -1,419 +1,119 @@
-.entrega-logo {
-    position: absolute;
-    top: 10px;   /* ajusta a posição vertical */
-    right: 20px; /* ajusta a distância da direita */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/*
+====================================
+1. RESET E VARIAVEIS (CORES)
+====================================
+*/
+
+/* Paleta de Cores - Revisada para um look mais moderno */
+:root {
+    --primary-color: #d16b8e; /* Rosa um pouco mais sóbrio e elegante */
+    --secondary-color: #d6608d; /* Rosa mais escuro para hover */
+    --text-color: #222; /* Texto um pouco mais escuro para melhor leitura */
+    --background-color: #ffffff; /* Fundo branco para um look clean */
+    --light-background: #f9f9f9; /* Fundo de seções e carrinho, cinza muito claro */
+    --white: #ffffff;
+    --border-color: #eaeaea; /* Borda mais neutra */
 }
 
-.entrega-logo img {
-    height: 100px;  /* tamanho pequeno */
-    width: 100px;
-    border-radius: 12px;
-    position: relative;
-    height: 200px;
-}
-
-
-header h1 {
-    margin: 0;
-    font-size: 22px;
-}
-
-/* Reset de estilos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Corpo da página */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #ffe6f0; /* fundo rosa */
-    color: #333;
-    padding-top: 70px; /* Adiciona espaço no topo para não sobrepor o cabeçalho fixo */
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: var(--white);
+    color: var(--text-color); 
+    padding-top: 75px; /* Espaço para o cabeçalho fixo */
 }
 
-/* Cabeçalho */
-header {
-    background: #ff66b2;
-    color: white;
-    padding: 10px 20px; /* Ajustado padding */
+/*
+====================================
+2. CABEÇALHO (HEADER) E NAVEGAÇÃO
+====================================
+*/
+
+.main-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border-color); /* Borda mais fina e sutil */
+    padding: 0 5%;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+}
+
+.header-top {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Distribui o espaço */
-}
-
-header h1 {
-    margin: 0;
-    font-size: 20px; /* Levemente reduzido */
-}
-
-/* Barra de pesquisa */
-.search-box {
-    margin: 90px auto 20px auto;
-    text-align: center;
-}
-
-.search-box input {
-    padding: 8px;
-    width: 200px;
-    border-radius: 6px;
-    border: 1px solid #ff66b2;
-}
-
-.search-box button {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: none;
-    background: #ff66b2;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* Mensagem de boas-vindas */
-.welcome {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Lista de produtos */
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    padding: 20px;
-}
-
-@media (max-width: 600px) {
-    .product-list {
-        grid-template-columns: 1fr;
-    }
-
-    @media screen and (max-width: 400px) {
-        .product-list {
-            grid-template-columns: 1fr;
-        }
-    }
-}
-
-@media (max-width: 400px) {
-    .entrega-logo {
-        grid-template-columns: 1fr;
-    }
-}
-/* Card de produtos */
-.content {
-    background: white;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.content:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Imagem do produto */
-.content img {
-    width: 100%;
-    height: 180px; /* altura menor */
-    object-fit: contain; /* mantém proporção e cabe no card */
-    border-radius: 12px;
-    margin-bottom: 10px;
-}
-
-/* Título e preço */
-.content h2 {
-    font-size: 16px;
-    margin: 8px 0 4px 0;
-}
-
-.content p {
-    font-size: 14px;
-    margin: 4px 0;
-}
-
-/* Botão adicionar ao carrinho */
-.btn-carrinho {
-    margin-top: 8px;
-    padding: 6px 10px;
-    border: none;
-    border-radius: 6px;
-    background: #ff66b2;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-carrinho:hover {
-    background: #ff3385;
-}
-
-/* Redes sociais */
-.social-buttons {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.social-buttons a {
-    margin: 0 10px;
-    padding: 8px 12px;
-    text-decoration: none;
-    color: white;
-    background: #ff66b2;
-    border-radius: 6px;
-    font-weight: bold;
-}
-/*limpar carrinho */
-.limpar {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    background: #ff66b2;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.produtos-carrinho p {
-    font-size: 18px;
-    margin-top: 0;
-}
-
-/* Carrinho */
-.carrinho {
-    background: #fff0f6;
-    padding: 15px;
-    margin: 20px;
-    border-radius: 12px;
-}
-
-.carrinho h2 {
-    margin-top: 0;
-    font-size: 18px;
-}
-
-.produtos-carrinho p {
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-.carrinho-item {
-    display: flex;
     justify-content: space-between;
+    padding: 10px 0;
+}
+
+.titulo-loja {
+    color: var(--primary-color);
+    font-size: 26px;
+    font-weight: 600; /* Um pouco menos "pesado" */
+    margin: 0; /* Remove margem dupla */
+}
+
+.header-actions {
+    display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    gap: 15px;
 }
 
-.btn-remover {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+/* Menu de Navegação */
+.main-nav {
+    background-color: transparent; /* Remove o fundo rosa da nav */
 }
 
-.btn-finalizar {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    background: #ff66b2;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-finalizar:hover {
-    background: #ff3385;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
+.main-nav ul {
+    list-style: none;
+    display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-}
-
-.modal-content button {
-    margin-top: 10px;
-    padding: 6px 10px;
-    border: none;
-    border-radius: 6px;
-    background: #ff66b2;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* Botão WhatsApp */
-.social-buttons a.whatsapp {
-    background-color: #25D366; /* verde WhatsApp */
-}
-
-.social-buttons a.whatsapp:hover {
-    background-color: #128C7E;
-}
-
-/* Botão Instagram */
-.social-buttons a.instagram {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    color: white;
-    font-weight: bold;
-}
-
-.social-buttons a.instagram:hover {
-    opacity: 0.8;
-}
-
-/* Botão Voltar */
-.btn-voltar {
-    background-color: #ff66b2;
-    color: white;
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color); /* Cor de texto padrão para links */
     padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-voltar:hover {
-    background-color: #ff3385;
-}
-/* Estilos para a Seção de Autenticação (agora dentro do modal) */
-.auth-modal-content h2 { /* Adaptado para o conteúdo do modal */
-    margin-bottom: 15px;
-    color: #ff66b2;
-    font-size: 20px;
-}
-
-.auth-section input {
     display: block;
-    width: 80%;
-    max-width: 300px;
-    padding: 10px;
-    margin: 10px auto;
-    border: 1px solid #ff66b2;
-    border-radius: 6px;
-    font-size: 1em;
-}
-
-.auth-modal-content button { /* Adaptado para o conteúdo do modal */
-    padding: 10px 15px;
-    margin: 5px;
-    border: none;
-    border-radius: 6px;
-    background: #ff66b2;
-    color: white;
+    transition: color 0.3s, background-color 0.3s;
     font-weight: bold;
-    cursor: pointer;
-    font-size: 1em;
+    position: relative; /* Para o pseudo-elemento ::after */
 }
 
-.auth-modal-content button:hover { /* Adaptado para o conteúdo do modal */
-    background: #ff3385;
+.main-nav a:hover {
+    color: var(--primary-color);
 }
 
-.error-message { /* Mantido, pois é um ID e pode ser usado em qualquer lugar */
-    color: red; 
-    margin-top: 10px;
-    font-size: 0.9em;
-}
-
-#user-info-container {
-    margin-top: 20px;
-}
-
-#user-info-container h2 { /* Mantido, pois é um ID */
-    color: #333;
-    font-size: 18px;
-}
-
-#user-email { /* Mantido, pois é um ID */
-    font-weight: normal;
-    color: #ff66b2;
-}
-
-/* Estilos para o Modal de Produto */
-.modal-produto {
-    display: none; /* Escondido por padrão */
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-produto-content {
-    background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    position: relative;
-    animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: scale(0.9);}
-    to {opacity: 1; transform: scale(1);}
-}
-
-.fechar-modal-produto {
-    color: #aaa;
+.main-nav a::after {
+    content: '';
     position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+    bottom: 5px;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
 }
 
-#modal-produto-img {
-    width: 100%;
-    max-height: 250px;
-    object-fit: contain;
-    margin-bottom: 15px;
+.main-nav a:hover::after {
+    transform: scaleX(1);
 }
 
-/* Novos estilos para o botão de autenticação no cabeçalho */
+/* Botão Minha Conta (header-auth-btn) */
 .header-auth-btn {
     padding: 8px 15px;
     border: none;
     border-radius: 6px;
-    background: #fff; /* Fundo branco */
-    color: #ff66b2; /* Texto rosa */
+    background: var(--white);
+    color: var(--primary-color);
     font-weight: bold;
     cursor: pointer;
     font-size: 0.9em;
@@ -423,92 +123,639 @@ header h1 {
 
 .header-auth-btn:hover {
     background: #f0f0f0;
-    color: #ff3385;
+    color: var(--secondary-color);
 }
 
-/* Media query para ajustar o cabeçalho em telas pequenas */
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 16px; /* Reduz a fonte do título */
-    }
+
+/*
+====================================
+3. SEÇÃO HERO E PESQUISA
+====================================
+*/
+.hero-banner {
+    text-align: center;
+    padding: 60px 20px; /* Aumentei um pouco o padding para dar mais respiro */
+    margin-bottom: 30px;
+    position: relative; /* Necessário para o z-index do conteúdo */
+    overflow: hidden; /* Garante que o pseudo-elemento não vaze */
 }
 
-/* Novos estilos para o Modal de Autenticação */
-.auth-modal {
-    display: none; /* Escondido por padrão */
+/* Pseudo-elemento para criar o fundo com imagem e overlay */
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Aplica um gradiente de cor por cima da imagem para dar o efeito translúcido */
+    background-image: linear-gradient(rgba(253, 246, 248, 0.7), rgba(253, 246, 248, 0.7)), url('https://images.tcdn.com.br/img/img_prod/898929/tecido_tricoline_estampado_coroa_rosa_50cm_x_1_50mt_1317_1_4c1ab07c567ba57b40d3eebb0934a160.jpg');
+    background-size: cover; /* Faz a imagem cobrir todo o espaço */
+    background-position: center; /* Centraliza a imagem */
+    z-index: -1; /* Coloca o fundo atrás do conteúdo */
+}
+
+.hero-banner h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: var(--text-color); /* Texto escuro sobre fundo claro */
+}
+
+.hero-banner p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* Adaptando o estilo do seu antigo search-box para o novo input no header */
+.search-bar {
+    display: flex; /* Alterado para flex para alinhar o ícone */
+    align-items: center;
+    background-color: var(--light-background);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 0 10px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    padding: 8px;
+    outline: none;
+    width: 250px; /* Largura inicial */
+    transition: width 0.3s;
+}
+
+.search-bar input:focus {
+    width: 300px; /* Expande ao focar */
+}
+
+.search-bar i {
+    color: #999;
+    position: relative;
+}
+
+/*
+====================================
+4. LISTA E CARD DE PRODUTOS
+====================================
+*/
+
+.product-list {
+    /* Mantém o grid flexível, garantindo que o espaçamento seja consistente */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Aumenta o tamanho mínimo */
+    gap: 25px; 
+    padding: 20px;
+    justify-content: center;
+}
+
+.product-card {
+    background: var(--white); /* Fundo branco */
+    border: 1px solid var(--border-color); /* Borda sutil */
+    border-radius: 8px; /* Bordas menos arredondadas */
+    padding: 20px; /* Mais espaço interno */
+    text-align: left; /* Alinhamento à esquerda para um look mais profissional */
+    box-shadow: none; /* Remove a sombra padrão */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    border-color: var(--primary-color); /* Destaca a borda no hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.product-image-container {
+    position: relative; /* Para o botão de hover */
+    margin-bottom: 15px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px; /* Imagens um pouco maiores */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    border-radius: 4px;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left; 
+    flex-grow: 1; /* Permite que o nome do produto ocupe o espaço extra */
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 400; /* Preço com peso normal, mas cor de destaque */
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Container para os botões que aparecem no hover */
+.product-hover-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; /* Mantém os botões empilhados */
+    align-items: center; /* Centraliza os botões no eixo cruzado (horizontal) */
+    gap: 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.product-image-container:hover .product-hover-buttons {
+    opacity: 1;
+    transform: none; /* Garante que não haja transformações conflitantes */
+}
+
+/* Botão adicionar ao carrinho */
+.btn-add-cart, .btn-details {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 90%; /* Define uma largura um pouco menor que o container */
+    box-sizing: border-box;
+}
+
+.btn-add-cart {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-details {
+    background: var(--white);
+    color: var(--primary-color);
+}
+
+.btn-add-cart:hover, .btn-details:hover {
+    background: var(--secondary-color); /* Cor de hover */
+    color: var(--white);
+    transform: scale(1.02);
+}
+
+/*
+====================================
+5. CARRINHO (SIDEBAR)
+====================================
+*/
+
+/* Overlay para escurecer o fundo quando o carrinho está aberto */
+.carrinho-overlay {
+    display: none;
     position: fixed;
-    z-index: 2001; /* Z-index alto para ficar acima de outros modais */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999; /* Abaixo do carrinho, acima do resto */
+}
+
+.carrinho-overlay.open {
+    display: block;
+}
+
+/* Estilo para a nova sidebar do carrinho */
+.carrinho-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    max-width: 90%;
+    height: 100%;
+    background: var(--white);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+    z-index: 1001; /* Acima do overlay */
+    padding: 20px;
+    transform: translateX(100%); /* Escondido fora da tela */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Classe ativada pelo JS para mostrar o carrinho */
+.carrinho-sidebar.open {
+    transform: translateX(0);
+}
+
+.carrinho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.carrinho-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.produtos-carrinho {
+    flex-grow: 1; /* Permite que o conteúdo do carrinho preencha o espaço */
+    overflow-y: auto; /* Adiciona scroll se houver muitos produtos */
+    padding-right: 10px; /* Espaço para a barra de rolagem */
+}
+
+/* Estilo para cada item no carrinho */
+.carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.carrinho-item span {
+    flex-grow: 1;
+}
+
+.btn-remover {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
+.carrinho-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: auto; /* Empurra o rodapé para baixo */
+    text-align: center;
+}
+
+.carrinho-footer .total {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+/* Botões Finalizar e Limpar */
+.btn-finalizar, .limpar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-finalizar {
+    background: var(--primary-color);
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.btn-finalizar:hover {
+    background-color: var(--secondary-color);
+}
+
+.limpar {
+    background: #e0e0e0;
+    color: #555;
+}
+
+.limpar:hover {
+    background: #ccc;
+}
+
+/* Botão de fechar */
+.close-sidebar-btn {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.close-sidebar-btn:hover {
+    color: var(--primary-color);
+}
+
+
+/*
+====================================
+6. MODAIS (PIX E PRODUTO)
+====================================
+*/
+/* Estilos gerais para todos os modais */
+.modal-pix-overlay, .modal-produto, .auth-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0,0,0,0.7);
-    justify-content: center;
+    /* O JS mudará display:none para display:flex */
     align-items: center;
+    justify-content: center;
 }
 
-.auth-modal-content {
-    background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
+.modal-pix-content, .modal-produto-content, .auth-modal-content {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
     width: 90%;
-    max-width: 500px;
+    max-width: 500px; /* Aumentado para o modal de produto */
     text-align: center;
     position: relative;
-    animation: fadeIn 0.3s;
+    animation: modal-fade-in 0.3s;
 }
 
-.close-auth-modal {
-    color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+@keyframes modal-fade-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-/* Estilos para a página de Cadastro */
-.cadastro-container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 30px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
+/* Modal de Produto */
+.modal-produto-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+    max-width: 700px;
 }
 
-.cadastro-container h2 {
-    color: #ff66b2;
-    margin-bottom: 10px;
+.modal-produto-content img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.cadastro-form {
+.modal-produto-info {
     display: flex;
     flex-direction: column;
-    text-align: left;
 }
 
-.cadastro-form label {
-    margin-top: 15px;
-    margin-bottom: 5px;
+.modal-produto-info h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.modal-produto-info .price {
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #555;
+    margin: 10px 0;
 }
 
-.cadastro-form input {
-    padding: 12px;
-    border: 1px solid #ddd;
+.modal-produto-info .description {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.fechar-modal-produto {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.fechar-modal-produto:hover {
+    color: var(--primary-color);
+}
+
+/* Modal PIX */
+.modal-pix-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+.pix-info, .pix-instruction {
+    margin: 10px 0;
+}
+#pix-chave {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    background: var(--light-background);
     border-radius: 6px;
-    font-size: 1em;
+}
+.btn-copy {
+    background-color: #28a745; /* Verde para ação de cópia */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
-.link-voltar {
-    display: inline-block;
-    margin-top: 20px;
-    color: #ff66b2;
+/*
+====================================
+7. ELEMENTOS FLUTUANTES E SOCIAIS
+====================================
+*/
+
+/* Carrinho Flutuante */
+.floating-cart-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.floating-cart-btn:hover {
+    transform: scale(1.1);
+}
+
+.cart-count-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 0.7em;
+    font-weight: bold;
+    border: 2px solid var(--white);
+}
+
+/* Botão Voltar ao Topo */
+.floating-back-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background-color: #555;
+    color: white;
+    border: 0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 899;
+    display: none; /* Controlado pelo JS */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botões Sociais */
+.social-links {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid var(--border-color);
+}
+.social-links h3 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.social-buttons a {
+    margin: 0 10px;
+    padding: 10px 20px;
     text-decoration: none;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+    transition: opacity 0.2s;
+}
+
+.social-buttons a.whatsapp {
+    background-color: #25D366;
+}
+
+.social-buttons a.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.social-buttons a:hover {
+    opacity: 0.85;
+}
+
+/*
+====================================
+8. RODAPÉ E MEDIA QUERIES
+====================================
+*/
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    body {
+        /* Ajusta o padding para o header que pode crescer em altura */
+        padding-top: 150px;
+    }
+
+    .product-list {
+        /* Permite que o grid se ajuste a 1 coluna se necessário */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .main-header {
+        padding: 0; /* Remove padding para o container interno controlar */
+        height: auto; /* Permite que o header cresça */
+    }
+
+    .header-top {
+        flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+    }
+
+    .main-nav ul {
+        justify-content: flex-start; /* Alinha os itens à esquerda para o scroll */
+        flex-wrap: nowrap; /* Impede a quebra de linha */
+        overflow-x: auto;  /* Adiciona scroll horizontal */
+        padding: 5px 0 15px 0;
+        -webkit-overflow-scrolling: touch; /* Melhora a experiência de scroll no iOS */
+        /* Esconde a barra de rolagem para um visual mais limpo */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    .main-nav ul::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+
+    .titulo-loja {
+        font-size: 20px;
+    }
+
+    .search-bar input {
+        width: 150px;
+    }
+    .search-bar input:focus {
+        width: 180px;
+    }
+
+    .modal-produto-content {
+        grid-template-columns: 1fr;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .hero-banner {
+        padding: 40px 20px;
+    }
+
+    .main-header .container {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-list {
+        /* Garante 1 coluna para telefones muito pequenos */
+        grid-template-columns: 1fr;
+    }
+
+    .carrinho-sidebar {
+        width: 100%; /* Ocupa a largura total em mobile */
+        max-width: 100%;
+    }
+
+    /* Em telas muito pequenas, a busca ocupa a largura total */
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+        order: 3; /* Coloca a barra de busca abaixo do título e do botão de conta */
+    }
 }

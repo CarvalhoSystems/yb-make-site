@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const signupForm = document.getElementById('signup-form');
     const errorMessage = document.getElementById('signup-error-message');
 
+    // Adiciona máscara ao campo de telefone
+    const phoneInput = document.getElementById('signup-phone');
+    phoneInput.addEventListener('input', formatarTelefone);
+
     if (signupForm) {
         signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -12,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Pega os valores do formulário
             const name = document.getElementById('signup-name').value;
             const dob = document.getElementById('signup-dob').value;
-            const phone = document.getElementById('signup-phone').value;
+            const phone = phoneInput.value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
             const confirmPassword = document.getElementById('signup-confirm-password').value;
@@ -56,5 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+    }
+
+    // Função para formatar o telefone com uma máscara
+    function formatarTelefone(e) {
+        let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+        valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2'); // Coloca parênteses em volta dos dois primeiros dígitos
+        valor = valor.replace(/(\d{5})(\d)/, '$1-$2'); // Coloca hífen entre o quinto e o sexto dígitos
+        e.target.value = valor.slice(0, 15); // Limita o tamanho
     }
 });
