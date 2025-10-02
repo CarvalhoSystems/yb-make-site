@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administrador</title>
+    <link rel="stylesheet" href="src/index.css">
+    <style>
+        /* Estilos adicionais para o painel de admin */
+        body { padding-top: 20px; }
+        .admin-container { max-width: 800px; margin: auto; padding: 20px; background: #fff; border-radius: 8px; }
+        .login-section, .admin-panel { display: block; }
+        .hidden { display: none; }
+        input, textarea, button { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; }
+        button { background: #ff66b2; color: white; cursor: pointer; }
+        #product-list-admin .product-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+        #product-list-admin .product-item button { width: auto; padding: 5px 10px; margin: 0 5px; }
+        .btn-delete { background: #dc3545; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <!-- 1. SEÇÃO DE LOGIN -->
+        <div id="login-section">
+            <h2>Acesso Restrito</h2>
+            <input type="email" id="admin-email" placeholder="Email de administrador">
+            <input type="password" id="admin-password" placeholder="Senha">
+            <button id="btn-admin-login">Entrar</button>
+            <p id="admin-error-message" class="error-message"></p>
+        </div>
+
+        <!-- 2. PAINEL DE ADMINISTRAÇÃO (ESCONDIDO INICIALMENTE) -->
+        <div id="admin-panel" class="hidden">
+            <h2>Gerenciador de Produtos</h2>
+            <button id="btn-admin-logout">Sair</button>
+            <hr style="margin: 20px 0;">
+
+            <h3>Adicionar / Editar Produto</h3>
+            <input type="hidden" id="product-id"> <!-- Campo oculto para guardar o ID do produto em edição -->
+            <input type="text" id="product-title" placeholder="Nome do Produto">
+            <textarea id="product-description" placeholder="Descrição"></textarea>
+            <input type="number" id="product-price" placeholder="Preço (ex: 29.90)">
+            <input type="text" id="product-image" placeholder="URL da Imagem">
+            <button id="btn-save-product">Salvar Produto</button>
+
+            <hr style="margin: 20px 0;">
+            <h3>Produtos Cadastrados</h3>
+            <div id="product-list-admin">
+                <!-- Lista de produtos será carregada aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs (usaremos a versão 8, que é mais simples para este caso) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- Nosso novo script de admin -->
+    <script src="src/admin.js"></script>
+
+</body>
+</html>
