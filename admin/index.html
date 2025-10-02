@@ -7,6 +7,9 @@
 </head>
 <body>
   
+  <!-- O Decap CMS precisa de um elemento 'root' para renderizar a interface -->
+  <div id="root"></div>
+
   <!-- Carrega os SDKs do Firebase v8 (compatível com o backend do Decap CMS) -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
@@ -19,18 +22,20 @@
   <script src="https://unpkg.com/decap-cms-backend-firebase@^3.0.0/dist/decap-cms-backend-firebase.js"></script>
   
   <script>
-    // 3. Inicializa o Firebase v8 com as credenciais
-    const firebaseConfig = {
-      apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-      authDomain: "yb-make.firebaseapp.com",
-      projectId: "yb-make",
-      storageBucket: "yb-make.firebasestorage.app",
-      appId: "1:685414342925:web:9b17e3194f393c87569044",
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    // 4. Inicializa o Decap CMS (ele usará a configuração do config.yml)
-    CMS.init();
+    // Garante que o DOM esteja totalmente carregado antes de inicializar
+    window.addEventListener('DOMContentLoaded', () => {
+      // 3. Inicializa o Firebase v8 com as credenciais
+      const firebaseConfig = {
+        apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+        authDomain: "yb-make.firebaseapp.com",
+        projectId: "yb-make",
+        storageBucket: "yb-make.firebasestorage.app",
+        appId: "1:685414342925:web:9b17e3194f393c87569044",
+      };
+      firebase.initializeApp(firebaseConfig);
+      // 4. Inicializa o Decap CMS (ele usará a configuração do config.yml)
+      CMS.init();
+    });
   </script>
 </body>
 </html>
