@@ -1,18 +1,18 @@
 # 1. CONFIGURAÇÃO DO BACKEND
 backend:
-# 1. CONFIGURAÇÃO DO BACKEND (GitHub)
-backend:
-  name: github
-  repo: "carvalhosystems/yb-make-site" # SEU USUÁRIO/SEU REPOSITÓRIO
-  branch: principal # OU master, dependendo do seu branch principal
+  name: firebase 
+  use_json: true 
   
-# Remova o bloco 'config:' do Firebase, se ele ainda existir.
-# ...
+  # Chaves do Firebase (ANINHADAS em 'config')
+  config:
+    api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
+    auth_domain: "yb-make.firebaseapp.com"
+    project_id: "yb-make"
 
 # 2. CONFIGURAÇÕES GLOBAIS (NÃO ANINHADAS)
-locale: "pt" 
+locale: "pt" # Deve estar fora do 'backend:'
 
-publish_mode: editorial_workflow 
+publish_mode: editorial_workflow # Deve estar fora do 'backend:'
 
 # 3. CONFIGURAÇÕES DE MÍDIA (NÃO ANINHADAS)
 media_folder: "imagens/uploads"
@@ -22,7 +22,7 @@ public_folder: "imagens/uploads"
 collections:
   - name: "products"
     label: "Produtos"
-    folder: "products" 
+    folder: "products" # O nome da coleção no Firestore
     create: true
     slug: "{{fields.title}}"
     fields:
