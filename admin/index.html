@@ -18,19 +18,50 @@
   <script src="https://cdn.jsdelivr.net/npm/decap-cms-backend-firebase@3.0.1/dist/decap-cms-backend-firebase.js"></script> <!-- Versão fixada -->
 
   <script>
-    // 1. Inicializa o Firebase v8.
-    const firebaseConfig = {
-        apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-        authDomain: "yb-make.firebaseapp.com",
-        projectId: "yb-make",
-        storageBucket: "yb-make.firebasestorage.app",
-        appId: "1:685414342925:web:9b17e3194f393c87569044",
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    // 2. Registra e Inicializa o CMS.
+    // 1. Registra o backend do Firebase manualmente no CMS.
+    // O objeto 'FirebaseBackend' é disponibilizado globalmente pelo script do backend.
     CMS.registerBackend('firebase', window.FirebaseBackend);
-    CMS.init();
+
+    // 2. Define a configuração do CMS diretamente em JavaScript.
+    const config = {
+      backend: {
+        name: "firebase",
+        auth_type: "firebase",
+        config: {
+          apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+          authDomain: "yb-make.firebaseapp.com",
+          projectId: "yb-make",
+          storageBucket: "yb-make.firebasestorage.app",
+          appId: "1:685414342925:web:9b17e3194f393c87569044",
+        },
+      },
+      locale: "pt",
+      publish_mode: "editorial_workflow",
+      media_folder: "imagens/uploads",
+      public_folder: "imagens/uploads",
+      collections: [
+        {
+          name: "products",
+          label: "Produtos",
+          folder: "products",
+          extension: "json",
+          create: true,
+          slug: "{{slug}}",
+          fields: [
+            { label: "Nome do Produto", name: "title", widget: "string" },
+            { label: "Descrição", name: "description", widget: "text" },
+            { label: "Preço", name: "price", widget: "number" },
+            { label: "Imagem do Produto", name: "image", widget: "image" },
+          ],
+        },
+      ],
+    };
+
+    // 3. Inicializa o Firebase (necessário para o backend funcionar).
+    firebase.initializeApp(config.backend.config);
+
+    // 4. Inicializa o CMS passando a configuração diretamente.
+    CMS.init({ config });
   </script>
 </body>
 </html>
