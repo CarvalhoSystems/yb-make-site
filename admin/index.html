@@ -7,9 +7,26 @@
 </head>
 <body>
   
-  <script src="/yb-make-site/admin/decap-cms-backend-firebase.js"></script> 
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/cms.js"></script>
   
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
   
-  </body>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
+      authDomain: "yb-make.firebaseapp.com",
+      projectId: "yb-make", // ID do projeto (minúsculas)
+      storageBucket: "yb-make.firebasestorage.app",
+      messagingSenderId: "685414342925",
+      appId: "1:685414342925:web:9b17e3194f393c87569044",
+      measurementId: "G-C05626SV51"
+    };
+    firebase.initializeApp(firebaseConfig);
+  
+    // Nenhum CMS.registerBackend ou CMS.init() é necessário; a versão 2 faz tudo.
+  </script>
+
+</body>
 </html>
