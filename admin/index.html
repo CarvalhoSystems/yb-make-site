@@ -12,10 +12,10 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
 
-  <!-- 1. Carrega o Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- 2. Carrega e registra o backend do Firebase -->
+  <!-- 1. Carrega e registra o backend do Firebase ANTES do CMS principal -->
   <script src="https://unpkg.com/decap-cms-backend-firebase@^3.0.0/dist/decap-cms-backend-firebase.js"></script>
+  <!-- 2. Carrega o Decap CMS, que agora encontrará o backend do Firebase -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
 </body>
 </html>
