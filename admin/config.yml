@@ -23,7 +23,9 @@ public_folder: "imagens/uploads"
 collections:
   - name: "products"
     label: "Produtos"
-    folder: "products" # O nome da coleção no Firestore
+    # Para o backend do Firebase, 'folder' é o nome da coleção no Firestore.
+    folder: "products"
+    extension: "json" # Salva cada produto como um documento separado.
     create: true # Permite criar novos produtos
     slug: "{{fields.title}}"
     fields:
