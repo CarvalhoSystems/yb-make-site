@@ -149,7 +149,7 @@ body {
     width: 100%;
     height: 100%;
     /* Aplica um gradiente de cor por cima da imagem para dar o efeito translúcido */
-    background-image: linear-gradient(rgba(253, 246, 248, 0.7), rgba(253, 246, 248, 0.7)), url('https://images.tcdn.com.br/img/img_prod/898929/tecido_tricoline_estampado_coroa_rosa_50cm_x_1_50mt_1317_1_4c1ab07c567ba57b40d3eebb0934a160.jpg');
+    background-image: linear-gradient(rgba(253, 246, 248, 0.10), rgba(253, 246, 248, 0.10)), url('https://i.pinimg.com/1200x/0b/f1/63/0bf16324507d0368b8250fe2a460725b.jpg');
     background-size: cover; /* Faz a imagem cobrir todo o espaço */
     background-position: center; /* Centraliza a imagem */
     z-index: -1; /* Coloca o fundo atrás do conteúdo */
@@ -682,7 +682,7 @@ footer {
 @media (max-width: 768px) {
     /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO QUEBRADO */
     body {
-        padding-top: 135px; /* Valor ajustado para compensar a altura do header que quebra */
+        padding-top: 180px; /* Valor ajustado para compensar a altura do header que quebra */
     }
 
     .main-header {
@@ -698,8 +698,18 @@ footer {
     
     .titulo-loja {
         flex-basis: auto; 
+        order: 1; /* Mantém na posição original */
     }
 
+    /* Barra de busca no tablet/mobile: Ocupa a largura total abaixo */
+    .search-bar {
+        width: 92%; /* Ocupa a largura total do container */
+        order: 3; /* Força a barra de busca a ir para a próxima linha */
+        margin: 10px ;
+    }
+    
+
+     /* Espaçamento ao redor */
     .header-actions {
         flex-basis: auto;
         order: 1; /* Mantém na posição original */
@@ -724,18 +734,24 @@ footer {
     }
 
     .main-nav ul {
-        justify-content: flex-start; /* Alinha os itens à esquerda para o scroll */
-        flex-wrap: nowrap; /* Impede a quebra de linha */
-        overflow-x: auto;  /* Adiciona scroll horizontal */
-        padding: 5px 0 15px 4%; /* Ajuste o padding para o scroll */
-        -webkit-overflow-scrolling: touch; /* Melhora a experiência de scroll no iOS */
+        justify-content: flex-start; 
+        flex-wrap: nowrap; 
+        overflow-x: auto;  
+        padding: 5px 0 15px 4%; 
+        -webkit-overflow-scrolling: touch; 
         /* Esconde a barra de rolagem para um visual mais limpo */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
     }
 
     .main-nav ul::-webkit-scrollbar {
         display: none; /* Chrome, Safari and Opera */
+    }
+
+    /* ... (restante dos estilos para mobile) ... */
+
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta o tamanho mínimo para 200px */
     }
 
     .titulo-loja {
