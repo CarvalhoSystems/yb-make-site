@@ -1,13 +1,13 @@
 # 1. CONFIGURAÇÃO DO BACKEND
 backend:
-  name: firebase 
-  use_json: true 
+# 1. CONFIGURAÇÃO DO BACKEND (GitHub)
+backend:
+  name: github
+  repo: "carvalhosystems/yb-make-site" # SEU USUÁRIO/SEU REPOSITÓRIO
+  branch: main # OU master, dependendo do seu branch principal
   
-  # Chaves do Firebase (ANINHADAS em 'config')
-  config:
-    api_key: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc"
-    auth_domain: "yb-make.firebaseapp.com"
-    project_id: "YB-MAKE" # CORRIGIDO PARA MAIÚSCULAS
+# Remova o bloco 'config:' do Firebase, se ele ainda existir.
+# ...
 
 # 2. CONFIGURAÇÕES GLOBAIS (NÃO ANINHADAS)
 locale: "pt" 
