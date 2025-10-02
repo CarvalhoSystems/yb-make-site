@@ -119,9 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = authPasswordInput.value;
             try {
                 await auth.signInWithEmailAndPassword(email, password);
-                authErrorMessage.innerText = 'Login realizado com sucesso!'; // Fecha o modal após login bem-sucedido
+                // O onAuthStateChanged cuidará de atualizar a UI. Apenas fechamos o modal.
+                closeAuthModal();
             } catch (error) {
-                authErrorMessage.innerText = `Erro ao fazer login E-mail ou senha incorretos.`;
+                authErrorMessage.innerText = `E-mail ou senha incorretos. Tente novamente.`;
                 console.error("Erro ao fazer login:", error);
             }
         });

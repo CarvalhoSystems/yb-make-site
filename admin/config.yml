@@ -27,7 +27,7 @@ collections:
     folder: "products"
     extension: "json" # Salva cada produto como um documento separado.
     create: true # Permite criar novos produtos
-    slug: "{{fields.title}}"
+    slug: "{{slug}}" # Usa o título sanitizado para o ID do documento (mais seguro)
     fields:
       - {label: "Nome do Produto", name: "title", widget: "string"}
       - {label: "Descrição", name: "description", widget: "text"}

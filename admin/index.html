@@ -22,8 +22,7 @@
   <script src="https://unpkg.com/decap-cms-backend-firebase@^3.0.0/dist/decap-cms-backend-firebase.js"></script>
   
   <script>
-    // 3. Inicializa o Firebase v8 com as credenciais.
-    // Como este script está no final do body, os scripts anteriores já foram carregados.
+    // 3. Inicializa o Firebase v8.
     const firebaseConfig = {
       apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
       authDomain: "yb-make.firebaseapp.com",
@@ -32,7 +31,12 @@
       appId: "1:685414342925:web:9b17e3194f393c87569044",
     };
     firebase.initializeApp(firebaseConfig);
-    // 4. Inicializa o Decap CMS, que agora encontrará o backend e o config.
+
+    // 4. Registra o backend do Firebase manualmente no CMS.
+    // O objeto 'FirebaseBackend' é disponibilizado globalmente pelo script do backend.
+    CMS.registerBackend('firebase', window.FirebaseBackend);
+
+    // 5. Inicializa o Decap CMS, que agora sabe o que é o backend 'firebase'.
     CMS.init();
   </script>
 </body>
