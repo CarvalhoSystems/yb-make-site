@@ -19,25 +19,9 @@
   <!-- 1. Carrega o Decap CMS principal -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <!-- 2. Carrega o backend do Firebase -->
-  <script src="https://unpkg.com/decap-cms-backend-firebase@^3.0.0/dist/decap-cms-backend-firebase.js"></script>
-  
-  <script>
-    // 3. Inicializa o Firebase v8.
-    const firebaseConfig = {
-      apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-      authDomain: "yb-make.firebaseapp.com",
-      projectId: "yb-make",
-      storageBucket: "yb-make.firebasestorage.app",
-      appId: "1:685414342925:web:9b17e3194f393c87569044",
-    };
-    firebase.initializeApp(firebaseConfig);
+  <script src="https://unpkg.com/decap-cms-backend-firebase@^3.0.0/dist/decap-cms-backend-firebase.js" defer></script>
 
-    // 4. Registra o backend do Firebase manualmente no CMS.
-    // O objeto 'FirebaseBackend' é disponibilizado globalmente pelo script do backend.
-    CMS.registerBackend('firebase', window.FirebaseBackend);
-
-    // 5. Inicializa o Decap CMS, que agora sabe o que é o backend 'firebase'.
-    CMS.init();
-  </script>
+  <!-- 3. Carrega nosso script de inicialização, que será executado por último -->
+  <script src="admin.js" defer></script>
 </body>
 </html>
