@@ -1,52 +1,57 @@
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administrador</title>
+    <link rel="stylesheet" href="/yb-make-site/admin/adm.css"> 
+</head>
+<body>
 
-  <!-- Carrega os scripts do Decap CMS a partir de uma CDN confiável e com versões fixas -->
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.10/dist/decap-cms.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms-backend-firebase@3.0.1/dist/decap-cms-backend-firebase.js"></script>
+    <div class="admin-container">
+        <!-- 1. SEÇÃO DE LOGIN -->
+        <div id="login-section">
+            <h2>Acesso Restrito</h2>
+            <form class="form">
+                <input type="email" id="admin-email" placeholder="Email de administrador">
+                <input type="password" id="admin-password" placeholder="Senha">
+                <button type="button" id="btn-admin-login">Entrar</button>
+            </form>
+            <p id="admin-error-message" class="error-message"></p>
+            <a href="/yb-make-site/index.html" class="link-voltar">Voltar para a loja</a>
+        </div>
 
-  <script>
-    // Define a configuração do CMS diretamente em JavaScript.
-    const config = {
-      backend: {
-        name: "firebase",
-        auth_type: "firebase",
-        config: {
-            apiKey: "AIzaSyC2cBfkKjT16srTeVYAedNgA6qOw0h97vc",
-            authDomain: "yb-make.firebaseapp.com",
-            projectId: "yb-make",
-            storageBucket: "yb-make.firebasestorage.app",
-            appId: "1:685414342925:web:9b17e3194f393c87569044",
-        },
-      },
-      locale: "pt",
-      publish_mode: "editorial_workflow",
-      media_folder: "imagens/uploads",
-      public_folder: "imagens/uploads",
-      collections: [{
-        name: "products",
-        label: "Produtos",
-        folder: "products",
-        extension: "json",
-        create: true,
-        slug: "{{slug}}",
-        fields: [
-            { label: "Nome do Produto", name: "title", widget: "string" },
-            { label: "Descrição", name: "description", widget: "text" },
-            { label: "Preço", name: "price", widget: "number" },
-            { label: "Imagem do Produto", name: "image", widget: "image" },
-        ],
-      }],
-    };
+        <!-- 2. PAINEL DE ADMINISTRAÇÃO (ESCONDIDO INICIALMENTE) -->
+        <div id="admin-panel" class="hidden">
+            <h2>Gerenciador de Produtos</h2>
+            <button type="button" id="btn-admin-logout" class="btn-secondary" style="background: #6c757d; margin-bottom: 20px;">Sair</button>
+            <hr style="margin: 20px 0;">
 
-    // 1. Inicializa o Firebase (necessário para o backend funcionar).
-    firebase.initializeApp(config.backend.config);
+            <h3>Adicionar / Editar Produto</h3>
+            <form class="form">
+                <input type="hidden" id="product-id"> <!-- Campo oculto para guardar o ID do produto em edição -->
+                <input type="text" id="product-title" placeholder="Nome do Produto">
+                <textarea id="product-description" placeholder="Descrição"></textarea>
+                <input type="number" id="product-price" placeholder="Preço (ex: 29.90)">
+                <input type="text" id="product-image" placeholder="URL da Imagem">
+                <button type="button" id="btn-save-product">Salvar Produto</button>
+            </form>
 
-    // 2. Registra o backend do Firebase manualmente no CMS.
-    CMS.registerBackend('firebase', window.FirebaseBackend);
+            <hr style="margin: 20px 0;">
+            <h3>Produtos Cadastrados</h3>
+            <div id="product-list-admin">
+                <!-- Lista de produtos será carregada aqui -->
+            </div>
+        </div>
+    </div>
 
-    // 3. Inicializa o CMS passando a configuração diretamente.
-    CMS.init({ config });
-  </script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
+    <script src="../src/firebase-config.js"></script>
+    <script src="admin.js"></script>
+
 </body>
-
+</html>

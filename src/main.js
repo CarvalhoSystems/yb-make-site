@@ -450,3 +450,25 @@ function abrirModalProduto(produto) {
 function fecharModalProduto() {
     document.getElementById('modal-produto').style.display = 'none';
 }
+
+
+// Ativa a função de lançamentos 
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Rola a tela para a seção de Lançamentos
+    const lancamentosSection = document.getElementById('lancamentos');
+    if (lancamentosSection) {
+        lancamentosSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 2. (OPCIONAL) Destaque visual por 4 segundos
+    const newProductsContainer = document.getElementById('product-list-lancamentos');
+    if (newProductsContainer) {
+        setTimeout(() => {
+            newProductsContainer.classList.add('pulse-highlight');
+        }, 800); // Espera o scroll terminar
+        
+        setTimeout(() => {
+            newProductsContainer.classList.remove('pulse-highlight');
+        }, 4000); // Remove o destaque
+    }
+});

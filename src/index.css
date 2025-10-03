@@ -125,7 +125,54 @@ body {
     background: #f0f0f0;
     color: var(--secondary-color);
 }
+/*
+====================================
+2.5. ESTILO DO BANNER DE IMAGEM NO HOVER (LANÇAMENTOS)
+====================================
+*/
 
+/* Classe para o link principal que receberá o banner */
+.main-nav a.nav-link-visual {
+    position: relative; 
+    z-index: 1010; /* Garante que o banner fique acima de todo o cabeçalho */
+}
+
+/* O Conteúdo do Banner (o pseudo-elemento ::before) */
+.main-nav a.nav-link-visual::before {
+    content: ''; 
+    position: absolute;
+    top: 100%; /* Começa logo abaixo do link */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Centraliza e desce um pouco */
+    
+    /* Configurações do Banner */
+    width: 250px; /* Largura do banner/imagem de destaque */
+    height: 180px; /* Altura do banner/imagem de destaque */
+    background-color: var(--white);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px; /* Bordas um pouco mais suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden; 
+    
+    /* IMAGEM DE DESTAQUE: Substitua este URL pela imagem do seu lançamento! */
+    background-image: url('https://via.placeholder.com/250x180?text=GRANDE+LAN%C3%87AMENTO');
+    background-size: cover;
+    background-position: center;
+
+    /* Configurações de Transição/Visibilidade */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 10;
+    pointer-events: none; /* Não interfere no clique quando invisível */
+}
+
+/* VISIBILIDADE: Ação ao passar o mouse */
+.main-nav a.nav-link-visual:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Sobe para a posição final */
+}
 
 /*
 ====================================
@@ -799,3 +846,89 @@ footer {
         margin-top: 0;
     }
 }
+
+/*
+====================================
+9. ANIMAÇÕES DE DESTAQUE (LANÇAMENTOS)
+====================================
+*/
+
+/* ... (Seu CSS existente para .main-nav a) ... */
+
+/* Novo Estilo: Banner de Visualização Rápida no Hover */
+.main-nav a.nav-link-promo {
+    position: relative; /* Já deve existir, mas reforça */
+    z-index: 1010; /* Garante que o banner fique acima de todo o cabeçalho */
+}
+
+/* O Conteúdo do Banner (O Pop-up Visual) */
+.main-nav a.nav-link-promo::before {
+    content: ''; /* Essencial para pseudo-elemento */
+    position: absolute;
+    top: 100%; /* Começa logo abaixo do link */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Centraliza e desce um pouco */
+    
+    /* Configurações do Banner */
+    width: 200px; /* Largura do banner/imagem de destaque */
+    height: 150px; /* Altura do banner/imagem de destaque */
+    background-color: var(--white);
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden; /* Garante que a imagem se ajuste */
+    
+    /* IMAGEM DE DESTAQUE: Substitua este link pela sua imagem de produto/promoção */
+    background-image: url('https://via.placeholder.com/200x150?text=PROMO%C3%87%C3%83O');
+    background-size: cover;
+    background-position: center;
+
+    /* Configurações de Transição/Visibilidade */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 10;
+    pointer-events: none; /* Permite clicar no elemento abaixo do banner se ele não estiver visível */
+}
+
+/* VISIBILIDADE: Ação ao passar o mouse */
+.main-nav a.nav-link-promo:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Sobe para a posição final */
+}
+
+/* Opcional: Adicionar uma "seta" para indicar o link (usa ::after do link) */
+.main-nav a.nav-link-promo::after {
+    /* Mantém o seu underline existente E adiciona a seta */
+    
+    /* O seu código de underline: */
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+    
+    /* NOVO CÓDIGO para a seta: */
+    /* Você pode precisar ajustar a posição se a seta interferir */
+}
+
+/* Se você quiser apenas a seta e não o underline: */
+/*
+.main-nav a.nav-link-promo:hover::after {
+    content: '▲';
+    color: var(--primary-color);
+    font-size: 10px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+}
+*/
+
+/* FIM DO CSS */
