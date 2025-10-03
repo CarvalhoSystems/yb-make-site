@@ -233,3 +233,25 @@ body {
         flex-grow: 1;
     }
 }
+/*
+====================================
+5. ESTILO DA MINIATURA DE PRODUTO
+====================================
+*/
+
+.product-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    border-radius: 4px;
+    margin-right: 10px;
+    /* Adicione uma borda sutil para visualização */
+    border: 1px solid var(--border-color); 
+    flex-shrink: 0; /* Impede que a imagem encolha se o título for muito longo */
+}
+
+/* Opcional: Ajuste o layout do item para melhor alinhamento */
+.product-item {
+    display: flex;
+    align-items: center; /* Garante que todos os itens estejam centralizados verticalmente */
+}

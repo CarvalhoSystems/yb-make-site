@@ -33,7 +33,14 @@
                 <input type="text" id="product-title" placeholder="Nome do Produto">
                 <textarea id="product-description" placeholder="Descrição"></textarea>
                 <input type="number" id="product-price" placeholder="Preço (ex: 29.90)">
-                <input type="text" id="product-image" placeholder="URL da Imagem">
+                <div class="file-upload-container">
+                    <label for="product-image" class="file-upload-label">
+                        <i class="fas fa-camera"></i> <!-- Escolhe a imagem do Produto -->
+                        </label>
+                    <input type="file" id="product-file" accept="image/*" style= "display: none;">
+                    <p id="file-name-display" style="font-size: 0.9em; color: #6c757d; margin-top: 10px;">Nenhuma imagem selecionada</p>
+                    <input type="hidden" id="product-image"> <!-- URL da imagem após upload -->
+                </div>
                 <button type="button" id="btn-save-product">Salvar Produto</button>
             </form>
 
@@ -49,6 +56,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-storage-compat.js"></script>
 
     <script src="../src/firebase-config.js"></script>
     <script src="admin.js"></script>

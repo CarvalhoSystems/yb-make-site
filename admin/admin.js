@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // O Firebase já é inicializado pelo firebase-config.js
     const auth = firebase.auth();
     const db = firebase.firestore();
+    const storage = firebase.storage();
 
     // Elementos da página
     const loginSection = document.getElementById('login-section');
@@ -10,14 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAdminLogout = document.getElementById('btn-admin-logout');
     const adminErrorMessage = document.getElementById('admin-error-message');
 
-    // Elementos do formulário de produto
+    // Elementos do formulário de produto (CORRIGIDO)
     const productForm = {
         id: document.getElementById('product-id'),
         title: document.getElementById('product-title'),
         description: document.getElementById('product-description'),
         price: document.getElementById('product-price'),
-        image: document.getElementById('product-image'),
-        btnSave: document.getElementById('btn-save-product'),
+        image: document.getElementById('product-image'), // Campo HIDDEN para a URL
+        btnSave: document.getElementById('btn-save-product'), // O botão Salvar
+        
+        // Elementos de upload de imagem
+        fileInput: document.getElementById('product-file'),
+        fileNameDisplay: document.getElementById('file-name-display'),
     };
 
     const productListAdmin = document.getElementById('product-list-admin');
@@ -39,56 +44,67 @@ document.addEventListener('DOMContentLoaded', () => {
         togglePanel(!!user);
     });
 
-    // Evento de Login
+    // Evento de Login (com verificação de Admin)
     btnAdminLogin.addEventListener('click', async () => {
         const email = document.getElementById('admin-email').value;
         const password = document.getElementById('admin-password').value;
-        const btnAdminLogin = document.getElementById('btn-admin-login');
-
+        
         adminErrorMessage.innerText = '';
         btnAdminLogin.disabled = true;
         btnAdminLogin.innerText = 'Verificando...';
 
-        
         try {
             // Passo 1 tenta fazer login
             const userCredential = await auth.signInWithEmailAndPassword(email, password);
             const user = userCredential.user;
 
-            // Passo 2 verifica se é admin
+            // Passo 2 verifica se é admin no Firestore
             const adminDoc = await db.collection('admins').doc(user.email).get();
             if (adminDoc.exists) {
                 console.log('Login de administrador bem-sucedido');
-                togglePanel(true);
+                // onAuthStateChanged irá cuidar de mostrar o painel, mas chamamos para ser imediato
+                togglePanel(true); 
             } else {
                 // Se não for admin, desloga imediatamente
-                await auth.signOut(); // Desloga
+                await auth.signOut(); 
                 adminErrorMessage.innerText = 'Acesso negado. Você não é um administrador.';
-                btnAdminLogin.disabled = false;
                 btnAdminLogin.innerText = 'Entrar';
+                btnAdminLogin.disabled = false;
+                return;
             }
         } catch (error) {
             // Trata erros de login aqui
-        if (email === '' || password === '') {
-            adminErrorMessage.innerText = 'Por favor, preencha todos os campos.';
-        } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-            adminErrorMessage.innerText = 'Email ou senha incorretos.';
-        } else {
-            adminErrorMessage.innerText = 'Erro ao fazer login. Tente novamente mais tarde.';
-            console.error('Erro ao fazer login:', error);
-        } 
-    } finally {
+            if (email === '' || password === '') {
+                adminErrorMessage.innerText = 'Por favor, preencha todos os campos.';
+            } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                adminErrorMessage.innerText = 'Email ou senha incorretos.';
+            } else {
+                adminErrorMessage.innerText = 'Erro ao fazer login. Tente novamente mais tarde.';
+                console.error('Erro ao fazer login:', error);
+            } 
+        } finally {
             // Em caso de erro, reabilita o botão
-            //Em caso de sucesso o painel já foi mostrado
-            btnAdminLogin.disabled = false;
-            btnAdminLogin.innerText = 'Entrar';
+            if (!auth.currentUser) {
+                btnAdminLogin.innerText = 'Entrar';
+                btnAdminLogin.disabled = false;
+            }
         }
-        });
+    });
 
     // Evento de Logout
     btnAdminLogout.addEventListener('click', async () => {
         await auth.signOut();
         // onAuthStateChanged vai cuidar de esconder o painel
+    });
+
+    // Evento de seleção de arquivo
+    productForm.fileInput.addEventListener('change', () => {
+        const file = productForm.fileInput.files[0];
+        if (file) {
+            productForm.fileNameDisplay.innerText = file.name;
+        } else {
+            productForm.fileNameDisplay.innerText = 'Nenhum arquivo selecionado.';
+        }
     });
 
     // Carregar e exibir produtos
@@ -102,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             productEl.className = 'product-item';
             const priceFormatted = (product.price || 0).toFixed(2).replace('.', ',');
             productEl.innerHTML = `
-                <img src="${product.image || 'https://via.placeholder.com/50'}" alt="Miniatura" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 10px;">
+                <img src="${product.image || 'https://via.placeholder.com/50'}" alt="Miniatura" class="product-thumb">
                 <span style="flex-grow: 1;">${product.title}</span>
                 <span style="margin-right: 15px; font-weight: bold; color: #555;">R$ ${priceFormatted}</span>
                 <div style="display: flex; gap: 5px;">
@@ -125,39 +141,83 @@ document.addEventListener('DOMContentLoaded', () => {
     // Salvar (criar ou atualizar) produto
     productForm.btnSave.addEventListener('click', async () => {
         const id = productForm.id.value;
+        const file = productForm.fileInput.files[0];
+
+        // Desativa o botão e muda o texto
+        productForm.btnSave.disabled = true;
+        productForm.btnSave.innerText = id ? 'Atualizando...' : 'Salvando...';
+
+        // Se um NOVO ARQUIVO foi selecionado, faça o upload
+        if (file) {
+            productForm.btnSave.innerText = 'Fazendo Upload...';
+            try {
+                // Cria uma referência única no Storage
+                const storageRef = storage.ref(`products/${Date.now()}_${file.name}`);
+                
+                // Faz o upload
+                const snapshot = await storageRef.put(file);
+                
+                // Pega a URL de download (permanente)
+                const downloadURL = await snapshot.ref.getDownloadURL();
+                
+                // Salva a URL no campo HIDDEN (productForm.image)
+                productForm.image.value = downloadURL;
+            } catch (error) {
+                alert('Erro ao fazer upload da imagem: ' + error.message);
+                productForm.btnSave.disabled = false;
+                productForm.btnSave.innerText = id ? 'Salvar Produto' : 'Adicionar Produto';
+                return; // Interrompe o processo se o upload falhar
+            }
+        }
+
+        // Prepara os dados para salvar no Firestore
         const data = {
             title: productForm.title.value,
             description: productForm.description.value,
             price: parseFloat(productForm.price.value),
-            image: productForm.image.value,
+            // Usa a URL do campo oculto (que pode ter sido preenchido pelo upload)
+            image: productForm.image.value, 
         };
 
-        if (id) { // Se tem ID, atualiza
+        if (id) { // Atualiza
             await db.collection('products').doc(id).update(data);
             alert('Produto atualizado com sucesso!');
-        } else { // Se não tem ID, cria um novo
+        } else { // Cria um novo
             await db.collection('products').add(data);
             alert('Produto adicionado com sucesso!');
         }
 
-        // Limpa o formulário e recarrega a lista
+        // Limpa o formulário e reinicia o estado
         productForm.id.value = '';
         productForm.title.value = '';
         productForm.description.value = '';
         productForm.price.value = '';
         productForm.image.value = '';
+        
+        // Limpa os campos de arquivo
+        productForm.fileInput.value = ''; 
+        productForm.fileNameDisplay.textContent = 'Nenhum arquivo selecionado.';
+        
+        productForm.btnSave.disabled = false;
+        productForm.btnSave.innerText = 'Salvar Produto';
         loadProducts();
     });
 
-    // Preencher formulário para edição
+    // Preencher formulário para edição (CORRIGIDO)
     async function editProduct(id) {
         const doc = await db.collection('products').doc(id).get();
         const product = doc.data();
+        
+        // Limpa o estado do arquivo e display ao iniciar a edição
+        productForm.fileInput.value = ''; 
+        productForm.fileNameDisplay.textContent = 'Manter imagem atual'; // Informa o usuário
+
         productForm.id.value = id;
         productForm.title.value = product.title;
         productForm.description.value = product.description;
         productForm.price.value = product.price;
-        productForm.image.value = product.image;
+        productForm.image.value = product.image; // Guarda a URL existente
+        
         window.scrollTo(0, 0); // Rola para o topo para ver o formulário
     }
 
