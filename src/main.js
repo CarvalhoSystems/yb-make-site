@@ -6,7 +6,7 @@ let todosOsProdutos = []; // Armazena todos os produtos carregados do Firebase
 document.addEventListener("DOMContentLoaded", () => {
   const db = firebase.firestore();
   const auth = firebase.auth();
-  const productList = document.querySelector(".product-list");
+  const productListDestaque = document.getElementById("productListContainer");
   const modalProduto = document.getElementById("modal-produto");
   const fecharModalBtn = document.getElementById("fechar-modal-produto");
   const searchInput = document.getElementById("search-input");
@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
   db.collection("products")
     .get()
     .then((querySnapshot) => {
-      productList.innerHTML = ""; // Limpa a mensagem "Carregando..."
+      if (productListDestaque) productListDestaque.innerHTML = ""; // Limpa a mensagem "Carregando..."
       if (querySnapshot.empty) {
-        productList.innerHTML = "<p>Nenhum produto encontrado.</p>";
+        if (productListDestaque) productListDestaque.innerHTML = "<p>Nenhum produto encontrado.</p>";
         return;
       }
       todosOsProdutos = []; // Limpa o array antes de preencher
@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
         todosOsProdutos.push({ id: doc.id, ...doc.data() });
       });
 
-      renderizarProdutos(todosOsProdutos); // Renderiza os produtos na tela
+      renderizarProdutos(todosOsProdutos, 'productListContainer'); // Renderiza os produtos na tela
       atualizarCarrinho(); // Atualiza a exibição do carrinho
     })
     .catch((error) => {
       console.error("Erro ao buscar produtos: ", error);
-      productList.innerHTML =
+      if (productListDestaque) productListDestaque.innerHTML =
         "<p>Erro ao carregar produtos. Tente novamente mais tarde.</p>";
     });
   // --- Fim do Carregamento de Produtos ---
@@ -238,12 +238,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // --- Funções Globais da Aplicação ---
 
-function renderizarProdutos(produtos) {
-  const productList = document.querySelector(".product-list");
-  productList.innerHTML = ""; // Limpa a lista antes de renderizar
+function renderizarProdutos(produtos, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return; // Se o container não existir, não faz nada
+
+  container.innerHTML = ""; // Limpa a lista antes de renderizar
 
   if (produtos.length === 0) {
-    productList.innerHTML =
+    container.innerHTML =
       "<p>Nenhum produto encontrado com este critério.</p>";
     return;
   }
@@ -268,7 +270,7 @@ function renderizarProdutos(produtos) {
                   .replace(".", ",")}</p>
             </div>
         `;
-    productList.innerHTML += produtoHTML;
+    container.innerHTML += produtoHTML;
   });
 
   // Adiciona os eventos aos novos botões criados
@@ -312,7 +314,7 @@ function buscarProduto() {
   const produtosFiltrados = todosOsProdutos.filter((produto) =>
     produto.title.toLowerCase().includes(termo)
   );
-  renderizarProdutos(produtosFiltrados);
+  renderizarProdutos(produtosFiltrados, 'productListContainer');
 }
 
 function ordenarProdutos() {
@@ -333,7 +335,7 @@ function ordenarProdutos() {
       produtosOrdenados = [...todosOsProdutos];
       break;
   }
-  renderizarProdutos(produtosOrdenados);
+  renderizarProdutos(produtosOrdenados, 'productListContainer');
 }
 
 //voltar ao topo
