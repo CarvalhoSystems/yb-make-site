@@ -989,9 +989,10 @@ footer {
 }
 
 .carousel-item {
-  min-width: 80%;
+  min-width: 100%; /* CORREÇÃO: Garante que cada slide ocupe todo o espaço */
   box-sizing: border-box;
   padding: 0 0.5rem;
+  flex-shrink: 0; /* Impede que os itens encolham e quebrem o layout */
 }
 
 .carousel-content {
@@ -1035,9 +1036,10 @@ footer {
   }
 }
 
-@media (min-widhth: 768px) {
+/* CORREÇÃO: "min-widhth" corrigido para "min-width" */
+@media (min-width: 768px) {
   .carousel-item {
-    min-width: 50%;
+    min-width: 100%; /* Mantém um slide por vez também no desktop */
   }
 }
 
@@ -1095,6 +1097,25 @@ footer {
 .dot.active {
   background-color: var(--primary-color);
 }
+  
+  /* Garante que os botões fiquem sempre visíveis e melhora o hover */
+  .carousel-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 1); /* Fundo branco opaco no hover */
+    transform: translateY(-50%) scale(1.05); /* Leve aumento no hover */
+  }
+  
+  /* Ajuste para botões do carrossel em telas menores */
+  @media (max-width: 768px) {
+    .carousel-nav-btn {
+      /* Reduz um pouco o tamanho para não ocupar tanto espaço */
+      font-size: 1.2rem;
+      padding: 0.4rem 0.6rem;
+      /* Garante que eles fiquem dentro da área de padding do container */
+      top: 55%; /* Ajusta a altura para não sobrepor o título */
+    }
+    .carousel-nav-btn.prev { left: 0.25rem; }
+    .carousel-nav-btn.next { right: 0.25rem; }
+  }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -1293,4 +1314,12 @@ footer {
     padding-left: 2rem;
     max-width: 500px;
   }
+}
+
+/*---Acessibilidade---*/
+a:focus,
+button:focus,
+input:focus {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
 }

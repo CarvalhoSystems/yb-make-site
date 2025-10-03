@@ -232,6 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Inicializa todos os carrosséis da página
   inicializarCarrossel('finalSkincareCarousel');
   carregarNovidades();
+    inicializarCarrossel('novidadesCarousel');
+    carregarNovidades();
 });
 
 // --- Funções Globais da Aplicação ---
@@ -527,9 +529,9 @@ function inicializarCarrossel(carouselId) {
   });
 
   // Autoplay (opcional, descomente para ativar)
-  // setInterval(() => {
-  //     nextBtn.click();
-  // }, 5000); // Muda a cada 5 segundos
+  setInterval(() => {
+      nextBtn.click();
+  }, 5000); // Muda a cada 5 segundos
 
   updateCarousel(); // Inicializa na posição correta
 }
