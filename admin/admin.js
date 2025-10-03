@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         description: document.getElementById('product-description'),
         price: document.getElementById('product-price'),
         image: document.getElementById('product-image'), // Campo HIDDEN para a URL
+        productImageUrlManual: document.getElementById('product-image-url-manual'), // NOVO: Campo para URL manual
         btnSave: document.getElementById('btn-save-product'), // O botão Salvar
         
         // Elementos de upload de imagem
@@ -97,12 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // onAuthStateChanged vai cuidar de esconder o painel
     });
 
-    // Evento de seleção de arquivo
+    // Evento de seleção de arquivo (prioriza upload, limpa URL manual)
     productForm.fileInput.addEventListener('change', () => {
         const file = productForm.fileInput.files[0];
         if (file) {
             productForm.fileNameDisplay.innerText = file.name;
+            productForm.productImageUrlManual.value = ''; // Limpa o campo de URL manual
         } else {
+            productForm.fileNameDisplay.innerText = 'Nenhum arquivo selecionado.';
+        }
+    });
+
+    // Evento de input no campo de URL manual (prioriza URL manual, limpa upload)
+    productForm.productImageUrlManual.addEventListener('input', () => {
+        if (productForm.productImageUrlManual.value.trim() !== '') {
+            productForm.fileInput.value = ''; // Limpa o campo de upload de arquivo
+            productForm.fileNameDisplay.innerText = 'URL manual inserida';
+        } else {
+            // Se o campo manual for limpo, volta ao estado padrão do display de arquivo
             productForm.fileNameDisplay.innerText = 'Nenhum arquivo selecionado.';
         }
     });
@@ -119,8 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const priceFormatted = (product.price || 0).toFixed(2).replace('.', ',');
             productEl.innerHTML = `
                 <img src="${product.image || 'https://via.placeholder.com/50'}" alt="Miniatura" class="product-thumb">
-                <span style="flex-grow: 1;">${product.title}</span>
-                <span style="margin-right: 15px; font-weight: bold; color: #555;">R$ ${priceFormatted}</span>
+                <div class="product-info">
+                    <h4>${product.title}</h4><p>R$ ${priceFormatted}</p>
+                </div>
                 <div style="display: flex; gap: 5px;">
                     <button class="btn-edit" data-id="${doc.id}">Editar</button>
                     <button class="btn-delete" data-id="${doc.id}">Excluir</button>
@@ -147,9 +161,16 @@ document.addEventListener('DOMContentLoaded', () => {
         productForm.btnSave.disabled = true;
         productForm.btnSave.innerText = id ? 'Atualizando...' : 'Salvando...';
 
-        // Se um NOVO ARQUIVO foi selecionado, faça o upload
+        // 1. Pega a URL da imagem existente (se estiver editando)
+        let imageUrl = productForm.image.value; 
+        // 2. Pega a URL inserida manualmente
+        const manualUrlInput = productForm.productImageUrlManual.value.trim();
+
+        // Lógica de prioridade para a URL da imagem:
+        // 1. Novo arquivo enviado
+        // 2. URL inserida manualmente
+        // 3. URL existente (se estiver editando e nenhuma das anteriores for fornecida)
         if (file) {
-            productForm.btnSave.innerText = 'Fazendo Upload...';
             try {
                 // Cria uma referência única no Storage
                 const storageRef = storage.ref(`products/${Date.now()}_${file.name}`);
@@ -160,23 +181,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pega a URL de download (permanente)
                 const downloadURL = await snapshot.ref.getDownloadURL();
                 
-                // Salva a URL no campo HIDDEN (productForm.image)
-                productForm.image.value = downloadURL;
+                // Usa a URL do arquivo recém-enviado
+                imageUrl = downloadURL; // Atualiza a variável com a nova URL
             } catch (error) {
                 alert('Erro ao fazer upload da imagem: ' + error.message);
                 productForm.btnSave.disabled = false;
                 productForm.btnSave.innerText = id ? 'Salvar Produto' : 'Adicionar Produto';
                 return; // Interrompe o processo se o upload falhar
             }
+        } else if (manualUrlInput) {
+            // Se não houve upload de arquivo, mas há uma URL manual, usa ela
+            imageUrl = manualUrlInput;
         }
-
         // Prepara os dados para salvar no Firestore
         const data = {
             title: productForm.title.value,
             description: productForm.description.value,
             price: parseFloat(productForm.price.value),
-            // Usa a URL do campo oculto (que pode ter sido preenchido pelo upload)
-            image: productForm.image.value, 
+            image: imageUrl || '', // Usa a URL determinada pela lógica de prioridade
         };
 
         if (id) { // Atualiza
@@ -192,8 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
         productForm.title.value = '';
         productForm.description.value = '';
         productForm.price.value = '';
-        productForm.image.value = '';
-        
+        productForm.image.value = ''; // Limpa o campo hidden
+        productForm.productImageUrlManual.value = ''; // Limpa o campo de URL manual
         // Limpa os campos de arquivo
         productForm.fileInput.value = ''; 
         productForm.fileNameDisplay.textContent = 'Nenhum arquivo selecionado.';
@@ -209,14 +231,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const product = doc.data();
         
         // Limpa o estado do arquivo e display ao iniciar a edição
-        productForm.fileInput.value = ''; 
-        productForm.fileNameDisplay.textContent = 'Manter imagem atual'; // Informa o usuário
+        productForm.fileInput.value = '';
 
         productForm.id.value = id;
         productForm.title.value = product.title;
         productForm.description.value = product.description;
         productForm.price.value = product.price;
         productForm.image.value = product.image; // Guarda a URL existente
+        
+        // Preenche o campo de URL manual com a imagem existente e atualiza o display
+        if (product.image) {
+            productForm.productImageUrlManual.value = product.image;
+            productForm.fileNameDisplay.textContent = 'Imagem atual: URL inserida';
+        } else {
+            productForm.productImageUrlManual.value = '';
+            productForm.fileNameDisplay.textContent = 'Nenhuma imagem selecionada.';
+        }
         
         window.scrollTo(0, 0); // Rola para o topo para ver o formulário
     }

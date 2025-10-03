@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Administrador</title>
-    <link rel="stylesheet" href="/yb-make-site/admin/adm.css"> 
+    <title>Painel de Administrador - YB MAKE's</title>
+    <link rel="stylesheet" href="adm.css"> 
 </head>
 <body>
 
@@ -34,11 +34,13 @@
                 <textarea id="product-description" placeholder="Descrição"></textarea>
                 <input type="number" id="product-price" placeholder="Preço (ex: 29.90)">
                 <div class="file-upload-container">
-                    <label for="product-image" class="file-upload-label">
-                        <i class="fas fa-camera"></i> <!-- Escolhe a imagem do Produto -->
-                        </label>
+                    <label for="product-file" class="file-upload-label">
+                        <i class="fas fa-camera"></i> Escolher Imagem
+                    </label>
                     <input type="file" id="product-file" accept="image/*" style= "display: none;">
                     <p id="file-name-display" style="font-size: 0.9em; color: #6c757d; margin-top: 10px;">Nenhuma imagem selecionada</p>
+                    <p style="text-align: center; margin: 10px 0; color: #6c757d;">OU</p>
+                    <input type="text" id="product-image-url-manual" placeholder="Cole a URL da imagem aqui (ex: https://exemplo.com/imagem.jpg)">
                     <input type="hidden" id="product-image"> <!-- URL da imagem após upload -->
                 </div>
                 <button type="button" id="btn-save-product">Salvar Produto</button>
