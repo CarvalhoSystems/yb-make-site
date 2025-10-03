@@ -56,12 +56,36 @@ body {
 .form input[type="text"], 
 .form input[type="number"], 
 .form textarea {
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    padding: 16px; /* Um pouco menor, mais elegante */
+    margin-bottom: 20px;
+    width: 100%;
+    color: var(--text-color);
+    /* Remove a borda padrão para focar na sombra */
+    border: none; 
+    /* Cantos mais arredondados */
+    border-radius: 12px; 
     font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    background-color: var(--white);
+    transition: all 0.3s ease;
+    background-color: palevioletred; /* Fundo rosa claro */
+    
+    /* Neumorfismo: Sombra interna e externa sutil */
+    box-shadow: 
+        inset 2px 2px 5px var(--border-color), /* Sombra interna para dar profundidade */
+        -2px -2px 5px pink; /* Brilho de luz sutil */
+}
+
+/* Efeito de Foco Aprimorado */
+.form input[type="email"]:focus, 
+.form input[type="password"]:focus,
+.form input[type="text"]:focus, 
+.form input[type="number"]:focus, 
+.form textarea:focus {
+    outline: none; /* Remove o contorno padrão */
+    /* Adiciona uma borda colorida e uma sombra externa suave para destacar */
+    border: 1px solid var(--primary-color,  pink); 
+    box-shadow: 
+        0 0 0 3px rgba(59, 130, 246, 0.2), /* Anel de foco (Focus Ring) */
+        inset 1px 1px 3px var(--border-color); /* Mantém a sombra interna suave */
 }
 
 .form input:focus, .form textarea:focus {
