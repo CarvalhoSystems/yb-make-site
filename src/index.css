@@ -754,44 +754,55 @@ footer {
 }
 
 @media (max-width: 768px) {
-  /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO QUEBRADO 
-       Aumentamos para compensar todas as 4 linhas do header no mobile.
-    */
+  /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO */
   body {
     padding-top: 180px;
   }
 
   .main-header {
     padding: 0;
-    height: auto; /* Permite que o header cresça */
+    height: auto;
   }
 
   /* ORGANIZAÇÃO DO TOPO NO MOBILE */
   .header-top {
-    flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 10px 4%;
   }
 
   .titulo-loja {
-    flex-grow: 1; /* Permite que o título ocupe um pouco mais de espaço */
+    flex-grow: 1;
     text-align: left;
   }
 
   .header-actions {
     flex-basis: auto;
-    order: 1; /* Mantém na posição original */
+    order: 1;
+    gap: 10px; /* Reduz o gap no mobile */
+  }
+  
+  /* Botão de conta menor no mobile */
+  .header-auth-btn {
+      padding: 6px 10px;
+      font-size: 0.8em;
   }
 
   /* Barra de Busca no Tablet/Mobile: Ocupa a largura total abaixo */
   .search-bar {
-    width: 92%; /* Usa a largura total (100% - 2*4% do padding do header-top) */
-    order: 3; /* Força a barra de busca a ir para a próxima linha */
-    margin-top: 10px;
+    width: 92%;
+    order: 3;
+    margin: 10px auto; /* Centraliza e adiciona margem */
+    padding: 0 10px;
   }
 
   .search-bar input {
-    width: 100%; /* O input ocupa o restante da barra */
+    width: 100%;
+    transition: none; /* Desabilita a transição de largura no mobile */
+  }
+  
+  .search-bar input:focus {
+     width: 100%;
   }
 
   /* Navegação - CORREÇÃO DE ALINHAMENTO */
@@ -804,8 +815,6 @@ footer {
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
-    /* A CORREÇÃO: Remove o padding esquerdo aqui e usa margin/padding nos <a>
-           para que o "Lançamentos" comece exatamente no 4% do contêiner. */
     padding: 5px 0 15px 0;
 
     -webkit-overflow-scrolling: touch;
@@ -815,23 +824,28 @@ footer {
 
   /* APLICAÇÃO DO ALINHAMENTO NO PRIMEIRO ITEM DA LISTA */
   .main-nav ul li:first-child a {
-    /* Adiciona a margem à esquerda para alinhar com o 4% do .header-top */
     margin-left: 4%;
-    padding-left: 15px; /* Mantém o padding do <a> original */
+    padding-left: 15px;
   }
 
-  /* Remove a margem extra do primeiro item quebra o alinhamento de todos os outros */
   .main-nav a {
-    padding: 10px 15px; /* Volta ao padding padrão do desktop */
-    margin-left: 0; /* Garante que os outros não herdem a margem do primeiro */
+    padding: 10px 15px;
+    margin-left: 0;
+    /* Remove o pseudo-elemento visual de hover no mobile para evitar sobreposição */
+    background-image: none !important;
+  }
+  
+  /* Desabilita o banner de hover no mobile */
+  .main-nav a.nav-link-visual::before,
+  .main-nav a.nav-link-promo::before {
+      display: none;
   }
 
   .main-nav ul::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
   }
 
   .product-list {
-    /* Permite que o grid se ajuste a 1 coluna se necessário */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
@@ -852,23 +866,23 @@ footer {
 
 @media (max-width: 480px) {
   .product-list {
-    /* Garante 1 coluna para telefones muito pequenos */
     grid-template-columns: 1fr;
   }
 
   .carrinho-sidebar {
-    width: 100%; /* Ocupa a largura total em mobile */
+    width: 100%;
     max-width: 100%;
   }
 
-  /* Garante que o título e o botão Minha Conta fiquem alinhados */
   .header-top {
-    justify-content: space-around;
+    /* Ajustado para melhor distribuição */
+    justify-content: space-between;
+    align-items: flex-start;
   }
-
+  
   .header-actions {
     flex-basis: auto;
-    justify-content: center;
+    justify-content: flex-end; /* Alinha os botões à direita */
     margin-top: 0;
   }
 }
@@ -879,30 +893,28 @@ footer {
 ====================================
 */
 
-/* ... (Seu CSS existente para .main-nav a) ... */
-
 /* Novo Estilo: Banner de Visualização Rápida no Hover */
 .main-nav a.nav-link-promo {
-  position: relative; /* Já deve existir, mas reforça */
-  z-index: 1010; /* Garante que o banner fique acima de todo o cabeçalho */
+  position: relative;
+  z-index: 1010;
 }
 
 /* O Conteúdo do Banner (O Pop-up Visual) */
 .main-nav a.nav-link-promo::before {
-  content: ""; /* Essencial para pseudo-elemento */
+  content: "";
   position: absolute;
-  top: 100%; /* Começa logo abaixo do link */
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(10px); /* Centraliza e desce um pouco */
+  transform: translateX(-50%) translateY(10px);
 
   /* Configurações do Banner */
-  width: 200px; /* Largura do banner/imagem de destaque */
-  height: 150px; /* Altura do banner/imagem de destaque */
+  width: 200px;
+  height: 150px;
   background-color: var(--white);
   border: 2px solid var(--primary-color);
   border-radius: 6px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  overflow: hidden; /* Garante que a imagem se ajuste */
+  overflow: hidden;
 
   /* IMAGEM DE DESTAQUE: Substitua este link pela sua imagem de produto/promoção */
   background-image: url("https://via.placeholder.com/200x150?text=PROMO%C3%87%C3%83O");
@@ -914,62 +926,27 @@ footer {
   visibility: hidden;
   transition: opacity 0.3s, transform 0.3s;
   z-index: 10;
-  pointer-events: none; /* Permite clicar no elemento abaixo do banner se ele não estiver visível */
+  pointer-events: none;
 }
 
 /* VISIBILIDADE: Ação ao passar o mouse */
 .main-nav a.nav-link-promo:hover::before {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0); /* Sobe para a posição final */
+  transform: translateX(-50%) translateY(0);
 }
-
-/* Opcional: Adicionar uma "seta" para indicar o link (usa ::after do link) */
-.main-nav a.nav-link-promo::after {
-  /* Mantém o seu underline existente E adiciona a seta */
-
-  /* O seu código de underline: */
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  left: 15px;
-  right: 15px;
-  height: 2px;
-  background-color: var(--primary-color);
-  transform: scaleX(0);
-  transition: transform 0.3s ease-in-out;
-
-  /* NOVO CÓDIGO para a seta: */
-  /* Você pode precisar ajustar a posição se a seta interferir */
-}
-
-/* Se você quiser apenas a seta e não o underline: */
-/*
-.main-nav a.nav-link-promo:hover::after {
-    content: '▲';
-    color: var(--primary-color);
-    font-size: 10px;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 5px;
-}
-*/
 
 /*
 ====================================
-10. Carrosel de Imagens (Bônus)
+10. Carrosel de Imagens (Bônus) - CORRIGIDO PARA MOBILE
 ====================================
 */
-/* --- Carrossel CSS (NOVO E ESSENCIAL) --- */
-/* Carousel Styles */
 .carousel-container {
   position: relative;
   overflow: hidden;
   margin: 2rem 0;
   border-radius: 1rem;
-  background-color: #fdfdfd; /* Um branco levemente acinzentado para o fundo */
+  background-color: #fdfdfd;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -977,8 +954,7 @@ footer {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-color);
-  /* Adiciona padding para compensar a remoção do container */
-  padding: 1.5rem 1.5rem 0 1.5rem; 
+  padding: 1.5rem 1.5rem 0 1.5rem;
   text-align: center;
 }
 
@@ -989,11 +965,22 @@ footer {
 }
 
 .carousel-item {
-  min-width: 100%; /* CORREÇÃO: Garante que cada slide ocupe todo o espaço */
+  min-width: 100%;
   box-sizing: border-box;
-  /* O padding aqui estava causando o corte da imagem no celular. Removido. */
-  flex-shrink: 0; /* Impede que os itens encolham e quebrem o layout */
+  flex-shrink: 0;
+  /* ADICIONADO: Padding para afastar o item das bordas no mobile */
+  padding: 0 1.5rem; 
 }
+
+@media (max-width: 768px) {
+    /* CORREÇÃO DO PROBLEMA DO CORTE NO MOBILE */
+    .carousel-item {
+        /* Remove o padding de 1.5rem no mobile para que o item ocupe 100% da tela 
+           e vamos colocar o padding no item, não no container. */
+        padding: 0 1rem; /* Padding menor e mais seguro para 100% */
+    }
+}
+
 
 .carousel-content {
   display: flex;
@@ -1010,6 +997,10 @@ footer {
     flex-direction: row;
     text-align: left;
   }
+  
+  .carousel-item {
+      padding: 0; /* Remove o padding no desktop */
+  }
 }
 
 .carousel-img {
@@ -1023,6 +1014,9 @@ footer {
     width: 50%;
     height: 300px;
   }
+  .carousel-item {
+     min-width: 100%;
+  }
 }
 
 .carousel-text {
@@ -1033,13 +1027,6 @@ footer {
 @media (min-width: 768px) {
   .carousel-text {
     width: 50%;
-  }
-}
-
-/* CORREÇÃO: "min-widhth" corrigido para "min-width" */
-@media (min-width: 768px) {
-  .carousel-item {
-    min-width: 100%; /* Mantém um slide por vez também no desktop */
   }
 }
 
@@ -1071,11 +1058,11 @@ footer {
 }
 
 .carousel-nav-btn.prev {
-  left: 1.5rem; /* Ajusta para o novo padding */
+  left: 1.5rem;
 }
 
 .carousel-nav-btn.next {
-  right: 1.5rem; /* Ajusta para o novo padding */
+  right: 1.5rem;
 }
 
 .carousel-dots {
@@ -1097,57 +1084,35 @@ footer {
 .dot.active {
   background-color: var(--primary-color);
 }
-  
-  /* Garante que os botões fiquem sempre visíveis e melhora o hover */
-  .carousel-nav-btn:hover {
-    background-color: rgba(255, 255, 255, 1); /* Fundo branco opaco no hover */
-    transform: translateY(-50%) scale(1.05); /* Leve aumento no hover */
-  }
-  
-  /* Ajuste para botões do carrossel em telas menores */
-  @media (max-width: 768px) {
-    .carousel-nav-btn {
-      /* Reduz um pouco o tamanho para não ocupar tanto espaço */
-      font-size: 1.2rem;
-      padding: 0.4rem 0.6rem;
-      /* Garante que eles fiquem dentro da área de padding do container */
-      top: 55%; /* Ajusta a altura para não sobrepor o título */
-    }
-    .carousel-nav-btn.prev { left: 0.75rem; } /* Ajusta para o novo padding */
-    .carousel-nav-btn.next { right: 0.75rem; } /* Ajusta para o novo padding */
-  }
-
-/* Responsive Adjustments */
+ 
+.carousel-nav-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.05);
+}
+ 
+/* Ajuste para botões do carrossel em telas menores */
 @media (max-width: 768px) {
-  .header-top {
-    flex-direction: column;
-    gap: 0.5rem;
+  .carousel-nav-btn {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.6rem;
+    top: 55%;
   }
-
-  .titulo-loja {
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-  }
-
-  .header-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .search-bar {
-    flex-grow: 1;
-    margin-right: 0.5rem;
-  }
-
-  .search-bar input {
-    width: 100%;
-  }
-
-  .main-nav ul {
-    justify-content: center;
-    gap: 0.75rem;
+  /* POSICIONAMENTO CORRIGIDO */
+  .carousel-nav-btn.prev { left: 1.5rem; } 
+  .carousel-nav-btn.next { right: 1.5rem; } 
+  
+  /* Ajuste para telas muito pequenas, movemos os botões para as bordas do container */
+  @media (max-width: 480px) {
+      .carousel-nav-btn.prev { left: 0.5rem; }
+      .carousel-nav-btn.next { right: 0.5rem; }
   }
 }
+
+/*
+====================================
+OUTRAS SEÇÕES
+====================================
+*/
 
 .lancamentos-item {
   background-color: #fce4ec;
