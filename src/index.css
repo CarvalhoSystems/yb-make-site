@@ -969,8 +969,7 @@ footer {
   overflow: hidden;
   margin: 2rem 0;
   border-radius: 1rem;
-  background-color: white;
-  padding: 1.5rem;
+  background-color: #fdfdfd; /* Um branco levemente acinzentado para o fundo */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -978,7 +977,8 @@ footer {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-color);
-  margin-bottom: 1.5rem;
+  /* Adiciona padding para compensar a remoção do container */
+  padding: 1.5rem 1.5rem 0 1.5rem; 
   text-align: center;
 }
 
@@ -1071,11 +1071,11 @@ footer {
 }
 
 .carousel-nav-btn.prev {
-  left: 0.5rem;
+  left: 1.5rem; /* Ajusta para o novo padding */
 }
 
 .carousel-nav-btn.next {
-  right: 0.5rem;
+  right: 1.5rem; /* Ajusta para o novo padding */
 }
 
 .carousel-dots {
@@ -1113,8 +1113,8 @@ footer {
       /* Garante que eles fiquem dentro da área de padding do container */
       top: 55%; /* Ajusta a altura para não sobrepor o título */
     }
-    .carousel-nav-btn.prev { left: 0.25rem; }
-    .carousel-nav-btn.next { right: 0.25rem; }
+    .carousel-nav-btn.prev { left: 0.75rem; } /* Ajusta para o novo padding */
+    .carousel-nav-btn.next { right: 0.75rem; } /* Ajusta para o novo padding */
   }
 
 /* Responsive Adjustments */
