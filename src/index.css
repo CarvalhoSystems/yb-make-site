@@ -991,7 +991,7 @@ footer {
 .carousel-item {
   min-width: 100%; /* CORREÇÃO: Garante que cada slide ocupe todo o espaço */
   box-sizing: border-box;
-  padding: 0 0.5rem;
+  /* O padding aqui estava causando o corte da imagem no celular. Removido. */
   flex-shrink: 0; /* Impede que os itens encolham e quebrem o layout */
 }
 
