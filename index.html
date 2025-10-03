@@ -28,7 +28,7 @@
         <nav id="main-nav" class="main-nav">
             <div class="container">
                 <ul>
-                    <li><a href="#lancamentos" class="nav-link-visual">Lançamentos</a></li>
+                    <li><a href="#Novidades">Novidades</a></li>
                     <li><a href="#maquiagem">Maquiagem</a></li>
                     <li><a href="#skincare">Skincare</a></li>
                     <li><a href="#promocoes">Promoções</a></li>
@@ -63,7 +63,85 @@
             <p>Carregando produtos...</p>
         </div>
     </section>
+
+    <section class="product-area container" id="skincare">
+        <h2>Cuidados com a Pele</h2>
+        <div class="product-list" id="skincareProductListContainer">
+        </div>
+            
+        <!-- CARROSSEL NO FINAL DA PÁGINA / DENTRO DA SEÇÃO SKINCARE (NOVO) -->
+        <div class="carousel-container" id="finalSkincareCarousel">
+            <h3>Veja também: Dicas e Lançamentos Exclusivos</h3>
+            <div class="carousel-track" id="finalSkincareTrack">
+                
+                <!-- Slide 1: Dica de Aplicação (Original) -->
+                <div class="carousel-item">
+                    <div class="carousel-content">
+                        <!-- Substituindo imagem local por placeholder seguro -->
+                        <img src="imagens/sabonete 1.png.jpg" alt="Dica de Aplicação" class="carousel-img"> 
+                        <div class="carousel-text">
+                            <h3>Rotina Perfeita: Aplique seu Sabonete Facial corretamente!</h3>
+                            <p class="mt-2 text-gray-600">Descubra a ordem certa para usar seus produtos de skincare e maximize os resultados.</p>
+                            <button class="mt-4 bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-pink-600 transition">Leia a Dica Completa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOVO SLIDE 2 ADICIONADO AQUI -->
+                <div class="carousel-item">
+                    <div class="carousel-content">
+                        <img src="imagens/serum.png.jpg" alt="Novo Sérum" class="carousel-img">
+                        <div class="carousel-text">
+                            <h3>Lançamento: Sérum Hialurônico Ultra-Hidratante!</h3>
+                            <p class="mt-2 text-gray-600">Hidratação profunda por 24h. Sua pele mais jovem e radiante com apenas 3 gotas.</p>
+                            <button class="mt-4 bg-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-600 transition">Compre Agora</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOVO SLIDE 3 ADICIONADO AQUI -->
+                <div class="carousel-item">
+                    <div class="carousel-content">
+                        <img src="imagens/cremede olhos.png.jpg" alt="Desconto Exclusivo" class="carousel-img">
+                        <div class="carousel-text">
+                            <h3>Creme Antirrugas Que Reduz Olheiras, Inchaço E Rugas Com Ação Pró-Colágeno. </h3>
+                            <p class="mt-2 text-gray-600">Receba ofertas personalizadas e dicas de beleza diretamente no seu e-mail.</p>
+                            <button class="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-600 transition">Quero Meu Desconto</button>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Botões de Navegação e Pontos (Adicionados) -->
+            <button class="carousel-nav-btn prev" data-carousel-id="finalSkincareCarousel">&lt;</button>
+            <button class="carousel-nav-btn next" data-carousel-id="finalSkincareCarousel">&gt;</button>
+            <div class="carousel-dots" id="finalSkincareDots"></div>
+        </div>
+    </section>
+
+        <!-- SEÇÃO DE NOVIDADES -->
+        <section class="product-area container" id="Novidades">
+                    <h2>Novidades</h2>
+                    <div class="product-list" id="novidadesProductListContainer">
+                    <!-- Aqui serão carregados os produtos via JS -->
+                    </div>
+        </section>
+
+            <!-- SEÇÃO DE LANÇAMENTOS DESTACADOS (FIXO) -->
+            <section class="novidades-item">
+                    <div class="novidades-container">
+                        <img src="imagens/copo-kit.jpg" alt="Lançamentos" class="lancamentos-img">
+                    <div class="novidades-text">
+                        <h2>Novidades</h2>
+                        <p class="mt-2 text-gray-600">Receba ofertas personalizadas e dicas de beleza diretamente no seu e-mail.</p>
+                        <p>Descubra as Novidades e Melhores Ofertas</p>
+                    </div>
+                </div>
+            </section>
+
+
+
     
+    <!--Botão Redes de  Social-->
     <section class="social-links container">
         <h3>Siga Nossas Redes e Fique por Dentro!</h3>
         <div class="social-buttons">
