@@ -228,6 +228,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnCopyPix) {
     btnCopyPix.addEventListener("click", copiarChavePix);
   }
+
+  // Inicializa todos os carrosséis da página
+  inicializarCarrossel('finalSkincareCarousel');
+  carregarNovidades();
 });
 
 // --- Funções Globais da Aplicação ---
@@ -477,67 +481,62 @@ function fecharModalProduto() {
   document.getElementById("modal-produto").style.display = "none";
 }
 
-// Ativa a função de lançamentos
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. Rola a tela para a seção de Lançamentos
-  const lancamentosSection = document.getElementById("lancamentos");
-  if (lancamentosSection) {
-    lancamentosSection.scrollIntoView({ behavior: "smooth" });
-  }
+// --- Lógica do Carrossel (Reutilizável) ---
+function inicializarCarrossel(carouselId) {
+  const container = document.getElementById(carouselId);
+  if (!container) return;
 
-  // 2. (OPCIONAL) Destaque visual por 4 segundos
-  const newProductsContainer = document.getElementById(
-    "product-list-lancamentos"
-  );
-  if (newProductsContainer) {
-    setTimeout(() => {
-      newProductsContainer.classList.add("pulse-highlight");
-    }, 800); // Espera o scroll terminar
-
-    setTimeout(() => {
-      newProductsContainer.classList.remove("pulse-highlight");
-    }, 4000); // Remove o destaque
-  }
-});
-// skincare
-// Ativa o carrossel de dicas de skincare
-document.addEventListener("DOMContentLoaded", () => {
-  const carousel = document.querySelector(".carousel");
-  const items = document.querySelectorAll(".carousel-item");
+  const track = container.querySelector('.carousel-track');
+  const items = container.querySelectorAll('.carousel-item');
+  const prevBtn = container.querySelector('.carousel-nav-btn.prev');
+  const nextBtn = container.querySelector('.carousel-nav-btn.next');
+  const dotsContainer = container.querySelector('.carousel-dots');
   let currentIndex = 0;
-  const totalItems = items.length;
 
-  function showItem(index) {
-    items.forEach((item, i) => {
-      if (i === index) {
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
-      }
-    });
+  if (!track || items.length === 0 || !prevBtn || !nextBtn || !dotsContainer) return;
+
+  // Criar os "dots" de navegação
+  dotsContainer.innerHTML = '';
+  items.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+          currentIndex = index;
+          updateCarousel();
+      });
+      dotsContainer.appendChild(dot);
+  });
+  const dots = dotsContainer.querySelectorAll('.dot');
+
+  function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+      });
   }
 
-  function nextItem() {
-    currentIndex = (currentIndex + 1) % totalItems;
-    showItem(currentIndex);
-  }
+  nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+  });
 
-  function prevItem() {
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-    showItem(currentIndex);
-  }
-  // Inicializa o carrossel
-  showItem(currentIndex);
-  setInterval(nextItem, 5000); // Muda a cada 5 segundos
+  prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+  });
 
-  // Adiciona eventos aos botões de navegação
-  const nextBtn = document.querySelector(".carousel-next");
-  const prevBtn = document.querySelector(".carousel-prev");
-  nextBtn.addEventListener("click", nextItem);
-  prevBtn.addEventListener("click", prevItem);
-});
-// novidades
-document.addEventListener("DOMContentLoaded", () => {
+  // Autoplay (opcional, descomente para ativar)
+  // setInterval(() => {
+  //     nextBtn.click();
+  // }, 5000); // Muda a cada 5 segundos
+
+  updateCarousel(); // Inicializa na posição correta
+}
+
+
+// --- Lógica de Novidades ---
+function carregarNovidades() {
   const db = firebase.firestore();
   const novidadesList = document.getElementById("novidades");
 
@@ -546,11 +545,11 @@ document.addEventListener("DOMContentLoaded", () => {
     .where("novidades", "==", true)
     .get()
     .then((querySnapshot) => {
-      lancamentosList.innerHTML = ""; // Limpa a lista
+      if (novidadesList) novidadesList.innerHTML = ""; // Limpa a lista
     })
     .catch((error) => {
       console.error("Erro ao buscar produtos:", error);
-      lancamentosList.innerHTML =
+      if (novidadesList) novidadesList.innerHTML =
         "<p>Erro ao carregar as Novidades Tente novamente mais tarde.</p>";
     });
-});
+}
