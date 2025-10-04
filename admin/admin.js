@@ -61,6 +61,8 @@
                 // Elementos de upload de imagem
                 fileInput: document.getElementById('product-file'),
                 fileNameDisplay: document.getElementById('file-name-display'),
+                imagePreviewContainer: document.getElementById('image-preview-container'),
+                currentProductImage: document.getElementById('current-product-image'),
             };
 
             const productListAdmin = document.getElementById('product-list-admin');
@@ -158,18 +160,27 @@
                         const productEl = document.createElement('div');
                         const priceFormatted = (product.price || 0).toFixed(2).replace('.', ',');
                         
-                        productEl.className = 'product-item';
-                        productEl.innerHTML = `
-                            <img src="${product.image || 'https://placehold.co/50x50/cccccc/333333?text=N/A'}" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=N/A';" alt="Miniatura" class="product-thumb">
-                            <div class="product-info flex-grow mx-4">
-                                <h4>${product.title}</h4><p>R$ ${priceFormatted}</p>
+                       // ... dentro de loadProducts ...
+                        
+                        productEl.className = 'flex items-center justify-between p-3 mb-3 bg-white rounded-xl shadow'; // Classes para o container
+                        productEl.innerHTML = `
+                            <div class="w-16 h-16 mr-4 flex-shrink-0">
+                                <img src="${product.image || 'https://placehold.co/64x64/cccccc/333333?text=N/A'}" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=N/A';" 
+                                     alt="Miniatura" 
+                                     class="w-full h-full object-cover rounded-md border border-gray-200">
                             </div>
-                            <div style="display: flex; gap: 5px;">
-                                <button class="btn-edit" data-id="${doc.id}">Editar</button>
-                                <button class="btn-delete" data-id="${doc.id}">Excluir</button>
-                            </div>
-                        `;
-                        productListAdmin.appendChild(productEl);
+                                                        <div class="product-info flex-grow mx-4">
+                                <h4 class="font-semibold text-gray-800">${product.title}</h4>
+                                <p class="text-sm text-gray-500">R$ ${priceFormatted}</p>
+                            </div>
+                                                        <div class="flex space-x-2 flex-shrink-0">
+                                <button class="btn-edit bg-blue-500 hover:bg-blue-600 text-white text-sm py-1 px-3 rounded-lg" data-id="${doc.id}">Editar</button>
+                                <button class="btn-delete bg-red-500 hover:bg-red-600 text-white text-sm py-1 px-3 rounded-lg" data-id="${doc.id}">Excluir</button>
+                            </div>
+                        `;
+                        productListAdmin.appendChild(productEl);
+// ...
                     });
 
                     // Adicionar eventos aos botões de editar e excluir
