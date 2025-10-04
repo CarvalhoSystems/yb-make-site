@@ -1104,11 +1104,11 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
   /* 3. Garante altura para o card e estilo de card interno */
   .carousel-content {
     border-radius: 0.75rem;
-    height: 300px; /* Altura fixa para melhor visualização */
+    height: 350px; /* Altura fixa para melhor visualização */
   }
 
   .carousel-img {
-    height: 180px; /* Aumenta a altura da imagem no mobile */
+    height: 220px; /* Aumenta a altura da imagem no mobile */
   }
 
   .carousel-text {
