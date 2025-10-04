@@ -1094,6 +1094,7 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
     margin: 1rem 0;
     border-radius: 0;
     box-shadow: none;
+    min-height: 400px;
   }
 
   /* 2. Adiciona o respiro lateral para o item */
@@ -1117,7 +1118,7 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
 
   /* 4. Posicionamento dos botões (referente ao item com padding) */
   .carousel-nav-btn {
-    top: 60%; /* Ajusta para centralizar no card */
+    top: 50%; /* Ajusta para centralizar no card */
     font-size: 1.5rem;
     padding: 0.5rem;
   }
