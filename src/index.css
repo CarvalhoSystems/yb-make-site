@@ -1100,13 +1100,18 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
 
   /* 2. Adiciona o respiro lateral para o item */
   .carousel-item {
-    padding: 0 1.5rem;
+    width: calc(100% - 3rem); /* Largura total menos o padding */
+    min-width: calc(100% - 3rem);
+    box-sizing: border-box;
+    margin: 0 1.5rem; /* Espaço lateral */
+    padding: 0; /* Remove o padding interno */
   }
 
   /* 3. Garante altura para o card e estilo de card interno */
   .carousel-content {
     border-radius: 0.75rem;
     height: 350px; /* Altura fixa para melhor visualização */
+    width: 100%;
   }
 
   .carousel-img {
@@ -1125,11 +1130,11 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
   }
 
   .carousel-nav-btn.prev {
-    left: 2rem; /* Afasta da borda externa */
+    left: 0.5rem; /* Afasta da borda externa */
   }
 
   .carousel-nav-btn.next {
-    right: 2rem; /* Afasta da borda externa */
+    right: 0.5rem; /* Afasta da borda externa */
   }
 
   /* --- AJUSTES DO HEADER E GERAIS (REPETIÇÕES DO SEU CÓDIGO) --- */
@@ -1434,3 +1439,4 @@ input:focus {
   outline: 3px solid var(--primary-color);
   outline-offset: 2px;
 }
+
