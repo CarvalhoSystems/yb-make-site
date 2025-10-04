@@ -979,6 +979,7 @@ footer {
   border-radius: 0.75rem;
   overflow: hidden;
   border: 1px solid #f3f4f6;
+  position: relative;
 }
 
 @media (min-width: 768px) {
