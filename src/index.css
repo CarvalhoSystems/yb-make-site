@@ -781,11 +781,11 @@ footer {
     order: 1;
     gap: 10px; /* Reduz o gap no mobile */
   }
-  
+
   /* Botão de conta menor no mobile */
   .header-auth-btn {
-      padding: 6px 10px;
-      font-size: 0.8em;
+    padding: 6px 10px;
+    font-size: 0.8em;
   }
 
   /* Barra de Busca no Tablet/Mobile: Ocupa a largura total abaixo */
@@ -800,9 +800,9 @@ footer {
     width: 100%;
     transition: none; /* Desabilita a transição de largura no mobile */
   }
-  
+
   .search-bar input:focus {
-     width: 100%;
+    width: 100%;
   }
 
   /* Navegação - CORREÇÃO DE ALINHAMENTO */
@@ -834,11 +834,11 @@ footer {
     /* Remove o pseudo-elemento visual de hover no mobile para evitar sobreposição */
     background-image: none !important;
   }
-  
+
   /* Desabilita o banner de hover no mobile */
   .main-nav a.nav-link-visual::before,
   .main-nav a.nav-link-promo::before {
-      display: none;
+    display: none;
   }
 
   .main-nav ul::-webkit-scrollbar {
@@ -879,7 +879,7 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
   }
-  
+
   .header-actions {
     flex-basis: auto;
     justify-content: flex-end; /* Alinha os botões à direita */
@@ -968,19 +968,8 @@ footer {
   min-width: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
-  /* ADICIONADO: Padding para afastar o item das bordas no mobile */
-  padding: 0 1.5rem; 
+  padding: 0 1.5rem;
 }
-
-@media (max-width: 768px) {
-    /* CORREÇÃO DO PROBLEMA DO CORTE NO MOBILE */
-    .carousel-item {
-        /* Remove o padding de 1.5rem no mobile para que o item ocupe 100% da tela 
-           e vamos colocar o padding no item, não no container. */
-        padding: 0 1rem; /* Padding menor e mais seguro para 100% */
-    }
-}
-
 
 .carousel-content {
   display: flex;
@@ -997,9 +986,9 @@ footer {
     flex-direction: row;
     text-align: left;
   }
-  
+
   .carousel-item {
-      padding: 0; /* Remove o padding no desktop */
+    padding: 0; /* Remove o padding no desktop */
   }
 }
 
@@ -1015,7 +1004,7 @@ footer {
     height: 300px;
   }
   .carousel-item {
-     min-width: 100%;
+    min-width: 100%;
   }
 }
 
@@ -1084,29 +1073,185 @@ footer {
 .dot.active {
   background-color: var(--primary-color);
 }
- 
+
 .carousel-nav-btn:hover {
   background-color: rgba(255, 255, 255, 1);
   transform: translateY(-50%) scale(1.05);
 }
- 
-/* Ajuste para botões do carrossel em telas menores */
+
+/*
+====================================
+CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
+====================================
+*/
+
+/* Media Query principal para a maioria dos dispositivos móveis */
 @media (max-width: 768px) {
-  .carousel-nav-btn {
-    font-size: 1.2rem;
-    padding: 0.4rem 0.6rem;
-    top: 55%;
+  /* --- AJUSTES DO CARROSSEL (RESOLVENDO O PROBLEMA DA IMAGEM) --- */
+
+  /* 1. Ocupa a largura total da tela, sem margens laterais externas */
+  .carousel-container {
+    margin: 1rem 0;
+    border-radius: 0;
+    box-shadow: none;
   }
-  /* POSICIONAMENTO CORRIGIDO */
-  .carousel-nav-btn.prev { left: 1.5rem; } 
-  .carousel-nav-btn.next { right: 1.5rem; } 
+
+  /* 2. Adiciona o respiro lateral para o item */
+  .carousel-item {
+    padding: 0 1.5rem;
+  }
+
+  /* 3. Garante altura para o card e estilo de card interno */
+  .carousel-content {
+    border-radius: 0.75rem;
+    height: 300px; /* Altura fixa para melhor visualização */
+  }
+
+  .carousel-img {
+    height: 180px; /* Aumenta a altura da imagem no mobile */
+  }
+
+  .carousel-text {
+    padding: 1rem;
+  }
+
+  /* 4. Posicionamento dos botões (referente ao item com padding) */
+  .carousel-nav-btn {
+    top: 60%; /* Ajusta para centralizar no card */
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .carousel-nav-btn.prev {
+    left: 2rem; /* Afasta da borda externa */
+  }
+
+  .carousel-nav-btn.next {
+    right: 2rem; /* Afasta da borda externa */
+  }
+
+  /* --- AJUSTES DO HEADER E GERAIS (REPETIÇÕES DO SEU CÓDIGO) --- */
+
+  /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO */
+  body {
+    padding-top: 180px;
+  }
   
-  /* Ajuste para telas muito pequenas, movemos os botões para as bordas do container */
-  @media (max-width: 480px) {
-      .carousel-nav-btn.prev { left: 0.5rem; }
-      .carousel-nav-btn.next { right: 0.5rem; }
+  /* ... (O restante dos seus estilos de 768px que não são do carrossel) ... */
+  .main-header {
+    padding: 0;
+    height: auto;
+  }
+  /* ORGANIZAÇÃO DO TOPO NO MOBILE */
+  .header-top {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px 4%;
+  }
+
+  .titulo-loja {
+    flex-grow: 1;
+    text-align: left;
+  }
+  .header-actions {
+    flex-basis: auto;
+    order: 1;
+    gap: 10px;
+  }
+  .header-auth-btn {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+  .search-bar {
+    width: 92%;
+    order: 3;
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+  .search-bar input {
+    width: 100%;
+    transition: none;
+  }
+  .search-bar input:focus {
+    width: 100%;
+  }
+  .main-nav {
+    width: 100%;
+    order: 4;
+  }
+  .main-nav ul {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 5px 0 15px 0;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .main-nav ul li:first-child a {
+    margin-left: 4%;
+    padding-left: 15px;
+  }
+  .main-nav a {
+    padding: 10px 15px;
+    margin-left: 0;
+    background-image: none !important;
+  }
+  .main-nav a.nav-link-visual::before,
+  .main-nav a.nav-link-promo::before {
+    display: none;
+  }
+  .main-nav ul::-webkit-scrollbar {
+    display: none;
+  }
+  .product-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .titulo-loja {
+    font-size: 20px;
+  }
+  .modal-produto-content {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .hero-banner {
+    padding: 40px 20px;
   }
 }
+
+/* Media Query para telas muito pequenas (sobrescreve 768px apenas para os botões) */
+@media (max-width: 480px) {
+  /* Movemos os botões para mais perto da borda em telas muito pequenas */
+  .carousel-nav-btn.prev {
+    left: 1rem;
+  }
+  .carousel-nav-btn.next {
+    right: 1rem;
+  }
+
+  /* ... (O restante dos seus estilos de 480px que não são do carrossel) ... */
+  .product-list {
+    grid-template-columns: 1fr;
+  }
+
+  .carrinho-sidebar {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .header-top {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    flex-basis: auto;
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+}
+
 
 /*
 ====================================
@@ -1227,7 +1372,6 @@ OUTRAS SEÇÕES
 #novidadesProductListContainer .btn-add:hover {
   background-color: #d81b60;
 }
-
 
 /* ---------- BLOCO FIXO DE NOVIDADES (DESTAQUE) ---------- */
 
