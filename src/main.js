@@ -557,3 +557,21 @@ function carregarNovidades() {
         "<p>Erro ao carregar as Novidades Tente novamente mais tarde.</p>";
     });
 }
+  // logica maquiagem 
+  make.addEventListener("click", () => {
+    window.location.href = "makeup.html"; // Redireciona para a página de maquiagem
+  });
+  // logica skincare 
+  skin.addEventListener("click", () => {
+    window.location.href = "skincare.html"; // Redireciona para a página de skincare
+  });
+  // logica haircare 
+  hair.addEventListener("click", () => {
+    window.location.href = "haircare.html"; // Redireciona para a página de haircare
+  });
+  // Logica marcas
+  brand.addEventListener("click", () => {
+    window.location.href = "brands.html"; // Redireciona para a página de marcas
+  });
+
+    
