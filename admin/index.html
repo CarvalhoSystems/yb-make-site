@@ -1,89 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel de Administrador - YB MAKE's</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="adm.css"> 
-</head>
-<body class="p-4 md:p-8">
-
+    <link rel="stylesheet" href="adm.css" />
+  </head>
+  <body class="p-4 md:p-8">
     <!-- Seção de Login -->
-    <section id="login-section" class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-2xl transition duration-500">
-        <h2 class="text-2xl font-bold mb-6 text-center">Acesso Administrativo</h2>
-        <div class="form">
-            <input type="email" id="admin-email" placeholder="E-mail do Administrador" class="input">
-            <input type="password" id="admin-password" placeholder="Senha" class="input">
-            <button id="btn-admin-login" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 rounded-xl transition duration-200">Entrar</button>
-            <p id="admin-error-message" class="text-red-500 text-sm mt-3 text-center"></p>
-        </div>
+    <section
+      id="login-section"
+      class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-2xl transition duration-500"
+    >
+      <h2 class="text-2xl font-bold mb-6 text-center">Acesso Administrativo</h2>
+      <div class="form">
+        <input
+          type="email"
+          id="admin-email"
+          placeholder="E-mail do Administrador"
+          class="input"
+        />
+        <input
+          type="password"
+          id="admin-password"
+          placeholder="Senha"
+          class="input"
+        />
+        <button
+          id="btn-admin-login"
+          class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 rounded-xl transition duration-200"
+        >
+          Entrar
+        </button>
+        <p
+          id="admin-error-message"
+          class="text-red-500 text-sm mt-3 text-center"
+        ></p>
+      </div>
     </section>
 
     <!-- Painel de Administração -->
     <section id="admin-panel" class="hidden">
-        <header class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold">Painel de Produtos</h1>
-            <button id="btn-admin-logout" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-xl transition duration-200">Sair</button>
-        </header>
+      <header class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Painel de Produtos</h1>
+        <button
+          id="btn-admin-logout"
+          class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-xl transition duration-200"
+        >
+          Sair
+        </button>
+      </header>
 
-        <!-- Formulário de Produto -->
-        <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-2xl mb-8">
-            <h2 class="text-xl font-semibold mb-6">Adicionar / Editar Produto</h2>
-            <form id="product-form" class="form">
-                <input type="hidden" id="product-id">
+      <!-- Formulário de Produto -->
+      <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-2xl mb-8">
+        <h2 class="text-xl font-semibold mb-6">Adicionar / Editar Produto</h2>
+        <form id="product-form" class="form">
+          <input type="hidden" id="product-id" />
 
-                <label for="product-title" class="text-sm font-medium block mb-1">Título</label>
-                <input type="text" id="product-title" placeholder="Nome do Produto" required>
+          <label for="product-title" class="text-sm font-medium block mb-1"
+            >Título</label
+          >
+          <input
+            type="text"
+            id="product-title"
+            placeholder="Nome do Produto"
+            required
+          />
 
-                <label for="product-description" class="text-sm font-medium block mb-1">Descrição</label>
-                <textarea id="product-description" rows="3" placeholder="Descrição detalhada do produto"></textarea>
+          <label
+            for="product-description"
+            class="text-sm font-medium block mb-1"
+            >Descrição</label
+          >
+          <textarea
+            id="product-description"
+            rows="3"
+            placeholder="Descrição detalhada do produto"
+          ></textarea>
 
-                <label for="product-price" class="text-sm font-medium block mb-1">Preço (R$)</label>
-                <input type="number" id="product-price" placeholder="Ex: 99.99" step="0.01" required>
+          <label for="product-price" class="text-sm font-medium block mb-1"
+            >Preço (R$)</label
+          >
+          <input
+            type="number"
+            id="product-price"
+            placeholder="Ex: 99.99"
+            step="0.01"
+            required
+          />
 
-                <!-- Campo para URL Manual (novo) -->
-                <label for="product-image-url-manual" class="text-sm font-medium block mb-1">URL da Imagem (Opcional)</label>
-                <input type="text" id="product-image-url-manual" placeholder="https://exemplo.com/imagem.jpg">
-                
-                <!-- Campo Hidden para guardar a URL existente na edição -->
-                <input type="hidden" id="product-image">
+          <!-- Campo para URL Manual (novo) -->
+          <label
+            for="product-image-url-manual"
+            class="text-sm font-medium block mb-1"
+            >URL da Imagem (Opcional)</label
+          >
+          <input
+            type="text"
+            id="product-image-url-manual"
+            placeholder="https://exemplo.com/imagem.jpg"
+          />
 
-                                <div id="image-preview-container" class="mb-4 hidden p-3 border border-gray-200 rounded-lg bg-gray-50">
-                    <p class="text-sm font-medium mb-2 text-gray-700">Imagem Atual:</p>
-                    <img id="current-product-image" src="" alt="Pré-visualização da imagem" 
-                        class="max-w-xs max-h-40 object-cover rounded shadow-md mx-auto">
-                </div>
-                                <div class="mb-4 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
+          <!-- Campo Hidden para guardar a URL existente na edição -->
+          <input type="hidden" id="product-image" />
 
-                <div class="mb-4 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Upload de Imagem</label>
-                    <input type="file" id="product-file" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
-                    <p id="file-name-display" class="mt-2 text-xs text-gray-500">Nenhum arquivo selecionado.</p>
-                </div>
+          <div
+            id="image-preview-container"
+            class="mb-4 hidden p-3 border border-gray-200 rounded-lg bg-gray-50"
+          >
+            <p class="text-sm font-medium mb-2 text-gray-700">Imagem Atual:</p>
+            <img
+              id="current-product-image"
+              src=""
+              alt="Pré-visualização da imagem"
+              class="max-w-xs max-h-40 object-cover rounded shadow-md mx-auto"
+            />
+          </div>
+          <div
+            class="mb-4 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50"
+          ></div>
 
-                <button id="btn-save-product" type="button" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-xl transition duration-200 mt-4">Salvar Produto</button>
-            </form>
-        </div>
+          <div
+            class="mb-4 p-4 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50"
+          >
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+              >Upload de Imagem</label
+            >
+            <input
+              type="file"
+              id="product-file"
+              accept="image/*"
+              class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+            />
+            <p id="file-name-display" class="mt-2 text-xs text-gray-500">
+              Nenhum arquivo selecionado.
+            </p>
+          </div>
 
-        <!-- Lista de Produtos -->
-        <h2 class="text-2xl font-semibold mb-4 mt-10">Produtos Cadastrados</h2>
-        <div id="product-list-admin">
-            <!-- Produtos serão carregados aqui -->
-            <p>Carregando produtos...</p>
-        </div>
+          <button
+            id="btn-save-product"
+            type="button"
+            class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-xl transition duration-200 mt-4"
+          >
+            Salvar Produto
+          </button>
+        </form>
+      </div>
+
+      <!-- Lista de Produtos -->
+      <h2 class="text-2xl font-semibold mb-4 mt-10">Produtos Cadastrados</h2>
+      <div id="product-list-admin">
+        <!-- Produtos serão carregados aqui -->
+        <p>Carregando produtos...</p>
+      </div>
     </section>
 
     <!-- Modal Simples para Alertas e Confirmações (Substitui alert/confirm) -->
     <div id="custom-modal-backdrop" class="modal-backdrop">
-        <div id="custom-modal-content" class="modal-content">
-            <h3 id="modal-title" class="text-lg font-bold mb-4">Aviso</h3>
-            <p id="modal-message" class="mb-6"></p>
-            <div id="modal-actions" class="flex justify-end space-x-3">
-                <button id="modal-btn-cancel" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg hidden">Cancelar</button>
-                <button id="modal-btn-ok" class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-4 rounded-lg">OK</button>
-            </div>
+      <div id="custom-modal-content" class="modal-content">
+        <h3 id="modal-title" class="text-lg font-bold mb-4">Aviso</h3>
+        <p id="modal-message" class="mb-6"></p>
+        <div id="modal-actions" class="flex justify-end space-x-3">
+          <button
+            id="modal-btn-cancel"
+            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg hidden"
+          >
+            Cancelar
+          </button>
+          <button
+            id="modal-btn-ok"
+            class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-4 rounded-lg"
+          >
+            OK
+          </button>
         </div>
+      </div>
     </div>
 
     <!-- Firebase SDKs -->
@@ -95,6 +187,5 @@
     <!-- Configuração do Firebase (deve vir ANTES do admin.js) -->
     <script src="../src/firebase-config.js"></script>
     <script src="admin.js"></script>
-
-</body>
+  </body>
 </html>

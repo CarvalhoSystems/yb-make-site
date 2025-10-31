@@ -114,8 +114,12 @@ body {
 .main-nav a:hover::after {
   transform: scaleX(1);
 }
+/*
+====================================
+3. BOTÃO MINHA CONTA (HEARD)
+====================================
+*/
 
-/* Botão Minha Conta (header-auth-btn) */
 .header-auth-btn {
   padding: 8px 15px;
   border: none;
@@ -133,9 +137,13 @@ body {
   background: #f0f0f0;
   color: var(--secondary-color);
 }
+.header-auth-btn:focus {
+  outline: none;
+}
+
 /*
 ====================================
-2.5. ESTILO DO BANNER DE IMAGEM NO HOVER (LANÇAMENTOS)
+  4. ESTILO DO BANNER DE IMAGEM NO HOVER (LANÇAMENTOS)
 ====================================
 */
 
@@ -184,7 +192,7 @@ body {
 
 /*
 ====================================
-3. SEÇÃO HERO E PESQUISA
+5. SEÇÃO HERO E PESQUISA
 ====================================
 */
 .hero-banner {
@@ -255,7 +263,7 @@ body {
 
 /*
 ====================================
-4. LISTA E CARD DE PRODUTOS
+6. LISTA E CARD DE PRODUTOS
 ====================================
 */
 
@@ -373,7 +381,7 @@ body {
 
 /*
 ====================================
-5. CARRINHO (SIDEBAR)
+7. CARRINHO (SIDEBAR)
 ====================================
 */
 
@@ -520,7 +528,7 @@ body {
 
 /*
 ====================================
-6. MODAIS (PIX E PRODUTO)
+8. MODAIS (PIX E PRODUTO)
 ====================================
 */
 /* Estilos gerais para todos os modais */
@@ -678,10 +686,146 @@ body {
   outline: none;
 }
 
-/*
+/* ====================================
+9. MODAL DE AUTENTICAÇÃO (LOGIN)
+/* ==================================== */
+
+.auth-modal-content {
+  max-width: 400px; /* Um pouco mais estreito */
+  padding: 30px;
+}
+
+#auth-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre os elementos */
+}
+
+.auth-modal-content h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.auth-modal-content input {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.auth-modal-content input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(209, 107, 142, 0.2);
+}
+
+/* Botão de Login (Ação Principal) */
+.auth-modal-content .btn-primary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: var(--white);
+  transition: background-color 0.3s;
+  margin-top: 10px; /* Espaço acima do botão */
+}
+
+.auth-modal-content .btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Link para Cadastro (Ação Secundária) */
+.link-cadastrar {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.link-cadastrar strong {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* CORREÇÃO: Estilo para o botão 'X' de fechar o modal */
+.close-auth-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  line-height: 1;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-auth-modal:hover {
+  color: var(--primary-color);
+}
+
+/* ====================================
+10.  MODAL DE AUTENTICAÇÃO (LOGADO)
+/* ==================================== */
+
+#user-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* Novo container para a mensagem de boas-vindas e o botão */
+.welcome-message {
+  display: flex;
+  flex-direction: column; /* Empilha em telas pequenas */
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.welcome-message p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Destaca o nome do usuário */
+.welcome-message #user-email {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+#user-info-container #btn-logout {
+  background-color: #6c757d; /* Cinza escuro */
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#user-info-container #btn-logout:hover {
+  background-color: #c82333; /* Vermelho para indicar ação de saída */
+}
+
+/* Em telas maiores, coloca a mensagem e o botão lado a lado */
+@media (min-width: 480px) {
+  .welcome-message {
+    flex-direction: row; /* Lado a lado */
+  }
+}
+
 /*
 ====================================
-7. ELEMENTOS FLUTUANTES E SOCIAIS
+11. ELEMENTOS FLUTUANTES E SOCIAIS
 ====================================
 */
 
@@ -743,7 +887,9 @@ body {
   justify-content: center;
 }
 
-/* Botões Sociais */
+/*==================
+12.  Botões Sociais
+===================*/
 .social-links {
   text-align: center;
   padding: 30px 0;
@@ -785,7 +931,7 @@ body {
 
 /*
 ====================================
-8. RODAPÉ E MEDIA QUERIES
+13. RODAPÉ E MEDIA QUERIES
 ====================================
 */
 footer {
@@ -932,7 +1078,7 @@ footer {
 
 /*
 ====================================
-9. ANIMAÇÕES DE DESTAQUE (LANÇAMENTOS)
+14. ANIMAÇÕES DE DESTAQUE (LANÇAMENTOS)
 ====================================
 */
 
@@ -981,7 +1127,7 @@ footer {
 
 /*
 ====================================
-10. Carrosel de Imagens (Bônus) - CORRIGIDO PARA MOBILE
+15. Carrosel de Imagens (Bônus) - CORRIGIDO PARA MOBILE
 ====================================
 */
 .carousel-container {
@@ -1125,7 +1271,7 @@ footer {
 
 /*
 ====================================
-CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
+16. CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
 ====================================
 */
 
@@ -1180,14 +1326,10 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
     right: 0.5rem; /* Afasta da borda externa */
   }
 
-  /* --- AJUSTES DO HEADER E GERAIS (REPETIÇÕES DO SEU CÓDIGO) --- */
-
-  /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO */
   body {
     padding-top: 180px; /* Mantém o espaço para o conteúdo inicial */
   }
 
-  /* ... (O restante dos seus estilos de 768px que não são do carrossel) ... */
   .main-header {
     padding: 0;
     height: auto;
@@ -1304,7 +1446,7 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
 
 /*
 ====================================
-OUTRAS SEÇÕES
+17. OUTRAS SEÇÕES
 ====================================
 */
 
@@ -1483,7 +1625,7 @@ input:focus {
 }
 
 /*==========================
-/*         Maps
+18.        Maps
 /*==========================*/
 
 /* A classe .container-map não é mais necessária, usamos o ID #map-section */
@@ -1506,9 +1648,11 @@ input:focus {
   border-radius: 8px; /* Bordas arredondadas */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
 }
-/* ==================================== */
-/* 2. ESTILOS DA SEÇÃO DE MARCAS (#marcas) */
-/* ==================================== */
+/*
+==================================== 
+19. . ESTILOS DA SEÇÃO DE MARCAS (#marcas) 
+====================================
+*/
 
 .marcas-area {
   padding: 40px 0;

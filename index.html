@@ -60,8 +60,6 @@
     </section>
 
     <section class="product-area container scroll-target" id="maquiagem">
-        <h2>Produtos em Destaque</h2>
-        
 
         <div class="filter-controls">
             <label for="sort-by">Ordenar por:</label>
@@ -78,8 +76,6 @@
     </section>
 
     <section class="product-area container scroll-target" id="skincare">
-        <div class="product-list" id="skincareProductListContainer">
-        </div>
             
         <!-- CARROSSEL NO FINAL DA PÁGINA / DENTRO DA SEÇÃO SKINCARE (NOVO) -->
         <div class="carousel-container" id="finalSkincareCarousel">
@@ -158,18 +154,18 @@
     <div class="brand-grid">
         
         <div class="brand-item" data-brand="eudora">
-            <img src="imagens/logo-eudora.jpg" alt="Logo Eudora" class="brand-logo">
-            <p>Eudora</p>
+            <img src="imagens/logo-super-poderes.png" alt="Super Poderes" class="brand-logo">
+            <p>Super Poderes</p>
         </div>
         
         <div class="brand-item" data-brand="principia">
-            <img src="imagens/logo-principia.png" alt="Logo Principia" class="brand-logo">
-            <p>Principia</p>
+            <img src="imagens/logo-max-love.png" alt="max love" class="brand-logo">
+            <p>Max Love</p>
         </div>
         
         <div class="brand-item" data-brand="brunatavares">
-            <img src="imagens//log-bruna-tavares.jpg" alt="Logo Bruna Tavares" class="brand-logo">
-            <p>Bruna Tavares</p>
+            <img src="imagens/logo_lua_e_neve.jpg" alt="Lua e Neve" class="brand-logo">
+            <p>Lua e Neve </p>
         </div>
         
         </div>
@@ -255,16 +251,18 @@
         <div class="auth-modal-content">
             <span class="close-auth-modal">&times;</span>
             <div id="auth-form-container">
-                <h2>Entrar / Cadastrar</h2>
+                <h2>Acesse sua Conta</h2>
                 <input type="email" id="auth-email" placeholder="Email">
                 <input type="password" id="auth-password" placeholder="Senha">
-                <button id="btn-signup" class="btn-secondary">Cadastrar</button>
                 <button id="btn-login" class="btn-primary">Entrar</button>
+                <a href="cadastro.html" id="btn-signup" class="link-cadastrar">Não tem uma conta? <strong>Cadastre-se</strong></a>
                 <p id="auth-error-message" class="error-message"></p>
             </div>
             <div id="user-info-container" style="display:none;">
-                <h2>Bem-vindo(a), <span id="user-email"></span>!</h2>
-                <button id="btn-logout" class="btn-secondary">Sair</button>
+                <div class="welcome-message">
+                    <p>Bem-vindo(a), <span id="user-email"></span>!</p>
+                    <button id="btn-logout" class="btn-secondary">Sair</button>
+                </div>
             </div>
         </div>
     </div>
@@ -278,10 +276,6 @@
     <script src="src/firebase-config.js"></script>
     <script src="src/main.js"></script>
 
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=SUA_NOVA_CHAVE_DO_GOOGLE_MAPS_AQUI&callback=initMap"
-    defer></script>
-    
 
     <footer>
         <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>
