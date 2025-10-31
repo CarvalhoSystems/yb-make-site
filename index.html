@@ -6,6 +6,10 @@
     <title>💄 YB MAKE's Cosméticos - Maquiagem e Skincare 💋</title>
     <link rel="stylesheet" href="src/index.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <meta name="google-site-verification" content="0Xluy8z9rgkM45RfByT7yRK8jxq0zn60RnchY-PWI04" />
 
     <!---Favicon-->
@@ -41,6 +45,7 @@
                     <li><a href="#skincare">Skincare</a></li>
                     <li><a href="#promocoes">Promoções</a></li>
                     <li><a href="#marcas">Marcas</a></li>
+                    <li><a href="#map-section">Localização</a></li>
                 </ul>
             </div>
         </nav>
@@ -54,7 +59,7 @@
         </div>
     </section>
 
-    <section class="product-area container" id="maquiagem">
+    <section class="product-area container scroll-target" id="maquiagem">
         <h2>Produtos em Destaque</h2>
         
 
@@ -72,7 +77,7 @@
         </div>
     </section>
 
-    <section class="product-area container" id="skincare">
+    <section class="product-area container scroll-target" id="skincare">
         <div class="product-list" id="skincareProductListContainer">
         </div>
             
@@ -126,7 +131,7 @@
     </section>
 
         <!-- SEÇÃO DE NOVIDADES -->
-        <section class="product-area container" id="Novidades">
+        <section class="product-area container scroll-target" id="Novidades">
                     <h2>Novidades</h2>
                     <div class="product-list" id="novidadesProductListContainer">
                     <!-- Aqui serão carregados os produtos via JS -->
@@ -145,6 +150,38 @@
                 </div>
             </section>
 
+            <!-- SEÇÃO DE MARCAS-->
+<section id="marcas" class="marcas-area container scroll-target">
+    <h2>Nossas Marcas </h2>
+    <p>Trabalhamos apenas com as melhores marcas de maquiagem e skincare para garantir a qualidade que você merece.</p>
+    
+    <div class="brand-grid">
+        
+        <div class="brand-item" data-brand="eudora">
+            <img src="imagens/logo-eudora.jpg" alt="Logo Eudora" class="brand-logo">
+            <p>Eudora</p>
+        </div>
+        
+        <div class="brand-item" data-brand="principia">
+            <img src="imagens/logo-principia.png" alt="Logo Principia" class="brand-logo">
+            <p>Principia</p>
+        </div>
+        
+        <div class="brand-item" data-brand="brunatavares">
+            <img src="imagens//log-bruna-tavares.jpg" alt="Logo Bruna Tavares" class="brand-logo">
+            <p>Bruna Tavares</p>
+        </div>
+        
+        </div>
+</section>
+
+
+                <!--Maps-->
+
+    <section id="map-section" class="container-map scroll-target">
+    <h2>Nossa Localização</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.5864892036457!2d-46.75636148945238!3d-23.868813178500545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce35e4641ec057%3A0x64ea9feb5597a3cd!2sR.%20Mabel%20Normando%20-%20Parelheiros%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004894-450!5e0!3m2!1spt-BR!2sbr!4v1761856856730!5m2!1spt-BR!2sbr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
 
     
     <!--Botão Redes de  Social-->
@@ -195,6 +232,8 @@
             <strong id="pix-chave">yasmin_princesinha@icloud.com </strong>
             <button id="btn-copy-pix" class="btn-copy"><i class="fas fa-copy"></i> Copiar Chave</button>
             <p class="pix-instruction">Copie a chave e faça o pagamento via seu Banco.</p>
+            <button id="confirma-pagamento" class="btn-primary" style="background-color: #28a745; margin-top: 15px;">
+            <i class="fas fa-check-circle"></i> Já Efetuei o Pagamento</button>
             <button id="btn-fechar-pix" class="btn-secondary">Fechar</button>
         </div>
     </div>
@@ -229,14 +268,20 @@
             </div>
         </div>
     </div>
+    
 
-
+    <!--Firebase-->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
- 
+
     <script src="src/firebase-config.js"></script>
     <script src="src/main.js"></script>
+
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=SUA_NOVA_CHAVE_DO_GOOGLE_MAPS_AQUI&callback=initMap"
+    defer></script>
+    
 
     <footer>
         <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>

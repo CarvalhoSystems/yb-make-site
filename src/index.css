@@ -31,6 +31,14 @@ body {
 }
 
 /*
+  Correção para links de âncora com cabeçalho fixo.
+  Isso garante que a seção não seja coberta pelo header ao rolar.
+*/
+.scroll-target {
+  scroll-margin-top: 100px; /* Ajuste este valor se a altura do header mudar */
+}
+
+/*
 ====================================
 2. CABEÇALHO (HEADER) E NAVEGAÇÃO
 ====================================
@@ -636,6 +644,41 @@ body {
   margin-bottom: 15px;
 }
 
+/* Estilo para o botão de fechar o modal PIX */
+#btn-fechar-pix {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #e0e0e0;
+  color: #555;
+  transition: background-color 0.3s;
+}
+#btn-fechar-pix:hover {
+  background: #ccc;
+}
+#btn-fechar-pix:focus {
+  outline: none;
+}
+#confirma-pagamento {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#confirma-pagamento:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+#confirma-pagamento:focus {
+  outline: none;
+}
+
+/*
 /*
 ====================================
 7. ELEMENTOS FLUTUANTES E SOCIAIS
@@ -1141,9 +1184,9 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
 
   /* CORREÇÃO PRINCIPAL: AJUSTE DO PADDING DO BODY PARA O HEADER FIXO */
   body {
-    padding-top: 180px;
+    padding-top: 180px; /* Mantém o espaço para o conteúdo inicial */
   }
-  
+
   /* ... (O restante dos seus estilos de 768px que não são do carrossel) ... */
   .main-header {
     padding: 0;
@@ -1258,7 +1301,6 @@ CORREÇÕES ESPECÍFICAS PARA MOBILE (CARROSSEL E OUTROS)
     margin-top: 0;
   }
 }
-
 
 /*
 ====================================
@@ -1440,3 +1482,101 @@ input:focus {
   outline-offset: 2px;
 }
 
+/*==========================
+/*         Maps
+/*==========================*/
+
+/* A classe .container-map não é mais necessária, usamos o ID #map-section */
+#map-section {
+  text-align: center; /* Centraliza o título h2 */
+  padding: 40px 20px; /* Adiciona um espaçamento vertical e horizontal */
+  background-color: var(--light-background); /* Um fundo suave para a seção */
+  margin-top: 30px;
+}
+
+#map-section h2 {
+  margin-bottom: 20px; /* Espaço entre o título e o mapa */
+}
+
+#map-section iframe {
+  max-width: 1200px; /* Largura máxima que o mapa pode ter */
+  width: 100%; /* Ocupa 100% da largura do container, até o max-width */
+  height: 450px; /* Altura do mapa */
+  border: 1px solid var(--border-color); /* Borda sutil para integrar ao layout */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+}
+/* ==================================== */
+/* 2. ESTILOS DA SEÇÃO DE MARCAS (#marcas) */
+/* ==================================== */
+
+.marcas-area {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.marcas-area h2 {
+  margin-bottom: 10px;
+  font-size: 2em;
+  color: #333; /* Cor escura para o título */
+}
+
+.marcas-area p {
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.brand-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+  justify-content: center; /* Centraliza a grade */
+  gap: 20px; /* Espaçamento entre os itens */
+  max-width: 1000px; /* Limita a largura da grade */
+  margin: 0 auto;
+}
+
+.brand-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Indica que o elemento é clicável */
+  width: 150px; /* Largura fixa para cada item */
+}
+
+.brand-item:hover {
+  transform: translateY(-5px); /* Efeito de elevação */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-color: #ff69b4; /* Cor de destaque no hover (rosa principal) */
+}
+
+.brand-logo {
+  width: 100px; /* Tamanho dos logos */
+  height: 100px;
+  object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+  margin-bottom: 10px;
+}
+
+.brand-item p {
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo para Responsividade em telas pequenas */
+@media (max-width: 600px) {
+  .brand-grid {
+    gap: 10px;
+  }
+  .brand-item {
+    width: 100px; /* Menor em mobile */
+    padding: 10px;
+  }
+  .brand-logo {
+    width: 70px;
+    height: 70px;
+  }
+}
