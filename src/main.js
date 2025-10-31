@@ -343,6 +343,10 @@ function adicionarEventosAosCards() {
     const id = card.dataset.id;
     const produto = todosOsProdutos.find((p) => p.id === id);
 
+    // CORREÇÃO: Adicionando uma verificação de segurança.
+    // Se o produto não for encontrado no array, pula para o próximo card para evitar erros.
+    if (!produto) return;
+
     card.querySelector(".btn-details").addEventListener("click", () => {
       abrirModalProduto(produto);
     });
