@@ -152,8 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Inicializa o carrossel e carrega as novidades
-  inicializarCarrossel("finalSkincareCarousel");
+  // CORREÇÃO: Atrasando a inicialização do carrossel para evitar o scroll automático no carregamento.
+  // Isso dá tempo para o usuário ver o topo da página antes que o script do carrossel seja ativado.
+  setTimeout(() => {
+    inicializarCarrossel("finalSkincareCarousel");
+  }, 1500); // Atraso de 1.5 segundos.
+
   carregarNovidades();
 });
 
