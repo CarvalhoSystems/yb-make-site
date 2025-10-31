@@ -1,272 +1,373 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>💄 YB MAKE's Cosméticos - Maquiagem e Skincare 💋</title>
-    <link rel="stylesheet" href="src/index.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="src/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
 
-    <meta name="google-site-verification" content="0Xluy8z9rgkM45RfByT7yRK8jxq0zn60RnchY-PWI04" />
+    <meta
+      name="google-site-verification"
+      content="0Xluy8z9rgkM45RfByT7yRK8jxq0zn60RnchY-PWI04"
+    />
 
     <!---Favicon-->
-<link rel="icon" type="image/png" href="src/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="imagem/svg+xml" href="src/favicon.svg" />
-<link rel="ícone do atalho" href="src/apple-touch-icon.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
-</head>
-<body>
-
+    <link
+      rel="icon"
+      type="image/png"
+      href="src/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="imagem/svg+xml" href="src/favicon.svg" />
+    <link rel="ícone do atalho" href="src/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body>
     <header class="main-header">
-        <div class="container header-top">
-            <h1 class="titulo-loja">YB MAKE's Cosméticos</h1>
-            
-            <div class="header-actions">
-                <div class="search-bar">
-                    <input type="search" placeholder="Busque por batom, base, ou máscara..." id="search-input">
-                    <i class="fas fa-search"></i>
-                </div>
-                
-                <button id="btn-open-auth-modal" class="header-auth-btn">
-                    <i class="fas fa-user"></i> Minha Conta
-                </button>
-            </div>
-        </div>
+      <div class="container header-top">
+        <h1 class="titulo-loja">YB MAKE's Cosméticos</h1>
 
-        <nav id="main-nav" class="main-nav">
-            <div class="container">
-                <ul>
-                    <li><a href="#Novidades">Novidades</a></li>
-                    <li><a href="#maquiagem">Maquiagem</a></li>
-                    <li><a href="#skincare">Skincare</a></li>
-                    <li><a href="#promocoes">Promoções</a></li>
-                    <li><a href="#marcas">Marcas</a></li>
-                    <li><a href="#map-section">Localização</a></li>
-                </ul>
-            </div>
-        </nav>
+        <div class="header-actions">
+          <div class="search-bar">
+            <input
+              type="search"
+              placeholder="Busque por batom, base, ou máscara..."
+              id="search-input"
+            />
+            <i class="fas fa-search"></i>
+          </div>
+
+          <button id="btn-open-auth-modal" class="header-auth-btn">
+            <i class="fas fa-user"></i> Minha Conta
+          </button>
+        </div>
+      </div>
+
+      <nav id="main-nav" class="main-nav">
+        <div class="container">
+          <ul>
+            <li><a href="#Novidades">Novidades</a></li>
+            <li><a href="#maquiagem">Maquiagem</a></li>
+            <li><a href="#skincare">Skincare</a></li>
+            <li><a href="#promocoes">Promoções</a></li>
+            <li><a href="#marcas">Marcas</a></li>
+            <li><a href="#map-section">Localização</a></li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <section id="lancamentos" class="hero-banner">
-        <div class="container">
-            <h2>✨ O toque de magia que faltava. ✨</h2>
-            <p>produtos favoritos com até 30% OFF .</p>
-            <p>Frete grátis para compras acima de R$25,00!</p>
-        </div>
+      <div class="container">
+        <h2>✨ O toque de magia que faltava. ✨</h2>
+        <p>produtos favoritos com até 30% OFF .</p>
+        <p>Frete grátis para compras acima de R$25,00!</p>
+      </div>
     </section>
 
     <section class="product-area container scroll-target" id="maquiagem">
+      <div class="filter-controls">
+        <label for="sort-by">Ordenar por:</label>
+        <select id="sort-by">
+          <option value="popularidade">Popularidade</option>
+          <option value="menor-preco">Menor Preço</option>
+          <option value="maior-preco">Maior Preço</option>
+        </select>
+      </div>
 
-        <div class="filter-controls">
-            <label for="sort-by">Ordenar por:</label>
-            <select id="sort-by">
-                <option value="popularidade">Popularidade</option>
-                <option value="menor-preco">Menor Preço</option>
-                <option value="maior-preco">Maior Preço</option>
-            </select>
-        </div>
-        
-        <div class="product-list" id="productListContainer">
-            <p>Carregando produtos...</p>
-        </div>
+      <div class="product-list" id="productListContainer">
+        <p>Carregando produtos...</p>
+      </div>
     </section>
 
     <section class="product-area container scroll-target" id="skincare">
-            
-        <!-- CARROSSEL NO FINAL DA PÁGINA / DENTRO DA SEÇÃO SKINCARE (NOVO) -->
-        <div class="carousel-container" id="finalSkincareCarousel">
-            <h2>Dicas e Novidades de Skincare </h2>
-            <div class="carousel-track" id="finalSkincareTrack">
-                
-                <!-- Slide 1: Dica de Aplicação (Original) -->
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <!-- Substituindo imagem local por placeholder seguro -->
-                        <img src="imagens/sabonete 1.png.jpg" alt="Dica de Aplicação" class="carousel-img"> 
-                        <div class="carousel-text">
-                            <h3>Rotina Perfeita: Aplique seu Sabonete Facial corretamente!</h3>
-                            <p class="mt-2 text-gray-600">Descubra a ordem certa para usar seus produtos de skincare e maximize os resultados.</p>
-                            <button class="mt-4 bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-pink-600 transition">Leia a Dica Completa</button>
-                        </div>
-                    </div>
-                </div>
+      <!-- CARROSSEL NO FINAL DA PÁGINA / DENTRO DA SEÇÃO SKINCARE (NOVO) -->
+      <div class="carousel-container" id="finalSkincareCarousel">
+        <h2>Dicas e Novidades de Skincare</h2>
+        <div class="carousel-track" id="finalSkincareTrack">
+          <!-- Slide 1: Dica de Aplicação (Original) -->
+          <div class="carousel-item">
+            <div class="carousel-content">
+              <!-- Substituindo imagem local por placeholder seguro -->
+              <img
+                src="imagens/sabonete 1.png.jpg"
+                alt="Dica de Aplicação"
+                class="carousel-img"
+              />
+              <div class="carousel-text">
+                <h3>
+                  Rotina Perfeita: Aplique seu Sabonete Facial corretamente!
+                </h3>
+                <p class="mt-2 text-gray-600">
+                  Descubra a ordem certa para usar seus produtos de skincare e
+                  maximize os resultados.
+                </p>
+                <button
+                  class="mt-4 bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-pink-600 transition"
+                >
+                  Leia a Dica Completa
+                </button>
+              </div>
+            </div>
+          </div>
 
-                <!-- NOVO SLIDE 2 ADICIONADO AQUI -->
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <img src="imagens/serum.png.jpg" alt="Novo Sérum" class="carousel-img">
-                        <div class="carousel-text">
-                            <h3>Lançamento: Sérum Hialurônico Ultra-Hidratante!</h3>
-                            <p class="mt-2 text-gray-600">Hidratação profunda por 24h. Sua pele mais jovem e radiante com apenas 3 gotas.</p>
-                            <button class="mt-4 bg-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-600 transition">Compre Agora</button>
-                        </div>
-                    </div>
-                </div>
+          <!-- NOVO SLIDE 2 ADICIONADO AQUI -->
+          <div class="carousel-item">
+            <div class="carousel-content">
+              <img
+                src="imagens/serum.png.jpg"
+                alt="Novo Sérum"
+                class="carousel-img"
+              />
+              <div class="carousel-text">
+                <h3>Lançamento: Sérum Hialurônico Ultra-Hidratante!</h3>
+                <p class="mt-2 text-gray-600">
+                  Hidratação profunda por 24h. Sua pele mais jovem e radiante
+                  com apenas 3 gotas.
+                </p>
+                <button
+                  class="mt-4 bg-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-600 transition"
+                >
+                  Compre Agora
+                </button>
+              </div>
+            </div>
+          </div>
 
-                <!-- NOVO SLIDE 3 ADICIONADO AQUI -->
-                <div class="carousel-item">
-                    <div class="carousel-content">
-                        <img src="imagens/cremede olhos.png.jpg" alt="Desconto Exclusivo" class="carousel-img">
-                        <div class="carousel-text">
-                            <h3>Creme Antirrugas Que Reduz Olheiras, Inchaço E Rugas Com Ação Pró-Colágeno. </h3>
-                            <p class="mt-2 text-gray-600">Receba ofertas personalizadas e dicas de beleza diretamente no seu e-mail.</p>
-                            <button class="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-600 transition">Quero Meu Desconto</button>
-                        </div>
-                    </div>
-                </div>
-
-            <!-- Botões de Navegação e Pontos (Adicionados) -->
-            <button class="carousel-nav-btn prev" data-carousel-id="finalSkincareCarousel">&lt;</button>
-            <button class="carousel-nav-btn next" data-carousel-id="finalSkincareCarousel">&gt;</button>
-            <div class="carousel-dots" id="finalSkincareDots"></div>
+          <!-- NOVO SLIDE 3 ADICIONADO AQUI -->
+          <div class="carousel-item">
+            <div class="carousel-content">
+              <img
+                src="imagens/cremede olhos.png.jpg"
+                alt="Desconto Exclusivo"
+                class="carousel-img"
+              />
+              <div class="carousel-text">
+                <h3>
+                  Creme Antirrugas Que Reduz Olheiras, Inchaço E Rugas Com Ação
+                  Pró-Colágeno.
+                </h3>
+                <p class="mt-2 text-gray-600">
+                  Receba ofertas personalizadas e dicas de beleza diretamente no
+                  seu e-mail.
+                </p>
+                <button
+                  class="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+                >
+                  Quero Meu Desconto
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- CORREÇÃO: Botões e pontos movidos para fora do 'carousel-track' -->
+        <button class="carousel-nav-btn prev">&lt;</button>
+        <button class="carousel-nav-btn next">&gt;</button>
+        <div class="carousel-dots"></div>
+      </div>
     </section>
 
-        <!-- SEÇÃO DE NOVIDADES -->
-        <section class="product-area container scroll-target" id="Novidades">
-                    <h2>Novidades</h2>
-                    <div class="product-list" id="novidadesProductListContainer">
-                    <!-- Aqui serão carregados os produtos via JS -->
-                    </div>
-        </section>
+    <!-- SEÇÃO DE NOVIDADES -->
+    <section class="product-area container scroll-target" id="Novidades">
+      <h2>Novidades</h2>
+      <div class="product-list" id="novidadesProductListContainer">
+        <!-- Aqui serão carregados os produtos via JS -->
+      </div>
+    </section>
 
-            <!-- SEÇÃO DE LANÇAMENTOS DESTACADOS (FIXO) -->
-            <section class="novidades-item">
-                    <div class="novidades-container">
-                        <img src="imagens/copo-kit.jpg" alt="Lançamentos" class="lancamentos-img">
-                    <div class="novidades-text">
-                        <h2>Novidades</h2>
-                        <p class="mt-2 text-gray-600">Receba ofertas personalizadas e dicas de beleza diretamente no seu e-mail.</p>
-                        <p>Descubra as Novidades e Melhores Ofertas</p>
-                    </div>
-                </div>
-            </section>
+    <!-- SEÇÃO DE LANÇAMENTOS DESTACADOS (FIXO) -->
+    <section class="novidades-item">
+      <div class="novidades-container">
+        <img
+          src="imagens/copo-kit.jpg"
+          alt="Lançamentos"
+          class="lancamentos-img"
+        />
+        <div class="novidades-text">
+          <h2>Novidades</h2>
+          <p class="mt-2 text-gray-600">
+            Receba ofertas personalizadas e dicas de beleza diretamente no seu
+            e-mail.
+          </p>
+          <p>Descubra as Novidades e Melhores Ofertas</p>
+        </div>
+      </div>
+    </section>
 
-            <!-- SEÇÃO DE MARCAS-->
-<section id="marcas" class="marcas-area container scroll-target">
-    <h2>Nossas Marcas </h2>
-    <p>Trabalhamos apenas com as melhores marcas de maquiagem e skincare para garantir a qualidade que você merece.</p>
-    
-    <div class="brand-grid">
-        
+    <!-- SEÇÃO DE MARCAS-->
+    <section id="marcas" class="marcas-area container scroll-target">
+      <h2>Nossas Marcas</h2>
+      <p>
+        Trabalhamos apenas com as melhores marcas de maquiagem e skincare para
+        garantir a qualidade que você merece.
+      </p>
+
+      <div class="brand-grid">
         <div class="brand-item" data-brand="eudora">
-            <img src="imagens/logo-super-poderes.png" alt="Super Poderes" class="brand-logo">
-            <p>Super Poderes</p>
+          <img
+            src="imagens/logo-super-poderes.png"
+            alt="Super Poderes"
+            class="brand-logo"
+          />
+          <p>Super Poderes</p>
         </div>
-        
+
         <div class="brand-item" data-brand="principia">
-            <img src="imagens/logo-max-love.png" alt="max love" class="brand-logo">
-            <p>Max Love</p>
+          <img
+            src="imagens/logo-max-love.png"
+            alt="max love"
+            class="brand-logo"
+          />
+          <p>Max Love</p>
         </div>
-        
+
         <div class="brand-item" data-brand="brunatavares">
-            <img src="imagens/logo_lua_e_neve.jpg" alt="Lua e Neve" class="brand-logo">
-            <p>Lua e Neve </p>
+          <img
+            src="imagens/logo_lua_e_neve.jpg"
+            alt="Lua e Neve"
+            class="brand-logo"
+          />
+          <p>Lua e Neve</p>
         </div>
-        
-        </div>
-</section>
+      </div>
+    </section>
 
-
-                <!--Maps-->
+    <!--Maps-->
 
     <section id="map-section" class="container-map scroll-target">
-    <h2>Nossa Localização</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.5864892036457!2d-46.75636148945238!3d-23.868813178500545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce35e4641ec057%3A0x64ea9feb5597a3cd!2sR.%20Mabel%20Normando%20-%20Parelheiros%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004894-450!5e0!3m2!1spt-BR!2sbr!4v1761856856730!5m2!1spt-BR!2sbr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</section>
+      <h2>Nossa Localização</h2>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.5864892036457!2d-46.75636148945238!3d-23.868813178500545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce35e4641ec057%3A0x64ea9feb5597a3cd!2sR.%20Mabel%20Normando%20-%20Parelheiros%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004894-450!5e0!3m2!1spt-BR!2sbr!4v1761856856730!5m2!1spt-BR!2sbr"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </section>
 
-    
     <!--Botão Redes de  Social-->
     <section class="social-links container">
-        <h3>Siga Nossas Redes e Fique por Dentro!</h3>
-        <div class="social-buttons">
-            <a href="https://www.instagram.com/ybprincesinha_makecosmeticos" target="_blank" class="btn instagram">
-                <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a href="https://wa.me/5511971822511" target="_blank" class="whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-        </div>
+      <h3>Siga Nossas Redes e Fique por Dentro!</h3>
+      <div class="social-buttons">
+        <a
+          href="https://www.instagram.com/ybprincesinha_makecosmeticos"
+          target="_blank"
+          class="btn instagram"
+        >
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://wa.me/5511971822511" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
     </section>
 
     <button id="btn-open-cart" class="floating-cart-btn">
-        <i class="fas fa-shopping-cart"></i> 
-        <span id="cart-counter" class="cart-count-badge">0</span>
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cart-counter" class="cart-count-badge">0</span>
     </button>
-    
+
     <button id="backToTop" class="btn voltar floating-back-btn">
-        <i class="fas fa-arrow-up"></i>
+      <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Overlay para o carrinho -->
     <div id="carrinho-overlay" class="carrinho-overlay"></div>
 
     <div id="carrinho-sidebar" class="carrinho-sidebar">
-        <div class="carrinho-header">
-            <h2>Seu Carrinho</h2>
-            <button id="close-sidebar-btn" class="close-sidebar-btn">&times;</button>
-        </div>
-        <div class="produtos-carrinho"></div>
-        <div class="carrinho-footer">
-            <p class="total">Total: R$ 0,00</p>
-            <button class="btn-finalizar">Finalizar Compra</button>
-            <button id="limparCarrinho" class="limpar">
-                <i class="fas fa-trash-alt"></i> Limpar Carrinho
-            </button>
-        </div>
+      <div class="carrinho-header">
+        <h2>Seu Carrinho</h2>
+        <button id="close-sidebar-btn" class="close-sidebar-btn">
+          &times;
+        </button>
+      </div>
+      <div class="produtos-carrinho"></div>
+      <div class="carrinho-footer">
+        <p class="total">Total: R$ 0,00</p>
+        <button class="btn-finalizar">Finalizar Compra</button>
+        <button id="limparCarrinho" class="limpar">
+          <i class="fas fa-trash-alt"></i> Limpar Carrinho
+        </button>
+      </div>
     </div>
 
     <div id="modal-pix" class="modal-pix-overlay">
-        <div class="modal-pix-content">
-            <h3>Finalize a Compra</h3>
-            <p>Total: R$ <span id="total-pix">0.00</span></p>
-            <p class="pix-info">Chave PIX:</p>
-            <strong id="pix-chave">yasmin_princesinha@icloud.com </strong>
-            <button id="btn-copy-pix" class="btn-copy"><i class="fas fa-copy"></i> Copiar Chave</button>
-            <p class="pix-instruction">Copie a chave e faça o pagamento via seu Banco.</p>
-            <button id="confirma-pagamento" class="btn-primary" style="background-color: #28a745; margin-top: 15px;">
-            <i class="fas fa-check-circle"></i> Já Efetuei o Pagamento</button>
-            <button id="btn-fechar-pix" class="btn-secondary">Fechar</button>
-        </div>
+      <div class="modal-pix-content">
+        <h3>Finalize a Compra</h3>
+        <p>Total: R$ <span id="total-pix">0.00</span></p>
+        <p class="pix-info">Chave PIX:</p>
+        <strong id="pix-chave">yasmin_princesinha@icloud.com </strong>
+        <button id="btn-copy-pix" class="btn-copy">
+          <i class="fas fa-copy"></i> Copiar Chave
+        </button>
+        <p class="pix-instruction">
+          Copie a chave e faça o pagamento via seu Banco.
+        </p>
+        <button
+          id="confirma-pagamento"
+          class="btn-primary"
+          style="background-color: #28a745; margin-top: 15px"
+        >
+          <i class="fas fa-check-circle"></i> Já Efetuei o Pagamento
+        </button>
+        <button id="btn-fechar-pix" class="btn-secondary">Fechar</button>
+      </div>
     </div>
 
     <div id="modal-produto" class="modal-produto">
-        <div class="modal-produto-content">
-            <span id="fechar-modal-produto" class="fechar-modal-produto">&times;</span>
-            <img id="modal-produto-img" src="" alt="Imagem do Produto" class="product-image">
-            <div class="modal-produto-info">
-                <h2 id="modal-produto-nome"></h2>
-                <p id="modal-produto-preco" class="price"></p>
-                <p id="modal-produto-descricao" class="description"></p>
-                <button id="modal-btn-carrinho" class="btn-add-cart">Adicionar ao Carrinho</button>
-            </div>
+      <div class="modal-produto-content">
+        <span id="fechar-modal-produto" class="fechar-modal-produto"
+          >&times;</span
+        >
+        <img
+          id="modal-produto-img"
+          src=""
+          alt="Imagem do Produto"
+          class="product-image"
+        />
+        <div class="modal-produto-info">
+          <h2 id="modal-produto-nome"></h2>
+          <p id="modal-produto-preco" class="price"></p>
+          <p id="modal-produto-descricao" class="description"></p>
+          <button id="modal-btn-carrinho" class="btn-add-cart">
+            Adicionar ao Carrinho
+          </button>
         </div>
+      </div>
     </div>
 
     <div id="auth-modal" class="auth-modal">
-        <div class="auth-modal-content">
-            <span class="close-auth-modal">&times;</span>
-            <div id="auth-form-container">
-                <h2>Acesse sua Conta</h2>
-                <input type="email" id="auth-email" placeholder="Email">
-                <input type="password" id="auth-password" placeholder="Senha">
-                <button id="btn-login" class="btn-primary">Entrar</button>
-                <a href="cadastro.html" id="btn-signup" class="link-cadastrar">Não tem uma conta? <strong>Cadastre-se</strong></a>
-                <p id="auth-error-message" class="error-message"></p>
-            </div>
-            <div id="user-info-container" style="display:none;">
-                <div class="welcome-message">
-                    <p>Bem-vindo(a), <span id="user-email"></span>!</p>
-                    <button id="btn-logout" class="btn-secondary">Sair</button>
-                </div>
-            </div>
+      <div class="auth-modal-content">
+        <span class="close-auth-modal">&times;</span>
+        <div id="auth-form-container">
+          <h2>Acesse sua Conta</h2>
+          <input type="email" id="auth-email" placeholder="Email" />
+          <input type="password" id="auth-password" placeholder="Senha" />
+          <button id="btn-login" class="btn-primary">Entrar</button>
+          <a href="cadastro.html" id="btn-signup" class="link-cadastrar"
+            >Não tem uma conta? <strong>Cadastre-se</strong></a
+          >
+          <p id="auth-error-message" class="error-message"></p>
         </div>
+        <div id="user-info-container" style="display: none">
+          <div class="welcome-message">
+            <p>Bem-vindo(a), <span id="user-email"></span>!</p>
+            <button id="btn-logout" class="btn-secondary">Sair</button>
+          </div>
+        </div>
+      </div>
     </div>
-    
 
     <!--Firebase-->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
@@ -276,10 +377,8 @@
     <script src="src/firebase-config.js"></script>
     <script src="src/main.js"></script>
 
-
     <footer>
-        <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>
+      <p>&copy; 2025 YB Make's Cosméticos. Todos os direitos reservados.</p>
     </footer>
-
-</body>
+  </body>
 </html>

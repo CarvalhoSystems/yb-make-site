@@ -305,8 +305,10 @@ body {
 .product-card img {
   width: 100%;
   height: 250px; /* Imagens um pouco maiores */
-  object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+  /* CORREÇÃO: 'contain' garante que a imagem inteira seja exibida, sem cortes (zoom). */
+  object-fit: contain;
   border-radius: 4px;
+  background-color: #ffffff; /* Adiciona um fundo branco para preencher o espaço vazio */
 }
 
 .product-name {
@@ -1185,7 +1187,8 @@ footer {
 .carousel-img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #ffffff; /* Adiciona um fundo branco caso a imagem não preencha todo o espaço */
 }
 
 @media (min-width: 768px) {

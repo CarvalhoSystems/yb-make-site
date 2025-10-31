@@ -635,6 +635,7 @@ function inicializarCarrossel(carouselId) {
   const container = document.getElementById(carouselId);
   if (!container) return;
 
+  // CORREÇÃO: Os botões e pontos agora são buscados a partir do 'container' principal, não do 'track'.
   const track = container.querySelector(".carousel-track");
   const items = container.querySelectorAll(".carousel-item");
   const prevBtn = container.querySelector(".carousel-nav-btn.prev");
