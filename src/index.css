@@ -1727,3 +1727,428 @@ input:focus {
     height: 70px;
   }
 }
+
+/*
+====================================
+20. REPAGINAÇÃO VISUAL FEMININA E CHARMOSA
+====================================
+*/
+
+:root {
+  --primary-color: #d84f8b;
+  --secondary-color: #b93a73;
+  --text-color: #2d1a28;
+  --background-color: #fff8fc;
+  --light-background: #fff1f8;
+  --border-color: #f3d6e6;
+}
+
+body {
+  background: radial-gradient(circle at top right, #ffe3f2 0%, #fff8fc 38%, #ffffff 100%);
+  color: var(--text-color);
+}
+
+.main-header {
+  background: rgba(255, 248, 252, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #f1cfe1;
+  box-shadow: 0 8px 24px rgba(219, 79, 139, 0.12);
+}
+
+.titulo-loja {
+  letter-spacing: 0.5px;
+  text-shadow: 0 3px 10px rgba(216, 79, 139, 0.25);
+}
+
+.main-nav a {
+  border-radius: 999px;
+  margin: 2px 4px;
+}
+
+.main-nav a:hover {
+  background: #ffe5f2;
+}
+
+.search-bar {
+  background: #fff;
+  border: 1px solid #f4cade;
+  box-shadow: 0 3px 12px rgba(223, 113, 164, 0.15);
+}
+
+.header-auth-btn {
+  background: linear-gradient(135deg, #fff 0%, #ffeef7 100%);
+  border: 1px solid #f3c6db;
+}
+
+.hero-banner {
+  padding: 78px 20px;
+  border-radius: 0 0 36px 36px;
+}
+
+.hero-banner::before {
+  background-image: linear-gradient(rgba(255, 230, 243, 0.64), rgba(255, 243, 250, 0.8)),
+    url("https://i.pinimg.com/1200x/0b/f1/63/0bf16324507d0368b8250fe2a460725b.jpg");
+}
+
+.hero-badge {
+  display: inline-block;
+  background: #fff;
+  color: var(--secondary-color);
+  border: 1px solid #f4c8dc;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  box-shadow: 0 5px 15px rgba(185, 58, 115, 0.14);
+}
+
+.hero-banner h2 {
+  color: #6d2147;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.8);
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--primary-color), #f06cab);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(216, 79, 139, 0.32);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 26px rgba(216, 79, 139, 0.42);
+}
+
+.filter-controls {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 0 6px 18px rgba(216, 79, 139, 0.09);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 20px;
+}
+
+.filter-controls select {
+  border: 1px solid #f0bfd6;
+  border-radius: 10px;
+  padding: 6px 10px;
+  color: #7f2c55;
+  background: #fff8fc;
+}
+
+.product-card {
+  border: 1px solid #f2d2e3;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(142, 58, 96, 0.08);
+}
+
+.product-card:hover {
+  border-color: #eaa4c7;
+  box-shadow: 0 14px 28px rgba(216, 79, 139, 0.18);
+  transform: translateY(-2px);
+}
+
+.product-name {
+  color: #4d2241;
+}
+
+.btn-add-cart {
+  background: linear-gradient(135deg, var(--primary-color), #ed6fa8);
+}
+
+.btn-details {
+  border: 1px solid #f1bdd5;
+}
+
+.novidades-item,
+#map-section,
+.carousel-container,
+.marcas-area,
+.social-links {
+  border-radius: 18px;
+  border: 1px solid #f2d7e6;
+  background: linear-gradient(180deg, #fff9fd 0%, #fff 100%);
+  box-shadow: 0 8px 20px rgba(216, 79, 139, 0.08);
+}
+
+.marcas-area h2,
+#Novidades h2,
+.novidades-text h2,
+#map-section h2 {
+  color: #8a2f5a;
+}
+
+.brand-item {
+  border-radius: 14px;
+  background: #fff;
+}
+
+.brand-item:hover {
+  border-color: #e685b3;
+  box-shadow: 0 8px 18px rgba(216, 79, 139, 0.2);
+}
+
+.floating-cart-btn,
+.btn-finalizar,
+footer {
+  background: linear-gradient(135deg, var(--primary-color), #ee6ba8);
+}
+
+.floating-back-btn {
+  background: #8f4368;
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    border-radius: 0 0 24px 24px;
+    padding: 52px 16px;
+  }
+
+  .hero-cta {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .filter-controls {
+    width: calc(100% - 40px);
+    justify-content: space-between;
+    margin: 10px 20px 0;
+  }
+}
+
+/*
+====================================
+21. EXPERIÊNCIA E-COMMERCE PREMIUM (TENDÊNCIAS)
+====================================
+*/
+
+.announcement-bar {
+  background: linear-gradient(90deg, #a52663 0%, #cf3f7f 45%, #f064a0 100%);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.92rem;
+  letter-spacing: 0.2px;
+}
+
+.announcement-bar p {
+  margin: 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-main {
+  text-align: left;
+}
+
+.hero-main p {
+  max-width: 620px;
+  font-size: 1.05rem;
+  color: #51263f;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-cta-outline {
+  background: #fff;
+  color: #9c2e60;
+  border: 1px solid #e6aac9;
+}
+
+.hero-highlight-card {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 228, 242, 0.9) 100%);
+  border: 1px solid #efbfd8;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 14px 30px rgba(166, 38, 99, 0.18);
+  text-align: left;
+}
+
+.mini-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  background: #a52663;
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+}
+
+.hero-highlight-card h3 {
+  color: #7a1f4a;
+  margin-bottom: 8px;
+}
+
+.hero-price-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 700;
+  background: #fff;
+  color: #a52663;
+  border: 1px solid #edbfd7;
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.trust-strip {
+  margin-top: -12px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.trust-item {
+  background: #fff;
+  border: 1px solid #f0d1e2;
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  font-weight: 600;
+  color: #7e3558;
+  box-shadow: 0 8px 20px rgba(166, 38, 99, 0.08);
+}
+
+.trust-item i {
+  margin-right: 8px;
+  color: #ca3e7d;
+}
+
+.trend-categories {
+  margin: 8px auto 14px;
+}
+
+.trend-categories h3 {
+  color: #822c55;
+  margin-bottom: 10px;
+}
+
+.trend-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.trend-chips a {
+  text-decoration: none;
+  background: #fff;
+  color: #892f59;
+  border: 1px solid #efc4da;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.trend-chips a:hover {
+  background: linear-gradient(135deg, #cc3e7f, #ef72ab);
+  color: #fff;
+  border-color: transparent;
+}
+
+.product-area > h2,
+.marcas-area > h2,
+.beauty-proof > h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #7f2c55;
+  margin-top: 10px;
+}
+
+.beauty-proof {
+  margin-top: 25px;
+  padding: 24px;
+  background: linear-gradient(180deg, #fff8fc, #fff);
+  border: 1px solid #f0d2e3;
+  border-radius: 18px;
+}
+
+.proof-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof-card {
+  background: #fff;
+  border: 1px solid #f0d5e4;
+  border-radius: 14px;
+  padding: 16px;
+  color: #593046;
+  box-shadow: 0 8px 20px rgba(128, 44, 85, 0.08);
+}
+
+.proof-card p {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.proof-card strong {
+  color: #8f2f5d;
+}
+
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-main,
+  .hero-main p {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+
+  .trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .announcement-bar {
+    font-size: 0.82rem;
+    padding: 8px 10px;
+  }
+
+  .trust-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-highlight-card {
+    padding: 16px;
+  }
+
+  .trend-chips a {
+    font-size: 0.88rem;
+  }
+}
