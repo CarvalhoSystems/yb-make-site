@@ -1,115 +1,220 @@
-        :root {
-            --primary-color: #3b82f6; /* Azul do foco */
-            --secondary-color: #f59e0b; /* Amarelo de destaque */
-            --text-color: #374151;
-            --border-color: #e5e7eb;
-            --white: #ffffff;
-            --bg-light: #f3f4f6;
-        }
+:root {
+  --primary-color: #ec4899;
+  --secondary-color: #f97316;
+  --text-color: #2f1b2e;
+  --border-color: #f3d6e6;
+  --white: #ffffff;
+  --bg-light: #fdf4fa;
+  --shadow-soft: 0 12px 32px rgba(219, 39, 119, 0.12);
+  --shadow-card: 0 24px 48px rgba(128, 44, 85, 0.12);
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-color);
-        }
-        
-        /* Estilo Neumorfismo Suave para Formulário (Seu CSS Modificado) */
-        .form input[type="email"], 
-        .form input[type="password"],
-        .form input[type="text"], 
-        .form input[type="number"], 
-        .form textarea {
-            padding: 16px;
-            margin-bottom: 20px;
-            width: 100%;
-            color: var(--text-color);
-            border: none; 
-            border-radius: 12px; 
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background-color: var(--white);
-            /* Neumorfismo: Sombra interna e externa sutil */
-            box-shadow: 
-                inset 2px 2px 5px var(--border-color),
-                -2px -2px 5px var(--white); 
-        }
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(
+    circle at top right,
+    #ffe6f3 0%,
+    #fff5fb 45%,
+    #ffffff 100%
+  );
+  color: var(--text-color);
+  min-height: 100vh;
+}
 
-        /* Efeito de Foco Aprimorado */
-        .form input[type="email"]:focus, 
-        .form input[type="password"]:focus,
-        .form input[type="text"]:focus, 
-        .form input[type="number"]:focus, 
-        .form textarea:focus {
-            outline: none; 
-            border: 1px solid rgb(219, 80, 103); 
-            box-shadow: 
-                0 0 0 3px rgba(59, 130, 246, 0.2), 
-                inset 1px 1px 3px var(--border-color);
-        }
+.admin-body {
+  background-color: transparent;
+}
 
-        /* Estilos dos itens da lista de produtos */
-        .product-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-        .product-thumb {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-right: 1rem;
-        }
-        .product-info h4 {
-            font-weight: 600;
-            color: var(--text-color);
-        }
-        .product-info p {
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-        .btn-edit, .btn-delete {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            font-weight: 500;
-        }
-        .btn-edit {
-            background-color: var(--secondary-color);
-            color: var(--white);
-        }
-        .btn-edit:hover {
-            background-color: #d97706;
-        }
-        .btn-delete {
-            background-color: #ef4444;
-            color: var(--white);
-        }
-        .btn-delete:hover {
-            background-color: #dc2626;
-        }
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-        /* Estilos do Modal Simples */
-        .modal-backdrop {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none; /* Controlado pelo JS */
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
+.admin-card {
+  border: 1px solid rgba(236, 72, 153, 0.18);
+  box-shadow: var(--shadow-card);
+}
+
+.admin-header {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  padding: 18px 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.section-title {
+  color: #a2326b;
+  letter-spacing: 0.2px;
+}
+
+.admin-panel {
+  margin-top: 32px;
+}
+
+/* Estilo Neumorfismo Suave para Formulário (Seu CSS Modificado) */
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="text"],
+.form input[type="number"],
+.form textarea {
+  padding: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+  color: var(--text-color);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 20px rgba(128, 44, 85, 0.08);
+}
+
+/* Efeito de Foco Aprimorado */
+.form input[type="email"]:focus,
+.form input[type="password"]:focus,
+.form input[type="text"]:focus,
+.form input[type="number"]:focus,
+.form textarea:focus {
+  outline: none;
+  border: 1px solid rgba(236, 72, 153, 0.6);
+  box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15);
+}
+
+.form textarea {
+  min-height: 110px;
+}
+
+.admin-form-card {
+  backdrop-filter: blur(6px);
+}
+
+/* Estilos dos itens da lista de produtos */
+.product-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--white);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(236, 72, 153, 0.12);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.product-thumb-wrapper {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff5fb;
+  border: 1px solid rgba(236, 72, 153, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  margin-right: 0;
+  display: block;
+}
+.product-info h4 {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 4px;
+}
+.product-info p {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.product-info {
+  min-width: 200px;
+  flex: 1;
+}
+
+.product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .product-item {
+    align-items: flex-start;
+  }
+
+  .product-info {
+    flex-basis: 100%;
+    margin: 0;
+  }
+
+  .product-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+.btn-edit,
+.btn-delete {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+.btn-edit {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+.btn-edit:hover {
+  background-color: #d97706;
+}
+.btn-delete {
+  background-color: #ef4444;
+  color: var(--white);
+}
+.btn-delete:hover {
+  background-color: #dc2626;
+}
+
+.admin-list {
+  display: grid;
+  gap: 16px;
+}
+
+#product-list-admin > p {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px dashed rgba(236, 72, 153, 0.25);
+  text-align: center;
+}
+
+/* Estilos do Modal Simples */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(30, 10, 25, 0.55);
+  display: none; /* Controlado pelo JS */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(236, 72, 153, 0.18);
+}

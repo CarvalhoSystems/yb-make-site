@@ -31,7 +31,10 @@
     <link rel="icon" type="imagem/svg+xml" href="src/favicon.svg" />
     <link rel="ícone do atalho" href="src/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href="./src/site.webmanifest" />
+
+    <!-- QRCode -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   </head>
   <body>
     <header class="main-header">
@@ -135,7 +138,7 @@
         <a href="#maquiagem">Blush Rosé</a>
         <a href="#skincare">Skincare Glass Skin</a>
         <a href="#Novidades">Lançamentos TikTok</a>
-        <a href="#promocoes">Kits Presenteáveis</a>
+        <a href="#promocoes" id="kits-presentes">Kits Presenteáveis</a>
       </div>
     </section>
 
@@ -402,15 +405,29 @@
           Total: R$
           <span id="total-pix">0.00</span>
         </p>
+
         <p class="pix-info">Chave PIX:</p>
         <strong id="pix-chave">yasmin_princesinha@icloud.com</strong>
+
+        <div
+          id="qrcode-pix"
+          style="
+            margin: 20px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            width: fit-content;
+          "
+        ></div>
+
         <button id="btn-copy-pix" class="btn-copy">
           <i class="fas fa-copy"></i>
           Copiar Chave
         </button>
         <p class="pix-instruction">
-          Copie a chave e faça o pagamento via seu Banco.
+          Escaneie o QR Code acima ou copie a chave.
         </p>
+
         <button
           id="confirma-pagamento"
           class="btn-primary"

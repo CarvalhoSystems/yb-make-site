@@ -90,7 +90,9 @@ body {
   color: var(--text-color); /* Cor de texto padrão para links */
   padding: 10px 15px;
   display: block;
-  transition: color 0.3s, background-color 0.3s;
+  transition:
+    color 0.3s,
+    background-color 0.3s;
   font-weight: bold;
   position: relative; /* Para o pseudo-elemento ::after */
 }
@@ -130,7 +132,9 @@ body {
   cursor: pointer;
   font-size: 0.9em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .header-auth-btn:hover {
@@ -178,7 +182,9 @@ body {
   /* Configurações de Transição/Visibilidade */
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
   z-index: 10;
   pointer-events: none; /* Não interfere no clique quando invisível */
 }
@@ -212,10 +218,8 @@ body {
   width: 100%;
   height: 100%;
   /* Aplica um gradiente de cor por cima da imagem para dar o efeito translúcido */
-  background-image: linear-gradient(
-      rgba(253, 246, 248, 0.1),
-      rgba(253, 246, 248, 0.1)
-    ),
+  background-image:
+    linear-gradient(rgba(253, 246, 248, 0.1), rgba(253, 246, 248, 0.1)),
     url("https://i.pinimg.com/1200x/0b/f1/63/0bf16324507d0368b8250fe2a460725b.jpg");
   background-size: cover; /* Faz a imagem cobrir todo o espaço */
   background-position: center; /* Centraliza a imagem */
@@ -289,7 +293,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 
 .product-card:hover {
@@ -343,7 +349,9 @@ body {
   border-bottom-right-radius: 4px;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
 }
 
 .product-image-container:hover .product-hover-buttons {
@@ -359,7 +367,9 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
   width: 90%; /* Define uma largura um pouco menor que o container */
   box-sizing: border-box;
 }
@@ -561,6 +571,25 @@ body {
   text-align: center;
   position: relative;
   animation: modal-fade-in 0.3s;
+}
+
+/* Espaçamento para o QR Code no modal */
+#qrcode-pix {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px auto; /* Centraliza horizontalmente */
+  width: fit-content; /* Garante que o fundo branco acompanhe o tamanho do QR */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#qrcode-pix canvas,
+#qrcode-pix img {
+  max-width: 100%; /* Ajuste para telas pequenas */
+  height: auto !important;
 }
 
 @keyframes modal-fade-in {
@@ -1115,7 +1144,9 @@ footer {
   /* Configurações de Transição/Visibilidade */
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
   z-index: 10;
   pointer-events: none;
 }
@@ -1689,7 +1720,9 @@ input:focus {
   padding: 15px;
   border: 1px solid #eee;
   border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer; /* Indica que o elemento é clicável */
   width: 150px; /* Largura fixa para cada item */
 }
@@ -1744,7 +1777,12 @@ input:focus {
 }
 
 body {
-  background: radial-gradient(circle at top right, #ffe3f2 0%, #fff8fc 38%, #ffffff 100%);
+  background: radial-gradient(
+    circle at top right,
+    #ffe3f2 0%,
+    #fff8fc 38%,
+    #ffffff 100%
+  );
   color: var(--text-color);
 }
 
@@ -1786,7 +1824,8 @@ body {
 }
 
 .hero-banner::before {
-  background-image: linear-gradient(rgba(255, 230, 243, 0.64), rgba(255, 243, 250, 0.8)),
+  background-image:
+    linear-gradient(rgba(255, 230, 243, 0.64), rgba(255, 243, 250, 0.8)),
     url("https://i.pinimg.com/1200x/0b/f1/63/0bf16324507d0368b8250fe2a460725b.jpg");
 }
 
@@ -1818,7 +1857,9 @@ body {
   border-radius: 999px;
   font-weight: 700;
   box-shadow: 0 10px 22px rgba(216, 79, 139, 0.32);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .hero-cta:hover {
@@ -1976,7 +2017,11 @@ footer {
 }
 
 .hero-highlight-card {
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 228, 242, 0.9) 100%);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 228, 242, 0.9) 100%
+  );
   border: 1px solid #efbfd8;
   border-radius: 20px;
   padding: 20px;

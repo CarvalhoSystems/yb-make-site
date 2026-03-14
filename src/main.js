@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnConfirmarPagamento) {
     btnConfirmarPagamento.addEventListener(
       "click",
-      confirmarPagamentoViaWhatsApp
+      confirmarPagamentoViaWhatsApp,
     );
   }
 
@@ -210,8 +210,8 @@ function renderizarProdutos(produtos, containerId) {
       <div class="product-card" data-id="${produto.id}">
         <div class="product-image-container">
           <img src="${produto.image || ""}" alt="Imagem de ${
-      produto.title || "Produto"
-    }">
+            produto.title || "Produto"
+          }">
           <div class="product-hover-buttons">
             <button class="btn-details">Ver Detalhes</button>
             <button class="btn-add-cart">Adicionar ao Carrinho</button>
@@ -251,6 +251,10 @@ function confirmarPagamentoViaWhatsApp() {
   // 🚨 IMPORTANTE: Substitua 'SEUNUMEROAQUI' pelo seu número real (ex: 5511987654321)
   const numeroWhatsApp = "5511971822511";
 
+  // Gera a imagen do qrcode
+  const qrcode = new QRCode(document.getElementById("qrcode-pix"));
+  qrcode.makeCode(linkWhatsApp);
+
   let mensagem =
     "Olá, YB MAKE's! Acabei de efetuar uma compra PIX e desejo enviar o comprovante.\n\n";
   mensagem += "✅ *RESUMO DO MEU PEDIDO:*\n";
@@ -271,7 +275,7 @@ function confirmarPagamentoViaWhatsApp() {
 
   // Codifica a mensagem para URL
   const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
-    mensagem
+    mensagem,
   )}`;
 
   // 2. Mostra o alerta de AVISO antes de redirecionar para o WhatsApp
@@ -306,35 +310,198 @@ function confirmarPagamentoViaWhatsApp() {
   });
 }
 
-function mostrarPix() {
-  const totalPixSpan = document.getElementById("total-pix");
-  const modalPix = document.getElementById("modal-pix");
+// Variável global para não duplicar o QR Code toda vez que abrir o modal
+let qrcodeGerado = null;
 
-  if (carrinho.length === 0) {
-    alert("O carrinho está vazio!");
-    return;
-  }
-  totalPixSpan.innerText = total.toFixed(2).replace(".", ",");
-  modalPix.style.display = "flex";
+function formatarCampoEmv(id, valor) {
+  const tamanho = String(valor.length).padStart(2, "0");
+  return `${id}${tamanho}${valor}`;
 }
 
-function copiarChavePix() {
-  const chavePix = document.getElementById("pix-chave").innerText;
-  const btnCopy = document.getElementById("btn-copy-pix");
+function calcularCrc16(payload) {
+  let resultado = 0xffff;
+  for (let offset = 0; offset < payload.length; offset++) {
+    resultado ^= payload.charCodeAt(offset) << 8;
+    for (let bit = 0; bit < 8; bit++) {
+      if ((resultado & 0x8000) !== 0) {
+        resultado = (resultado << 1) ^ 0x1021;
+      } else {
+        resultado <<= 1;
+      }
+      resultado &= 0xffff;
+    }
+  }
+  return resultado.toString(16).toUpperCase().padStart(4, "0");
+}
 
-  navigator.clipboard.writeText(chavePix).then(() => {
-    const originalText = btnCopy.innerHTML;
-    btnCopy.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-    btnCopy.style.backgroundColor = "#28a745";
-    setTimeout(() => {
-      btnCopy.innerHTML = originalText;
-      btnCopy.style.backgroundColor = "";
-    }, 2000);
-  });
+function gerarPayloadPix({ chave, nome, cidade, valor, txid = "***" }) {
+  const nomeFormatado = nome.slice(0, 25);
+  const cidadeFormatada = cidade.slice(0, 15);
+
+  const gui = formatarCampoEmv("00", "br.gov.bcb.pix");
+  const chaveEmv = formatarCampoEmv("01", chave);
+  const merchantAccountInfo = formatarCampoEmv("26", `${gui}${chaveEmv}`);
+
+  const payloadSemCrc = [
+    formatarCampoEmv("00", "01"),
+    merchantAccountInfo,
+    formatarCampoEmv("52", "0000"),
+    formatarCampoEmv("53", "986"),
+    formatarCampoEmv("54", valor),
+    formatarCampoEmv("58", "BR"),
+    formatarCampoEmv("59", nomeFormatado),
+    formatarCampoEmv("60", cidadeFormatada),
+    formatarCampoEmv("62", formatarCampoEmv("05", txid)),
+    "6304",
+  ].join("");
+
+  const crc = calcularCrc16(payloadSemCrc);
+  return `${payloadSemCrc}${crc}`;
 }
 
 function fecharPix() {
-  document.getElementById("modal-pix").style.display = "none";
+  const modalPix = document.getElementById("modal-pix");
+  if (modalPix) {
+    modalPix.style.display = "none";
+  }
+}
+
+function mostrarPix() {
+  const totalPixSpan = document.getElementById("total-pix");
+  const modalPix = document.getElementById("modal-pix");
+  const qrcodeContainer = document.getElementById("qrcode-pix");
+
+  if (carrinho.length === 0) {
+    Swal.fire("Ops!", "O carrinho está vazio!", "error");
+    return;
+  }
+
+  // Formata o valor para 2 casas decimais (ex: 10.00)
+  const valorFormatado = total.toFixed(2);
+  totalPixSpan.innerText = valorFormatado.replace(".", ",");
+
+  // A MÁGICA: Gera o BR Code (padrão do Banco Central)
+  // Nota: Para um sistema real, o ideal seria o backend gerar isso.
+  const chave = "yasmin_princesinha@icloud.com";
+  const nome = "YASMIN B";
+  const cidade = "SAOPAULO";
+
+  const payloadPix = gerarPayloadPix({
+    chave,
+    nome,
+    cidade,
+    valor: valorFormatado,
+  });
+
+  modalPix.style.display = "flex";
+  qrcodeContainer.innerHTML = "";
+
+  new QRCode(qrcodeContainer, {
+    text: payloadPix,
+    width: 180,
+    height: 180,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H,
+  });
+}
+function copiarChavePix() {
+  const chavePix = document.getElementById("pix-chave").innerText;
+  const btnCopy = document.getElementById("btn-copy-pix");
+  const originalText = btnCopy.innerHTML;
+
+  // Função para mudar o visual do botão (sucesso)
+  const mostrarSucesso = () => {
+    btnCopy.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+    btnCopy.style.backgroundColor = "#28a745";
+    btnCopy.style.color = "#fff";
+    setTimeout(() => {
+      btnCopy.innerHTML = originalText;
+      btnCopy.style.backgroundColor = "";
+      btnCopy.style.color = "";
+    }, 2000);
+  };
+
+  // 1. Tenta o método moderno (Clipboard API)
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard
+      .writeText(chavePix)
+      .then(() => mostrarSucesso())
+      .catch((err) => {
+        console.error("Erro ao copiar via API: ", err);
+        tentarCopiaManual(chavePix, mostrarSucesso);
+      });
+  } else {
+    // 2. Método de segurança (Fallback para HTTP ou navegadores antigos)
+    tentarCopiaManual(chavePix, mostrarSucesso);
+  }
+}
+
+// Função auxiliar para copiar criando um campo de texto invisível
+function tentarCopiaManual(texto, callbackSucesso) {
+  const inputTemporario = document.createElement("textarea");
+  inputTemporario.value = texto;
+  document.body.appendChild(inputTemporario);
+  inputTemporario.select();
+  inputTemporario.setSelectionRange(0, 99999); // Para mobile
+
+  try {
+    document.execCommand("copy");
+    callbackSucesso();
+  } catch (err) {
+    console.error("Falha ao copiar manualmente: ", err);
+    alert(
+      "Não foi possível copiar. Por favor, selecione o texto e copie manualmente.",
+    );
+  }
+
+  document.body.removeChild(inputTemporario);
+}
+
+function confirmarPagamentoViaWhatsApp() {
+  if (carrinho.length === 0) {
+    Swal.fire({ icon: "error", title: "Ops!", text: "O carrinho está vazio." });
+    return;
+  }
+
+  const numeroWhatsApp = "5511971822511";
+  let mensagem =
+    "Olá, YB MAKE's! Acabei de efetuar uma compra PIX e desejo enviar o comprovante.\n\n";
+  mensagem += "✅ *RESUMO DO MEU PEDIDO:*\n";
+
+  carrinho.forEach((item) => {
+    const precoTotalItem = (item.preco * item.quantidade)
+      .toFixed(2)
+      .replace(".", ",");
+    mensagem += `* ${item.nome} (x${item.quantidade}) - R$ ${precoTotalItem}\n`;
+  });
+
+  const totalFormatado = total.toFixed(2).replace(".", ",");
+  mensagem += `\n*TOTAL DA COMPRA:* R$ ${totalFormatado}`;
+
+  const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+  fecharPix();
+
+  Swal.fire({
+    title: "Quase lá! 💖",
+    html: `<p>Toque em <strong>'Enviar Comprovante'</strong> para validar sua compra no WhatsApp.</p>`,
+    icon: "info",
+    showCancelButton: true,
+    confirmButtonText: '<i class="fab fa-whatsapp"></i> Enviar Comprovante',
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: "#25D366",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.open(linkWhatsApp, "_blank");
+      limparCarrinho(true);
+      Swal.fire(
+        "Pedido Recebido! 🎉",
+        "Enviamos os detalhes para o seu WhatsApp.",
+        "success",
+      );
+    }
+  });
 }
 
 // =========================================================================
@@ -425,12 +592,12 @@ function atualizarCarrinho() {
     itemCarrinhoDiv.classList.add("carrinho-item");
     itemCarrinhoDiv.innerHTML = `
       <img src="${item.imagem}" alt="${
-      item.nome
-    }" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover; margin-right: 10px;">
+        item.nome
+      }" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover; margin-right: 10px;">
       <div style="flex-grow: 1;">
         <span style="display: block; font-size: 0.9em;">${item.nome} (x${
-      item.quantidade
-    })</span>
+          item.quantidade
+        })</span>
         <span style="display: block; font-size: 0.8em; color: #666;">R$ ${(
           item.preco * item.quantidade
         )
@@ -483,7 +650,7 @@ function limparCarrinho(pagamentoFinalizado = false) {
 function buscarProduto() {
   const termo = document.getElementById("search-input").value.toLowerCase();
   const produtosFiltrados = todosOsProdutos.filter((produto) =>
-    produto.title.toLowerCase().includes(termo)
+    produto.title.toLowerCase().includes(termo),
   );
   renderizarProdutos(produtosFiltrados, "productListContainer");
 }
@@ -499,7 +666,7 @@ function ordenarProdutos() {
   let produtosParaOrdenar = todosOsProdutos;
   if (termoBusca) {
     produtosParaOrdenar = todosOsProdutos.filter((produto) =>
-      produto.title.toLowerCase().includes(termoBusca)
+      produto.title.toLowerCase().includes(termoBusca),
     );
   }
 
@@ -634,6 +801,35 @@ async function handleLogout() {
   }
 }
 
+function mostrarKitsPresentes() {
+  const kitsPresentes = document.getElementById("kits-presentes");
+  Swal.fire({
+    title: "Kits Presentes",
+    icon: "info",
+    html: `
+            <p style="margin-bottom: 10px;">Kits Presentes são kits de beleza que você pode usar para fazer seu perfil.</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <strong>Destaque:</strong> Kits Presentes são kits de beleza que você pode usar para fazer seu perfil.<br>
+            </div>
+        `,
+    showCancelButton: true,
+    confirmButtonText: "Ver Kits Presentes",
+    cancelButtonText: "Fechar",
+    confirmButtonColor: "#9C34A9", // Cor roxa/lilás
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "#promocoes"; // Exemplo de destino
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const kitsPresentesBtn = document.getElementById("kits-presentes");
+  if (kitsPresentesBtn) {
+    kitsPresentesBtn.addEventListener("click", mostrarKitsPresentes);
+  }
+});
+
 // =========================================================================
 // =================== LÓGICA DO CARROSSEL E NOVIDADES =====================
 // =========================================================================
@@ -697,7 +893,7 @@ function inicializarCarrossel(carouselId) {
 function carregarNovidades() {
   const db = firebase.firestore();
   const novidadesContainer = document.getElementById(
-    "novidadesProductListContainer"
+    "novidadesProductListContainer",
   );
 
   // Busca produtos marcados como "novidades" no Firestore
@@ -708,7 +904,7 @@ function carregarNovidades() {
       // Renderiza os produtos encontrados no container correto
       const produtosNovidades = [];
       querySnapshot.forEach((doc) =>
-        produtosNovidades.push({ id: doc.id, ...doc.data() })
+        produtosNovidades.push({ id: doc.id, ...doc.data() }),
       );
       renderizarProdutos(produtosNovidades, "novidadesProductListContainer");
     })
