@@ -1,0 +1,16 @@
+{
+  "name": "make-yb",
+  "version": "1.0.0",
+  "description": "> E-commerce profissional de maquiagem e skincare, com design moderno, carrinho de compras, integração com Firebase e sistema de pagamento PIX.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1"
+  }
+}
